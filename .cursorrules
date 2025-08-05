@@ -1,0 +1,35 @@
+# Cursor AI Kuralları (React + Next.js + Tailwind)
+
+## Genel Yaklaşım
+- Kod önerileri mevcut UI yapısını bozmadan devam etmeli.
+- v0.dev tarafından oluşturulan bileşen yapısına sadık kalınmalı.
+- Yalnızca istenen alanlarda değişiklik yapılmalı; tüm bileşen yeniden yazılmamalı.
+
+## UI & CSS
+- Tailwind sınıfları doğrudan HTML öğelerinde sade ve okunabilir şekilde kullanılmalı.
+- Mevcut spacing, renkler, border, shadow, responsive yapı korunmalı.
+- UI bileşenlerinin stil hiyerarşisi bozulmamalı.
+- Yeni stiller gerekiyorsa mevcut Tailwind utility sınıflarına uyumlu olmalı.
+- CSS dosyası veya stil eklemesi yapılmamalı; sadece Tailwind kullanılmalı.
+
+## React / Next.js
+- Functional component yapısı korunmalı.
+- Server component'lar ve client component yapısı Next.js kurallarına uygun olmalı.
+- Yeni bileşenler mümkünse mevcut bileşen ağacına entegre edilmeli, gereksiz yeniden yapılanma yapılmamalı.
+- Kod okunabilirliği öncelikli olmalı; yorum satırlarıyla desteklenmeli.
+
+## Dosya ve Proje Yapısı
+- Mevcut klasör yapısı (app, components, lib vs.) korunmalı.
+- Yeni component ekleniyorsa uygun yere yerleştirilmeli (örneğin `components/` içine).
+- Dosya isimlendirmeleri kebab-case olmalı.
+- Component isimleri PascalCase formatında olmalı.
+
+## Kodlama Standartları
+- `const` ve `let` tercih edilmeli, `var` kullanılmamalı.
+- `console.log` gibi geçici ifadeler önerilmemeli.
+- Gerekli yerlerde TypeScript tipi açıkça belirtilmeli (kullanılıyorsa).
+- Kodun sade, okunabilir, tek sorumluluk ilkesine uygun olması önceliklidir.
+
+## Kod Değişikliği Prensibi
+- Cursor AI, yalnızca kullanıcı tarafından belirtilen sorun veya ekleme için kod önerisi yapmalı.
+- Mevcut kodu sadece gerektiği kadar değiştir, asla tüm yapıyı yeniden düzenleme.
