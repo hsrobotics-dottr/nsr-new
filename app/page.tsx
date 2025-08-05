@@ -1,24 +1,24 @@
 "use client"
 
-import type React from "react"
-import { useState, useEffect, useRef, memo, useCallback, useMemo } from "react"
-import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/contexts/language-context"
 import {
+  ArrowRight,
+  Award,
   ChevronLeft,
   ChevronRight,
-  Shield,
-  Zap,
-  Settings,
-  Eye,
-  ThumbsUp,
-  Award,
-  ArrowRight,
   ExternalLink,
+  Eye,
+  Settings,
+  Shield,
+  ThumbsUp,
+  Zap,
 } from "lucide-react"
 import dynamic from "next/dynamic"
-import { useLanguage } from "@/contexts/language-context"
+import Image from "next/image"
+import Link from "next/link"
+import type React from "react"
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 // Lazy load heavy components
 const Header = dynamic(() => import("@/components/header"), {
@@ -99,6 +99,43 @@ const pageTranslations = {
       seriesTitle: "İşbirlikçi Robot Serimiz",
       seriesDescription: "Güvenli insan-robot işbirliği için tasarlanmış akıllı çözümler",
       button: "Daha Fazla Bilgi",
+    },
+    industries: {
+      title: "Endüstri Çözümlerimiz",
+      description: "Farklı endüstri sektörlerinde robotik otomasyon çözümlerimizi keşfedin",
+      button: "Tüm Endüstrileri İncele",
+      categories: [
+        {
+          name: "3C Endüstrisi",
+          description: "Bilgisayar, İletişim ve Tüketici Elektroniği",
+          icon: "Smartphone"
+        },
+        {
+          name: "Ayakkabı ve Giyim",
+          description: "Tekstil ve Ayakkabı Üretimi",
+          icon: "Shirt"
+        },
+        {
+          name: "Otomobil Endüstrisi",
+          description: "Otomotiv ve Araç Üretimi",
+          icon: "Car"
+        },
+        {
+          name: "Ev Aletleri",
+          description: "Beyaz Eşya ve Ev Aletleri",
+          icon: "Home"
+        },
+        {
+          name: "Metal İşleme",
+          description: "Metal İşleme ve Üretim",
+          icon: "Wrench"
+        },
+        {
+          name: "Diğer Endüstriler",
+          description: "Çeşitli Endüstriyel Uygulamalar",
+          icon: "Factory"
+        }
+      ]
     },
     solutions: {
       title: "Sektörel Çözümler",
@@ -210,6 +247,43 @@ const pageTranslations = {
       seriesTitle: "Our Collaborative Robot Series",
       seriesDescription: "Smart solutions designed for safe human-robot collaboration",
       button: "Learn More",
+    },
+    industries: {
+      title: "Our Industry Solutions",
+      description: "Discover our robotic automation solutions in different industry sectors",
+      button: "Explore All Industries",
+      categories: [
+        {
+          name: "3C Industry",
+          description: "Computer, Communication and Consumer Electronics",
+          icon: "Smartphone"
+        },
+        {
+          name: "Shoe & Clothing",
+          description: "Textile and Shoe Manufacturing",
+          icon: "Shirt"
+        },
+        {
+          name: "Automotive Industry",
+          description: "Automotive and Vehicle Manufacturing",
+          icon: "Car"
+        },
+        {
+          name: "Home Appliances",
+          description: "White Goods and Home Appliances",
+          icon: "Home"
+        },
+        {
+          name: "Metal Processing",
+          description: "Metal Processing and Manufacturing",
+          icon: "Wrench"
+        },
+        {
+          name: "Other Industries",
+          description: "Various Industrial Applications",
+          icon: "Factory"
+        }
+      ]
     },
     solutions: {
       title: "Industry Solutions",

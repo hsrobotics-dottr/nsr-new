@@ -1,14 +1,14 @@
 "use client"
 
-import Link from "next/link"
-import { Search, Globe, Menu, X, ChevronDown, ChevronRight, ArrowLeft } from "lucide-react"
-import { useHeader, megaMenuData } from "@/hooks/use-header"
-import { useMobileMenu } from "@/hooks/use-mobile-menu"
 import ContactButton from "@/components/header/contact-button"
-import SearchOverlay from "@/components/header/search-overlay"
 import LanguageSelector from "@/components/header/language-selector"
 import Navigation from "@/components/header/navigation"
+import SearchOverlay from "@/components/header/search-overlay"
+import { megaMenuData, useHeader } from "@/hooks/use-header"
+import { useMobileMenu } from "@/hooks/use-mobile-menu"
+import { ArrowLeft, ChevronDown, ChevronRight, Globe, Menu, Search, X } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Header() {
   const {
@@ -234,6 +234,13 @@ export default function Header() {
                   </div>
 
                   {/* Other Menu Items */}
+                  <Link
+                    href="/endustriler"
+                    className="block py-4 text-lg font-medium text-gray-800 hover:text-blue-600 transition-colors border-b border-gray-100"
+                    onClick={handleMobileMenuItemClick}
+                  >
+                    Endüstriler
+                  </Link>
                   <Link
                     href="/support"
                     className="block py-4 text-lg font-medium text-gray-800 hover:text-blue-600 transition-colors border-b border-gray-100"

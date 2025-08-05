@@ -2,8 +2,8 @@
 
 import type React from "react"
 
-import { useState, useEffect, useCallback } from "react"
 import { useLanguage } from "@/contexts/language-context"
+import { useCallback, useEffect, useState } from "react"
 
 interface ContactForm {
   name: string
@@ -276,24 +276,12 @@ export const megaMenuData = {
       title: "Endüstri Planı",
       titleEn: "Industry Plan",
       subItems: [
-        { title: "3C Endüstrisi", titleEn: "3C Industry", href: "/solutions/3c-endustrisi" },
-        {
-          title: "Ayakkabı ve Giyim Endüstrisi",
-          titleEn: "Footwear and Apparel Industry",
-          href: "/solutions/ayakkabi-giyim-endustrisi",
-        },
-        { title: "Otomobil Endüstrisi", titleEn: "Automotive Industry", href: "/solutions/otomobil-endustrisi" },
-        {
-          title: "Ev Aletleri Endüstrisi",
-          titleEn: "Home Appliances Industry",
-          href: "/solutions/ev-aletleri-endustrisi",
-        },
-        {
-          title: "Metal İşleme Endüstrisi",
-          titleEn: "Metal Processing Industry",
-          href: "/solutions/metal-isleme-endustrisi",
-        },
-        { title: "Diğer Endüstriler", titleEn: "Other Industries", href: "/solutions/diger-endustriler" },
+        { title: "3C Endüstrisi", titleEn: "3C Industry", href: "/endustriler/3c" },
+        { title: "Ayakkabı ve Giyim Endüstrisi", titleEn: "Footwear and Apparel Industry", href: "/endustriler/ayakkabi-giyim" },
+        { title: "Otomobil Endüstrisi", titleEn: "Automotive Industry", href: "/endustriler/otomobil" },
+        { title: "Ev Aletleri Endüstrisi", titleEn: "Home Appliances Industry", href: "/endustriler/ev-aletleri" },
+        { title: "Metal İşleme Endüstrisi", titleEn: "Metal Processing Industry", href: "/endustriler/metal-isleme" },
+        { title: "Diğer Endüstriler", titleEn: "Other Industries", href: "/endustriler/diger" },
       ],
     },
     {

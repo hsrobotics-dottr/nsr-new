@@ -2,9 +2,9 @@
 
 import type React from "react"
 
-import Link from "next/link"
 import { ChevronDown } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 interface NavigationProps {
   activeDropdown: string | null
@@ -256,14 +256,22 @@ export default function Navigation({
         </div>
       </div>
 
-      <Link
-        href="/support"
-        className={`transition-colors ${
-          isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-400"
-        }`}
-      >
-        {t.nav.support}
-      </Link>
+              <Link
+          href="/endustriler"
+          className={`transition-colors ${
+            isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-400"
+          }`}
+        >
+          Endüstriler
+        </Link>
+        <Link
+          href="/support"
+          className={`transition-colors ${
+            isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-400"
+          }`}
+        >
+          {t.nav.support}
+        </Link>
       <Link
         href="/library"
         className={`transition-colors ${
