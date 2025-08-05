@@ -58,6 +58,11 @@ export function VideoGrid({ videos, title, description }: VideoGridProps) {
                 className="group bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="relative h-48 bg-gray-50 rounded-t-xl overflow-hidden">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20 flex items-center justify-center">
                     <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Play className="w-8 h-8 text-white ml-1" />
@@ -76,9 +81,12 @@ export function VideoGrid({ videos, title, description }: VideoGridProps) {
                   <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
                     {video.title}
                   </h3>
-                  <p className="text-gray-600 text-sm line-clamp-2">
+                  <p className="text-gray-600 text-sm line-clamp-2 mb-4">
                     {video.description}
                   </p>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                    İzle
+                  </Button>
                 </div>
               </div>
             ))}

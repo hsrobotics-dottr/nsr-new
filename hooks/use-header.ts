@@ -272,9 +272,9 @@ export const megaMenuData = {
   ],
   solutions: [
     {
-      id: "endustri-plani",
-      title: "Endüstri Planı",
-      titleEn: "Industry Plan",
+      id: "endustri-programi",
+      title: "Endüstri Programı",
+      titleEn: "Industry Program",
       subItems: [
         { title: "3C Endüstrisi", titleEn: "3C Industry", href: "/endustriler/3c" },
         { title: "Ayakkabı ve Giyim Endüstrisi", titleEn: "Footwear and Apparel Industry", href: "/endustriler/ayakkabi-giyim" },

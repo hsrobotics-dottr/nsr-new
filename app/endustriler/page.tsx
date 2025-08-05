@@ -1,5 +1,5 @@
-import { Footer } from '@/components/footer'
-import { Header } from '@/components/header'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import { Car, Factory, Home, Shirt, Smartphone, Wrench } from 'lucide-react'
 import Link from 'next/link'
 

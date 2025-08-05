@@ -49,15 +49,19 @@ export function IndustryLayout({ title, description, images, videos }: IndustryL
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {images.map((image, index) => (
                 <div key={index} className="relative h-80 bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <p className="text-blue-600 font-medium">Endüstri Görseli {index + 1}</p>
-                    </div>
+                  <img
+                    src={image}
+                    alt={`${title} Görsel ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-lg font-semibold">
+                      {index === 0 ? 'Robotik Uygulama' : 'Endüstriyel Çözüm'}
+                    </h3>
+                    <p className="text-sm opacity-90">
+                      {index === 0 ? 'Hassas ve verimli otomasyon' : 'Güvenli ve sürdürülebilir üretim'}
+                    </p>
                   </div>
                 </div>
               ))}
