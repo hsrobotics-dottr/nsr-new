@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -20,13 +20,13 @@ export default function manifest(): MetadataRoute.Manifest {
         src: '/icon-192x192.png',
         sizes: '192x192',
         type: 'image/png',
-        purpose: 'maskable any',
+        purpose: 'maskable',
       },
       {
         src: '/icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'maskable any',
+        purpose: 'maskable',
       },
     ],
     categories: ['business', 'productivity', 'utilities'],
@@ -34,5 +34,5 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: 'ltr',
     scope: '/',
     prefer_related_applications: false,
-  }
+  };
 }

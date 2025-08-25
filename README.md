@@ -22,12 +22,14 @@ Modern, performans odaklı endüstriyel robotik web sitesi. Next.js 15, TypeScri
 ### Kurulum Adımları
 
 1. **Repository'yi klonlayın**
+
    ```bash
    git clone <repository-url>
    cd hsr
    ```
 
 2. **Bağımlılıkları yükleyin**
+
    ```bash
    pnpm install
    # veya
@@ -35,6 +37,7 @@ Modern, performans odaklı endüstriyel robotik web sitesi. Next.js 15, TypeScri
    ```
 
 3. **Geliştirme sunucusunu başlatın**
+
    ```bash
    pnpm dev
    # veya

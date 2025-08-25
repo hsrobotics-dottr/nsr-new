@@ -1,9 +1,9 @@
-import { IndustryLayout } from '@/components/industry-layout'
-import { generateIndustryVideos, industryData } from '@/lib/industry-data'
+import { IndustryLayout } from '@/components/industry-layout';
+import { generateIndustryVideos, industryData } from '@/lib/industry-data';
 
 export default function HomeAppliancesIndustryPage() {
-  const data = industryData['ev-aletleri']
-  const videos = generateIndustryVideos('ev-aletleri', 15)
+  const data = industryData['ev-aletleri'];
+  const videos = generateIndustryVideos('ev-aletleri', 15);
 
   return (
     <IndustryLayout
@@ -12,5 +12,5 @@ export default function HomeAppliancesIndustryPage() {
       images={data.images}
       videos={videos}
     />
-  )
+  );
 }

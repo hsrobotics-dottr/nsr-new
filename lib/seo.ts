@@ -45,7 +45,7 @@ export function generateSEO({
     title: fullTitle,
     description: fullDescription,
     keywords: fullKeywords,
-    authors: author ? [{ name: author }] : seoConfig.authors,
+    authors: author ? [{ name: author }] : (seoConfig.authors as any),
     creator: seoConfig.creator,
     publisher: seoConfig.publisher,
     formatDetection: seoConfig.formatDetection,
@@ -65,7 +65,7 @@ export function generateSEO({
       },
     },
     openGraph: {
-      type,
+      type: type === 'product' ? 'website' : type,
       locale: seoConfig.openGraph.locale,
       url: fullUrl,
       title: fullTitle,
@@ -84,7 +84,7 @@ export function generateSEO({
       ...(author && { authors: [author] }),
       ...(section && { section }),
       ...(tags.length > 0 && { tags }),
-    },
+    } as any,
     twitter: {
       card: seoConfig.twitter.card,
       title: fullTitle,
@@ -144,7 +144,9 @@ export function generateWebsiteSchema() {
   };
 }
 
-export function generateBreadcrumbSchema(breadcrumbs: Array<{ name: string; url: string }>) {
+export function generateBreadcrumbSchema(
+  breadcrumbs: Array<{ name: string; url: string }>
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -285,7 +287,7 @@ export function generateMetaTags(seoProps: SEOProps): Record<string, string> {
   const metadata = generateSEO(seoProps);
 
   const metaTags: Record<string, string> = {
-    'viewport': 'width=device-width, initial-scale=1',
+    viewport: 'width=device-width, initial-scale=1',
     'theme-color': '#3b82f6',
     'color-scheme': 'light dark',
   };
@@ -315,7 +317,9 @@ export function generateMetaTags(seoProps: SEOProps): Record<string, string> {
 }
 
 // Open Graph tag generators
-export function generateOpenGraphTags(seoProps: SEOProps): Record<string, string> {
+export function generateOpenGraphTags(
+  seoProps: SEOProps
+): Record<string, string> {
   const metadata = generateSEO(seoProps);
   const og = metadata.openGraph as any;
 
@@ -339,7 +343,9 @@ export function generateOpenGraphTags(seoProps: SEOProps): Record<string, string
 }
 
 // Twitter Card tag generators
-export function generateTwitterCardTags(seoProps: SEOProps): Record<string, string> {
+export function generateTwitterCardTags(
+  seoProps: SEOProps
+): Record<string, string> {
   const metadata = generateSEO(seoProps);
   const twitter = metadata.twitter as any;
 
@@ -355,46 +361,77 @@ export function generateTwitterCardTags(seoProps: SEOProps): Record<string, stri
 
 // Predefined SEO configurations for common pages
 export const pageSEO = {
-  home: () => generateSEO({
-    title: 'Ana Sayfa',
-    description: 'HSR Robotics - Modern endüstriyel robotik çözümleri ve otomasyon sistemleri. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar.',
-    keywords: ['endüstriyel robotik', 'otomasyon', 'robotik çözümler'],
-  }),
+  home: () =>
+    generateSEO({
+      title: 'Ana Sayfa',
+      description:
+        'HSR Robotics - Modern endüstriyel robotik çözümleri ve otomasyon sistemleri. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar.',
+      keywords: ['endüstriyel robotik', 'otomasyon', 'robotik çözümler'],
+    }),
 
-  about: () => generateSEO({
-    title: 'Hakkımızda',
-    description: 'HSR Robotics olarak endüstriyel robotik alanında yenilikçi çözümler sunuyoruz. Deneyimli ekibimiz ve modern teknolojilerimizle sektörde öncüyüz.',
-    keywords: ['HSR Robotics', 'hakkımızda', 'şirket', 'vizyon', 'misyon'],
-  }),
+  about: () =>
+    generateSEO({
+      title: 'Hakkımızda',
+      description:
+        'HSR Robotics olarak endüstriyel robotik alanında yenilikçi çözümler sunuyoruz. Deneyimli ekibimiz ve modern teknolojilerimizle sektörde öncüyüz.',
+      keywords: ['HSR Robotics', 'hakkımızda', 'şirket', 'vizyon', 'misyon'],
+    }),
 
-  products: () => generateSEO({
-    title: 'Ürünler',
-    description: 'Endüstriyel robotik ürünlerimizi keşfedin. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar ile otomasyon ihtiyaçlarınızı karşılıyoruz.',
-    keywords: ['ürünler', '6 eksenli robot', 'SCARA robot', 'Delta robot', 'Kartesian robot'],
-  }),
+  products: () =>
+    generateSEO({
+      title: 'Ürünler',
+      description:
+        'Endüstriyel robotik ürünlerimizi keşfedin. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar ile otomasyon ihtiyaçlarınızı karşılıyoruz.',
+      keywords: [
+        'ürünler',
+        '6 eksenli robot',
+        'SCARA robot',
+        'Delta robot',
+        'Kartesian robot',
+      ],
+    }),
 
-  news: () => generateSEO({
-    title: 'Haberler',
-    description: 'Endüstriyel robotik sektöründeki en güncel haberler, teknoloji gelişmeleri ve HSR Robotics güncellemeleri.',
-    keywords: ['haberler', 'sektör haberleri', 'teknoloji', 'güncellemeler'],
-    type: 'article',
-  }),
+  news: () =>
+    generateSEO({
+      title: 'Haberler',
+      description:
+        'Endüstriyel robotik sektöründeki en güncel haberler, teknoloji gelişmeleri ve HSR Robotics güncellemeleri.',
+      keywords: ['haberler', 'sektör haberleri', 'teknoloji', 'güncellemeler'],
+      type: 'article',
+    }),
 
-  library: () => generateSEO({
-    title: 'Kütüphane',
-    description: 'Teknik dokümantasyon, kullanım kılavuzları, veri sayfaları ve endüstriyel robotik ile ilgili kaynaklar.',
-    keywords: ['kütüphane', 'dokümantasyon', 'kullanım kılavuzu', 'teknik bilgi'],
-  }),
+  library: () =>
+    generateSEO({
+      title: 'Kütüphane',
+      description:
+        'Teknik dokümantasyon, kullanım kılavuzları, veri sayfaları ve endüstriyel robotik ile ilgili kaynaklar.',
+      keywords: [
+        'kütüphane',
+        'dokümantasyon',
+        'kullanım kılavuzu',
+        'teknik bilgi',
+      ],
+    }),
 
-  support: () => generateSEO({
-    title: 'Destek',
-    description: 'Teknik destek, servis, eğitim ve müşteri hizmetleri. HSR Robotics ürünleriniz için profesyonel destek.',
-    keywords: ['destek', 'teknik destek', 'servis', 'eğitim', 'müşteri hizmetleri'],
-  }),
+  support: () =>
+    generateSEO({
+      title: 'Destek',
+      description:
+        'Teknik destek, servis, eğitim ve müşteri hizmetleri. HSR Robotics ürünleriniz için profesyonel destek.',
+      keywords: [
+        'destek',
+        'teknik destek',
+        'servis',
+        'eğitim',
+        'müşteri hizmetleri',
+      ],
+    }),
 
-  contact: () => generateSEO({
-    title: 'İletişim',
-    description: 'HSR Robotics ile iletişime geçin. Satış, teknik destek, servis ve genel bilgi için bizimle iletişime geçin.',
-    keywords: ['iletişim', 'satış', 'teknik destek', 'servis', 'bilgi'],
-  }),
+  contact: () =>
+    generateSEO({
+      title: 'İletişim',
+      description:
+        'HSR Robotics ile iletişime geçin. Satış, teknik destek, servis ve genel bilgi için bizimle iletişime geçin.',
+      keywords: ['iletişim', 'satış', 'teknik destek', 'servis', 'bilgi'],
+    }),
 } as const;

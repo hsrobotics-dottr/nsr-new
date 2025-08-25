@@ -17,6 +17,5 @@ Disallow: /private/
 Allow: /
 Allow: /about/
 Allow: /products/
-Allow: /haberler/
 Allow: /library/
 Allow: /support/

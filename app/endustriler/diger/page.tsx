@@ -1,9 +1,9 @@
-import { IndustryLayout } from '@/components/industry-layout'
-import { generateIndustryVideos, industryData } from '@/lib/industry-data'
+import { IndustryLayout } from '@/components/industry-layout';
+import { generateIndustryVideos, industryData } from '@/lib/industry-data';
 
 export default function OtherIndustriesPage() {
-  const data = industryData['diger']
-  const videos = generateIndustryVideos('diger', 15)
+  const data = industryData['diger'];
+  const videos = generateIndustryVideos('diger', 15);
 
   return (
     <IndustryLayout
@@ -12,5 +12,5 @@ export default function OtherIndustriesPage() {
       images={data.images}
       videos={videos}
     />
-  )
+  );
 }

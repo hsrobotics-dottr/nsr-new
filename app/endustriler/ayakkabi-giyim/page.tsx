@@ -1,9 +1,9 @@
-import { IndustryLayout } from '@/components/industry-layout'
-import { generateIndustryVideos, industryData } from '@/lib/industry-data'
+import { IndustryLayout } from '@/components/industry-layout';
+import { generateIndustryVideos, industryData } from '@/lib/industry-data';
 
 export default function ClothingShoeIndustryPage() {
-  const data = industryData['ayakkabi-giyim']
-  const videos = generateIndustryVideos('ayakkabi-giyim', 15)
+  const data = industryData['ayakkabi-giyim'];
+  const videos = generateIndustryVideos('ayakkabi-giyim', 15);
 
   return (
     <IndustryLayout
@@ -12,5 +12,5 @@ export default function ClothingShoeIndustryPage() {
       images={data.images}
       videos={videos}
     />
-  )
+  );
 }

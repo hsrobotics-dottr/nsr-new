@@ -4,9 +4,24 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
+    "dev:fast": "NODE_OPTIONS='--max-old-space-size=4096 --max-semi-space-size=64' next dev -p 4000",
+    "dev:memory": "NODE_OPTIONS='--max-old-space-size=2048 --max-semi-space-size=32' next dev -p 4000",
+    "dev:optimized": "NODE_OPTIONS='--max-old-space-size=2048 --max-semi-space-size=32 --optimize-for-size --gc-interval=100' next dev -p 4000",
+    "build:analyze": "ANALYZE=true next build",
+    "build:memory": "NODE_OPTIONS='--max-old-space-size=4096 --max-semi-space-size=64' next build",
     "lint": "next lint",
-    "start": "next start"
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "start": "next start -p 4000",
+    "start:memory": "NODE_OPTIONS='--max-old-space-size=2048 --max-semi-space-size=32' next start -p 4000",
+    "clean": "rm -rf .next out dist",
+    "clean:all": "rm -rf .next out dist node_modules pnpm-lock.yaml && pnpm install",
+    "quality": "pnpm lint && pnpm type-check && pnpm format:check",
+    "memory:check": "node -e \"console.log('Memory Usage:', process.memoryUsage())\"",
+    "memory:clean": "pnpm clean && pnpm install --frozen-lockfile"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -64,7 +79,12 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "cssnano": "^7.1.0",
+    "eslint": "^9.33.0",
     "postcss": "^8.5",
+    "prettier": "^3.6.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }

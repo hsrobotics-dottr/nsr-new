@@ -1,7 +1,7 @@
-import Footer from '@/components/footer'
-import Header from '@/components/header'
-import { Car, Factory, Home, Shirt, Smartphone, Wrench } from 'lucide-react'
-import Link from 'next/link'
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { Car, Factory, Home, Shirt, Smartphone, Wrench } from 'lucide-react';
+import Link from 'next/link';
 
 const industries = [
   {
@@ -9,44 +9,44 @@ const industries = [
     slug: '3c',
     description: 'Bilgisayar, İletişim ve Tüketici Elektroniği',
     icon: Smartphone,
-    image: '/placeholder.jpg'
+    image: '/placeholder.jpg',
   },
   {
     name: 'Ayakkabı ve Giyim Endüstrisi',
     slug: 'ayakkabi-giyim',
     description: 'Tekstil ve Ayakkabı Üretimi',
     icon: Shirt,
-    image: '/placeholder.jpg'
+    image: '/placeholder.jpg',
   },
   {
     name: 'Otomobil Endüstrisi',
     slug: 'otomobil',
     description: 'Otomotiv ve Araç Üretimi',
     icon: Car,
-    image: '/placeholder.jpg'
+    image: '/placeholder.jpg',
   },
   {
     name: 'Ev Aletleri Endüstrisi',
     slug: 'ev-aletleri',
     description: 'Beyaz Eşya ve Ev Aletleri',
     icon: Home,
-    image: '/placeholder.jpg'
+    image: '/placeholder.jpg',
   },
   {
     name: 'Metal İşleme Endüstrisi',
     slug: 'metal-isleme',
     description: 'Metal İşleme ve Üretim',
     icon: Wrench,
-    image: '/placeholder.jpg'
+    image: '/placeholder.jpg',
   },
   {
     name: 'Diğer Endüstriler',
     slug: 'diger',
     description: 'Çeşitli Endüstriyel Uygulamalar',
     icon: Factory,
-    image: '/placeholder.jpg'
-  }
-]
+    image: '/placeholder.jpg',
+  },
+];
 
 export default function IndustriesPage() {
   return (
@@ -63,8 +63,9 @@ export default function IndustriesPage() {
               Robotik Çözümlerimiz
             </p>
             <p className="text-lg text-blue-200 max-w-3xl mx-auto leading-relaxed">
-              Farklı endüstri sektörlerinde robotik otomasyon çözümlerimizi keşfedin.
-              Her sektöre özel tasarlanmış robotlarımızla üretim süreçlerinizi optimize edin.
+              Farklı endüstri sektörlerinde robotik otomasyon çözümlerimizi
+              keşfedin. Her sektöre özel tasarlanmış robotlarımızla üretim
+              süreçlerinizi optimize edin.
             </p>
           </div>
         </div>
@@ -79,13 +80,14 @@ export default function IndustriesPage() {
                 Endüstri Çözümlerimiz
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Her endüstri sektörü için özel olarak tasarlanmış robotik çözümlerimizi inceleyin.
+                Her endüstri sektörü için özel olarak tasarlanmış robotik
+                çözümlerimizi inceleyin.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {industries.map((industry, index) => {
-                const IconComponent = industry.icon
+                const IconComponent = industry.icon;
                 return (
                   <Link
                     key={index}
@@ -112,12 +114,22 @@ export default function IndustriesPage() {
                       <span className="text-blue-600 font-medium group-hover:text-blue-700 transition-colors">
                         Detayları İncele
                       </span>
-                      <svg className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </div>
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
@@ -131,7 +143,8 @@ export default function IndustriesPage() {
             Endüstriniz İçin Özel Çözüm
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Sektörünüze özel robotik çözümlerimiz hakkında daha fazla bilgi almak için bizimle iletişime geçin.
+            Sektörünüze özel robotik çözümlerimiz hakkında daha fazla bilgi
+            almak için bizimle iletişime geçin.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -152,5 +165,5 @@ export default function IndustriesPage() {
 
       <Footer />
     </div>
-  )
+  );
 }

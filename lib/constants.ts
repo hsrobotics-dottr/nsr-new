@@ -5,10 +5,15 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://hsr.com',
   ogImage: '/og-image.jpg',
   links: {
-    twitter: process.env.NEXT_PUBLIC_SOCIAL_TWITTER || 'https://twitter.com/hsr',
-    linkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || 'https://linkedin.com/company/hsr',
-    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || 'https://facebook.com/hsr',
-    instagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || 'https://instagram.com/hsr',
+    twitter:
+      process.env.NEXT_PUBLIC_SOCIAL_TWITTER || 'https://twitter.com/hsr',
+    linkedin:
+      process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN ||
+      'https://linkedin.com/company/hsr',
+    facebook:
+      process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || 'https://facebook.com/hsr',
+    instagram:
+      process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || 'https://instagram.com/hsr',
   },
   contact: {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@hsr.com',
@@ -216,7 +221,8 @@ export const seoConfig = {
     default: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
     template: '%s | HSR Robotics',
   },
-  description: 'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar.',
+  description:
+    'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri. 6 eksenli robotlar, SCARA, Delta ve Kartesian robotlar.',
   keywords: [
     'endüstriyel robotik',
     'otomasyon',
@@ -244,7 +250,8 @@ export const seoConfig = {
     locale: 'tr_TR',
     url: siteConfig.url,
     title: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
-    description: 'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri.',
+    description:
+      'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri.',
     siteName: 'HSR Robotics',
     images: [
       {
@@ -258,7 +265,8 @@ export const seoConfig = {
   twitter: {
     card: 'summary_large_image',
     title: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
-    description: 'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri.',
+    description:
+      'Modern endüstriyel robotik çözümleri ve otomasyon sistemleri.',
     images: ['/og-image.jpg'],
     creator: '@hsr',
   },

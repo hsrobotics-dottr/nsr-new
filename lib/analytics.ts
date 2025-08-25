@@ -1,5 +1,13 @@
 import { AnalyticsEvent } from './types';
 
+// Extend Window interface for dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 // Google Analytics 4 (GA4) implementation
 export class Analytics {
   private static instance: Analytics;
@@ -247,7 +255,7 @@ export class PerformanceMonitor {
 
   private trackLCP(): void {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1] as PerformanceEntry;
 
@@ -265,14 +273,14 @@ export class PerformanceMonitor {
 
   private trackFID(): void {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           this.analytics.trackEvent({
             name: 'fid',
             category: 'performance',
             action: 'fid',
-            value: Math.round(entry.processingStart - entry.startTime),
+            value: Math.round((entry as any).processingStart - entry.startTime),
           });
         });
       });
@@ -284,7 +292,7 @@ export class PerformanceMonitor {
   private trackCLS(): void {
     if ('PerformanceObserver' in window) {
       let clsValue = 0;
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         entries.forEach((entry: any) => {
           if (!entry.hadRecentInput) {
@@ -306,7 +314,7 @@ export class PerformanceMonitor {
 
   private trackFCP(): void {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         const firstEntry = entries[0] as PerformanceEntry;
 
@@ -324,7 +332,7 @@ export class PerformanceMonitor {
 
   private trackTTFB(): void {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         entries.forEach((entry: any) => {
           if (entry.initiatorType === 'navigation') {
@@ -370,7 +378,8 @@ export const useAnalytics = () => {
 
   return {
     trackEvent: (event: AnalyticsEvent) => analytics.trackEvent(event),
-    trackPageView: (url: string, title?: string) => analytics.trackPageView(url, title),
+    trackPageView: (url: string, title?: string) =>
+      analytics.trackPageView(url, title),
     trackConversion: (conversionId: string, conversionLabel: string) =>
       analytics.trackConversion(conversionId, conversionLabel),
   };

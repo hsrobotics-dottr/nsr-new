@@ -2,8 +2,7 @@
 
 ## Genel Yaklaşım
 - Kod önerileri mevcut UI yapısını bozmadan devam etmeli.
-- v0.dev tarafından oluşturulan bileşen yapısına sadık kalınmalı.
-- Yalnızca istenen alanlarda değişiklik yapılmalı; tüm bileşen yeniden yazılmamalı.
+- Yalnızca istenen alanlarda değişiklik yapılmalı, tüm bileşen yeniden yazılmamalı.
 
 ## UI & CSS
 - Tailwind sınıfları doğrudan HTML öğelerinde sade ve okunabilir şekilde kullanılmalı.
@@ -11,10 +10,11 @@
 - UI bileşenlerinin stil hiyerarşisi bozulmamalı.
 - Yeni stiller gerekiyorsa mevcut Tailwind utility sınıflarına uyumlu olmalı.
 - CSS dosyası veya stil eklemesi yapılmamalı; sadece Tailwind kullanılmalı.
+- Ürün detay sayfalarımızın tasarımı her zaman "/products/hsr-jr603-570" sayfasının şablonu ile aynı olacak.
 
 ## React / Next.js
 - Functional component yapısı korunmalı.
-- Server component'lar ve client component yapısı Next.js kurallarına uygun olmalı.
+- Server componentlar ve client component yapısı Next.js kurallarına uygun olmalı.
 - Yeni bileşenler mümkünse mevcut bileşen ağacına entegre edilmeli, gereksiz yeniden yapılanma yapılmamalı.
 - Kod okunabilirliği öncelikli olmalı; yorum satırlarıyla desteklenmeli.
 

@@ -1,10 +1,10 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import { usePathname } from "next/navigation"
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function ScrollToTop() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   useEffect(() => {
     // Optimize scroll reset with requestAnimationFrame
@@ -13,13 +13,13 @@ export default function ScrollToTop() {
         window.scrollTo({
           top: 0,
           left: 0,
-          behavior: "instant",
-        })
-      })
-    }
+          behavior: 'instant',
+        });
+      });
+    };
 
-    scrollToTop()
-  }, [pathname])
+    scrollToTop();
+  }, [pathname]);
 
-  return null
+  return null;
 }

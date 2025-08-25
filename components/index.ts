@@ -1,4 +1,4 @@
-export { default as Header } from "./header"
-export { default as Footer } from "./footer"
-export { default as InteractiveRobotArm } from "./interactive-robot-arm"
-export { default as ThemeProvider } from "./theme-provider"
+export { Footer } from './footer';
+export { Header } from './header/header';
+export { InteractiveRobotArm } from './interactive-robot-arm';
+export { ThemeProvider } from './theme-provider';

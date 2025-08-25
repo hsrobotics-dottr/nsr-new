@@ -9,7 +9,10 @@ export const emailSchema = z
 export const phoneSchema = z
   .string()
   .min(1, 'Telefon numarası gereklidir')
-  .regex(/^(\+90|0)?[5][0-9]{9}$/, 'Geçerli bir Türkiye telefon numarası giriniz');
+  .regex(
+    /^(\+90|0)?[5][0-9]{9}$/,
+    'Geçerli bir Türkiye telefon numarası giriniz'
+  );
 
 export const nameSchema = z
   .string()
@@ -27,9 +30,7 @@ export const messageSchema = z
   .min(10, 'Mesaj en az 10 karakter olmalıdır')
   .max(1000, 'Mesaj en fazla 1000 karakter olabilir');
 
-export const subjectSchema = z
-  .string()
-  .min(1, 'Konu seçimi gereklidir');
+export const subjectSchema = z.string().min(1, 'Konu seçimi gereklidir');
 
 // Contact form schema
 export const contactFormSchema = z.object({
@@ -47,7 +48,7 @@ export type ContactFormData = z.infer<typeof contactFormSchema>;
 export const newsletterSchema = z.object({
   email: emailSchema,
   name: nameSchema.optional(),
-  consent: z.boolean().refine((val) => val === true, {
+  consent: z.boolean().refine(val => val === true, {
     message: 'Bülten aboneliği için onay gereklidir',
   }),
 });
@@ -105,25 +106,30 @@ export const supportTicketSchema = z.object({
 export type SupportTicketData = z.infer<typeof supportTicketSchema>;
 
 // User registration schema
-export const userRegistrationSchema = z.object({
-  firstName: nameSchema,
-  lastName: nameSchema,
-  email: emailSchema,
-  phone: phoneSchema.optional(),
-  company: companySchema.optional(),
-  password: z
-    .string()
-    .min(8, 'Şifre en az 8 karakter olmalıdır')
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir'),
-  confirmPassword: z.string().min(1, 'Şifre tekrarı gereklidir'),
-  terms: z.boolean().refine((val) => val === true, {
-    message: 'Kullanım şartlarını kabul etmelisiniz',
-  }),
-  newsletter: z.boolean().optional(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Şifreler eşleşmiyor',
-  path: ['confirmPassword'],
-});
+export const userRegistrationSchema = z
+  .object({
+    firstName: nameSchema,
+    lastName: nameSchema,
+    email: emailSchema,
+    phone: phoneSchema.optional(),
+    company: companySchema.optional(),
+    password: z
+      .string()
+      .min(8, 'Şifre en az 8 karakter olmalıdır')
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+        'Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir'
+      ),
+    confirmPassword: z.string().min(1, 'Şifre tekrarı gereklidir'),
+    terms: z.boolean().refine(val => val === true, {
+      message: 'Kullanım şartlarını kabul etmelisiniz',
+    }),
+    newsletter: z.boolean().optional(),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'Şifreler eşleşmiyor',
+    path: ['confirmPassword'],
+  });
 
 export type UserRegistrationData = z.infer<typeof userRegistrationSchema>;
 
@@ -144,16 +150,21 @@ export const passwordResetSchema = z.object({
 export type PasswordResetData = z.infer<typeof passwordResetSchema>;
 
 // New password schema
-export const newPasswordSchema = z.object({
-  password: z
-    .string()
-    .min(8, 'Şifre en az 8 karakter olmalıdır')
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir'),
-  confirmPassword: z.string().min(1, 'Şifre tekrarı gereklidir'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Şifreler eşleşmiyor',
-  path: ['confirmPassword'],
-});
+export const newPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(8, 'Şifre en az 8 karakter olmalıdır')
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+        'Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir'
+      ),
+    confirmPassword: z.string().min(1, 'Şifre tekrarı gereklidir'),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'Şifreler eşleşmiyor',
+    path: ['confirmPassword'],
+  });
 
 export type NewPasswordData = z.infer<typeof newPasswordSchema>;
 
@@ -164,8 +175,14 @@ export const profileUpdateSchema = z.object({
   email: emailSchema,
   phone: phoneSchema.optional(),
   company: companySchema.optional(),
-  position: z.string().max(50, 'Pozisyon en fazla 50 karakter olabilir').optional(),
-  bio: z.string().max(500, 'Biyografi en fazla 500 karakter olabilir').optional(),
+  position: z
+    .string()
+    .max(50, 'Pozisyon en fazla 50 karakter olabilir')
+    .optional(),
+  bio: z
+    .string()
+    .max(500, 'Biyografi en fazla 500 karakter olabilir')
+    .optional(),
 });
 
 export type ProfileUpdateData = z.infer<typeof profileUpdateSchema>;
@@ -174,9 +191,20 @@ export type ProfileUpdateData = z.infer<typeof profileUpdateSchema>;
 export const fileUploadSchema = z.object({
   file: z
     .instanceof(File)
-    .refine((file) => file.size <= 10 * 1024 * 1024, 'Dosya boyutu 10MB\'dan küçük olmalıdır')
     .refine(
-      (file) => ['image/jpeg', 'image/png', 'image/webp', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type),
+      file => file.size <= 10 * 1024 * 1024,
+      "Dosya boyutu 10MB'dan küçük olmalıdır"
+    )
+    .refine(
+      file =>
+        [
+          'image/jpeg',
+          'image/png',
+          'image/webp',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ].includes(file.type),
       'Sadece JPEG, PNG, WebP, PDF ve Word dosyaları kabul edilir'
     ),
 });
@@ -194,7 +222,7 @@ export function validateField<T>(
     return { isValid: true };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const fieldError = error.errors.find((err) => err.path.includes(fieldName));
+      const fieldError = error.errors.find(err => err.path.includes(fieldName));
       return {
         isValid: false,
         error: fieldError?.message || `${fieldName} geçersiz`,
@@ -217,7 +245,7 @@ export function validateForm<T>(
   } catch (error) {
     if (error instanceof z.ZodError) {
       const errors: Record<string, string> = {};
-      error.errors.forEach((err) => {
+      error.errors.forEach(err => {
         const fieldName = err.path.join('.');
         errors[fieldName] = err.message;
       });
@@ -320,13 +348,16 @@ export function formatFileSize(bytes: number): string {
 // Error message helpers
 export const validationMessages = {
   required: (fieldName: string) => `${fieldName} gereklidir`,
-  minLength: (fieldName: string, min: number) => `${fieldName} en az ${min} karakter olmalıdır`,
-  maxLength: (fieldName: string, max: number) => `${fieldName} en fazla ${max} karakter olabilir`,
+  minLength: (fieldName: string, min: number) =>
+    `${fieldName} en az ${min} karakter olmalıdır`,
+  maxLength: (fieldName: string, max: number) =>
+    `${fieldName} en fazla ${max} karakter olabilir`,
   invalidEmail: 'Geçerli bir e-posta adresi giriniz',
   invalidPhone: 'Geçerli bir telefon numarası giriniz',
   invalidUrl: 'Geçerli bir URL giriniz',
   passwordMismatch: 'Şifreler eşleşmiyor',
-  fileTooLarge: (maxSize: string) => `Dosya boyutu ${maxSize}MB'dan küçük olmalıdır`,
+  fileTooLarge: (maxSize: string) =>
+    `Dosya boyutu ${maxSize}MB'dan küçük olmalıdır`,
   invalidFileType: 'Geçersiz dosya türü',
   termsRequired: 'Kullanım şartlarını kabul etmelisiniz',
   consentRequired: 'Onay gereklidir',

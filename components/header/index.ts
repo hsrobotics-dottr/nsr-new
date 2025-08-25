@@ -1,6 +1,5 @@
-export { default as Header } from "./header"
-export { default as Navigation } from "./navigation"
-export { default as MegaMenu } from "./mega-menu"
-export { default as ContactButton } from "./contact-button"
-export { default as SearchOverlay } from "./search-overlay"
-export { default as LanguageSelector } from "./language-selector"
+export { Header } from './header';
+export { LanguageSelector } from './language-selector';
+export { MegaMenu } from './mega-menu';
+export { Navigation } from './navigation';
+export { SearchOverlay } from './search-overlay';
