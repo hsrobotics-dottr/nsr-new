@@ -5,12 +5,12 @@ import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  ChevronRight,
-Info,
-MessageCircle,
-Package,
-Settings,
-Zap,
+    ChevronRight,
+    Info,
+    MessageCircle,
+    Package,
+    Settings,
+    Zap,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -129,198 +129,149 @@ contactUs: 'Contact Us',
 };
 
 export default function HSTC700Page() {
-  
+
 const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 const t = translations[currentLang as keyof typeof translations];
 
   return (
-          <div
-        className='min-h-screen bg-white'>
-<Header />
+    <div className='min-h-screen bg-white'>
+      <Header />
 
-{/* Breadcrumb */}
-            <section
-        className='py-5 bg-gray-50 border-b border-gray-200'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <nav
-        className='flex items-center space-x-2 text-sm text-gray-600'>
-      <span
-        className='text-gray-800 font-medium'>
-{productData.category}
-      </span>
-      <ChevronRight
-        className='w-4 h-4' />
-      <span
-        className='text-gray-800 font-medium'>
-{productData.model}
-      </span>
-      </nav>
-      </div>
+      {/* Breadcrumb */}
+      <section className='py-5 bg-gray-50 border-b border-gray-200'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <nav className='flex items-center space-x-2 text-sm text-gray-600'>
+            <span className='text-gray-800 font-medium'>
+              {productData.category}
+            </span>
+            <ChevronRight className='w-4 h-4' />
+            <span className='text-gray-800 font-medium'>
+              {productData.model}
+            </span>
+          </nav>
+        </div>
       </section>
 
-{/* Product Header */}
-            <section
-        className='py-12 bg-white'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <div
-        className='grid lg:grid-cols-2 gap-12 items-start'>
-{/* Product Image */}
-      <div
-        className='relative'>
-      <div
-        className='bg-gray-50 rounded-2xl p-8 flex items-center justify-center min-h-[400px]'>
-<Image
-src={productData.image || '/placeholder.svg'}
-alt={productData.model}
-width={500}
-height={400}
-className='max-w-full max-h-full object-contain'
-/>
-      </div>
-      </div>
+      {/* Product Header */}
+      <section className='py-12 bg-white'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <div className='grid lg:grid-cols-2 gap-12 items-start'>
+            {/* Product Image */}
+            <div className='relative'>
+              <div className='bg-gray-50 rounded-2xl p-8 flex items-center justify-center min-h-[400px]'>
+                <Image
+                  src={productData.image || '/placeholder.svg'}
+                  alt={productData.model}
+                  width={500}
+                  height={400}
+                  className='max-w-full max-h-full object-contain'
+                />
+              </div>
+            </div>
 
-{/* Product Info */}
-      <div
-        className='space-y-6'>
-<div>
-      <h1
-        className='text-4xl font-bold text-gray-800 mb-4'>
-{productData.model}
-      </h1>
-      </div>
+            {/* Product Info */}
+            <div className='space-y-6'>
+              <div>
+                <h1 className='text-4xl font-bold text-gray-800 mb-4'>
+                  {productData.model}
+                </h1>
+              </div>
 
-{/* Quick Specs */}
-      <div
-        className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-      <Card
-        className='p-4 text-center border-2 border-blue-100 bg-blue-50'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.capacity}
-      </div>
-      <div
-        className='text-2xl font-bold text-blue-600'>
-{productData.specifications.capacity}
-      </div>
-      </Card>
-      <Card
-        className='p-4 text-center border-2 border-gray-100'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.material}
-      </div>
-      <div
-        className='text-2xl font-bold text-gray-800'>
-{productData.specifications.material}
-      </div>
-      </Card>
-      <Card
-        className='p-4 text-center border-2 border-gray-100'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.weight}
-      </div>
-      <div
-        className='text-2xl font-bold text-gray-800'>
-{productData.specifications.weight}
-      </div>
-      </Card>
-      </div>
+              {/* Quick Specs */}
+              <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                <Card className='p-4 text-center border-2 border-blue-100 bg-blue-50'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.capacity}
+                  </div>
+                  <div className='text-2xl font-bold text-blue-600'>
+                    {productData.specifications.capacity}
+                  </div>
+                </Card>
+                <Card className='p-4 text-center border-2 border-gray-100'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.material}
+                  </div>
+                  <div className='text-2xl font-bold text-gray-800'>
+                    {productData.specifications.weight}
+                  </div>
+                </Card>
+                <Card className='p-4 text-center border-2 border-gray-100'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.weight}
+                  </div>
+                  <div className='text-2xl font-bold text-gray-800'>
+                    {productData.specifications.weight}
+                  </div>
+                </Card>
+              </div>
 
-{/* Action Button */}
-      <div
-        className='flex flex-col sm:flex-row gap-4'>
-<Button
-onClick={() => setIsContactFormOpen(true)}
-className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-{t.product.contactForConsultation}
-      </Button>
-      </div>
+              {/* Action Button */}
+              <div className='flex flex-col sm:flex-row gap-4'>
+                <Button
+                  onClick={() => setIsContactFormOpen(true)}
+                  className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
+                >
+                  <MessageCircle className='w-5 h-5 mr-2' />
+                  {t.product.contactForConsultation}
+                </Button>
+              </div>
 
-{/* Key Features */}
-      <div
-        className='grid grid-cols-2 gap-4'>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-green-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-±0.08mm Hassasiyet
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
-      <Zap
-        className='w-5 h-5 text-blue-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-Hızlı Değişim
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
-      <Package
-        className='w-5 h-5 text-purple-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-700mm Kapasite
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-orange-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-HRC 58-62 Sertlik
-      </span>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
+              {/* Key Features */}
+              <div className='grid grid-cols-2 gap-4'>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-green-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    ±0.08mm Hassasiyet
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
+                    <Zap className='w-5 h-5 text-blue-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    Hızlı Değişim
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
+                    <Package className='w-5 h-5 text-purple-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    700mm Kapasite
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-orange-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    HRC 58-62 Sertlik
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-{/* Product Description */}
-            <section
-        className='py-12 bg-gray-50'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <div
-        className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
-      <h2
-        className='text-2xl font-bold text-gray-800 mb-6'>
-Ürün Açıklaması
-      </h2>
-      <p
-        className='text-gray-700 leading-relaxed text-lg'>
-{productData.description}
-      </p>
-      </div>
-      </div>
+      {/* Product Description */}
+      <section className='py-12 bg-gray-50'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <div className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
+            <h2 className='text-2xl font-bold text-gray-800 mb-6'>
+              Ürün Açıklaması
+            </h2>
+            <p className='text-gray-700 leading-relaxed text-lg'>
+              {productData.description}
+            </p>
+          </div>
+        </div>
       </section>
 
-{/* Technical Specifications */}
-            <section
-        className='py-16 bg-gray-50'>
+      {/* Technical Specifications */}
+      <section className='py-16 bg-gray-50'>
       <div
         className='container mx-auto px-4'>
       <div
@@ -336,76 +287,52 @@ parametreleri
       </p>
       </div>
 
-      <div
-        className='grid md:grid-cols-2 gap-8 max-w-6xl mx-auto'>
-{/* Temel Özellikler */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Package
-        className='h-5 w-5 text-blue-600' />
-Temel Özellikler
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Yük Kapasitesi
-      </span>
-      <span
-        className='text-gray-900'>700 kg      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-İzin Verilen Eğilme Momenti
-      </span>
-      <span
-        className='text-gray-900'>4900 N·m      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-İzin Verilen Tork
-      </span>
-      <span
-        className='text-gray-900'>3600 N·m      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>Genel Boyut      </span>
-      <span
-        className='text-gray-900'>264x264mm      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitli Durum Kalınlığı
-      </span>
-      <span
-        className='text-gray-900'>142mm      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Tekrarlanan Konumlandırma Hassasiyeti
-      </span>
-      <span
-        className='text-gray-900'>±0.025mm      </span>
-      </div>
-      </CardContent>
-      </Card>
+          <div className='grid md:grid-cols-2 gap-8 max-w-6xl mx-auto'>
+            {/* Temel Özellikler */}
+            <Card className='p-6'>
+              <CardHeader className='pb-4'>
+                <CardTitle className='flex items-center gap-2 text-xl'>
+                  <Package className='h-5 w-5 text-blue-600' />
+                  Temel Özellikler
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-3'>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Yük Kapasitesi
+                  </span>
+                  <span className='text-gray-900'>700 kg</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    İzin Verilen Eğilme Momenti
+                  </span>
+                  <span className='text-gray-900'>4900 N·m</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    İzin Verilen Tork
+                  </span>
+                  <span className='text-gray-900'>3600 N·m</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>Genel Boyut</span>
+                  <span className='text-gray-900'>264x264mm</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Kilitli Durum Kalınlığı
+                  </span>
+                  <span className='text-gray-900'>142mm</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Tekrarlanan Konumlandırma Hassasiyeti
+                  </span>
+                  <span className='text-gray-900'>±0.025mm</span>
+                </div>
+              </CardContent>
+            </Card>
 
 {/* Çalışma Parametreleri */}
       <Card
@@ -420,138 +347,97 @@ Tekrarlanan Konumlandırma Hassasiyeti
       </CardTitle>
       </CardHeader>
       <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Çalışma Sürücü Basıncı
-      </span>
-      <span
-        className='text-gray-900'>0.4-0.7 MPa      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitleme Mekanizması
-      </span>
-      <span
-        className='text-gray-900'>Çelik Bilya Kilitleme      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitleme Kuvveti (0.49MPa)
-      </span>
-      <span
-        className='text-gray-900'>65000 N      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Uygulanabilir Ortam Sıcaklığı
-      </span>
-      <span
-        className='text-gray-900'>0-60 ℃      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Uygulanabilir Ortam Nem Oranı
-      </span>
-      <span
-        className='text-gray-900'>95%      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Gaz Yolu Kanalları
-      </span>
-      <span
-        className='text-gray-900'>Opsiyonel      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Devre Kanalları
-      </span>
-      <span
-        className='text-gray-900'>Opsiyonel      </span>
-      </div>
-      </CardContent>
-      </Card>
+                className='space-y-3'>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Çalışma Sürücü Basıncı
+                    </span>
+                    <span className='text-gray-900'>0.4-0.7 MPa</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Kilitleme Mekanizması
+                    </span>
+                    <span className='text-gray-900'>Çelik Bilya Kilitleme</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Kilitleme Kuvveti (0.49MPa)
+                    </span>
+                    <span className='text-gray-900'>65000 N</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Uygulanabilir Ortam Sıcaklığı
+                    </span>
+                    <span className='text-gray-900'>0-60 ℃</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Uygulanabilir Ortam Nem Oranı
+                    </span>
+                    <span className='text-gray-900'>95%</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Gaz Yolu Kanalları
+                    </span>
+                    <span className='text-gray-900'>Opsiyonel</span>
+                  </div>
+                  <div className='flex justify-between py-2 border-b border-gray-100'>
+                    <span className='font-medium text-gray-700'>
+                      Devre Kanalları
+                    </span>
+                    <span className='text-gray-900'>Opsiyonel</span>
+                  </div>
+                </CardContent>
+              </Card>
 
-{/* Malzeme Özellikleri */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Zap
-        className='h-5 w-5 text-purple-600' />
-Malzeme Özellikleri
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Gövde Malzemesi
-      </span>
-      <span
-        className='text-gray-900'>Havacılık Alüminyumu      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitleme Mekanizması Parçası
-      </span>
-      <span
-        className='text-gray-900'>
-Yüksek Dayanımlı Alaşım Çelik
-      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Ana Disk Ağırlığı
-      </span>
-      <span
-        className='text-gray-900'>20 kg      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Takım Tepsisi Ağırlığı
-      </span>
-      <span
-        className='text-gray-900'>9 kg      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Toplam Ağırlık
-      </span>
-      <span
-        className='text-gray-900'>29 kg      </span>
-      </div>
-      </CardContent>
-      </Card>
-      </div>
-      </div>
+            {/* Malzeme Özellikleri */}
+            <Card className='p-6'>
+              <CardHeader className='pb-4'>
+                <CardTitle className='flex items-center gap-2 text-xl'>
+                  <Zap className='h-5 w-5 text-purple-600' />
+                  Malzeme Özellikleri
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-3'>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Gövde Malzemesi
+                  </span>
+                  <span className='text-gray-900'>Havacılık Alüminyumu</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Kilitleme Mekanizması Parçası
+                  </span>
+                  <span className='text-gray-900'>
+                    Yüksek Dayanımlı Alaşım Çelik
+                  </span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Ana Disk Ağırlığı
+                  </span>
+                  <span className='text-gray-900'>20 kg</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Takım Tepsisi Ağırlığı
+                  </span>
+                  <span className='text-gray-900'>9 kg</span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='font-medium text-gray-700'>
+                    Toplam Ağırlık
+                  </span>
+                  <span className='text-gray-900'>29 kg</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
 {/* Product Features and Advantages */}
@@ -581,74 +467,57 @@ HST-C700'in sunduğu gelişmiş özellikler ve endüstriyel avantajları
       <CardTitle
         className='flex items-center gap-2 text-xl'>
       <Zap
-        className='h-5 w-5 text-blue-600' />
-Özellikler
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.features.map((feature, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-blue-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{feature}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
+                  className='h-5 w-5 text-blue-600' />
+                  Özellikler
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-3'>
+                {productData.features.map((feature, index) => (
+                  <div key={index} className='flex items-center space-x-3'>
+                    <div className='w-2 h-2 bg-blue-600 rounded-full'></div>
+                    <span className='text-gray-700'>{feature}</span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
 
-{/* Uygulama Alanları */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Package
-        className='h-5 w-5 text-green-600' />
-Uygulama Alanları
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.applications.map((application, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-green-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{application}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
+            {/* Uygulama Alanları */}
+            <Card className='p-6'>
+              <CardHeader className='pb-4'>
+                <CardTitle className='flex items-center gap-2 text-xl'>
+                  <Package className='h-5 w-5 text-green-600' />
+                  Uygulama Alanları
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-3'>
+                {productData.applications.map((application, index) => (
+                  <div key={index} className='flex items-center space-x-3'>
+                    <div className='w-2 h-2 bg-green-600 rounded-full'></div>
+                    <span className='text-gray-700'>{application}</span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
 
-{/* Avantajlar */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Info
-        className='h-5 w-5 text-purple-600' />
-Avantajlar
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.advantages.map((advantage, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-purple-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{advantage}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
-      </div>
-      </div>
+            {/* Avantajlar */}
+            <Card className='p-6'>
+              <CardHeader className='pb-4'>
+                <CardTitle className='flex items-center gap-2 text-xl'>
+                  <Info className='h-5 w-5 text-purple-600' />
+                  Avantajlar
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-3'>
+                {productData.advantages.map((advantage, index) => (
+                  <div key={index} className='flex items-center space-x-3'>
+                    <div className='w-2 h-2 bg-purple-600 rounded-full'></div>
+                    <span className='text-gray-700'>{advantage}</span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
 {/* Contact CTA */}
@@ -729,24 +598,24 @@ Bu ürün hakkında bilgi almak için formu doldurun.
         className='block text-sm font-medium text-gray-700 mb-2'>
 Ad Soyad *
       </label>
-<input
-type='text'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Adınız ve soyadınız'
-/>
+                 <input
+                   type='text'
+                   required
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='Adınız ve soyadınız'
+                 />
       </div>
 <div>
       <label
         className='block text-sm font-medium text-gray-700 mb-2'>
 E-posta *
       </label>
-<input
-type='email'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='E-posta adresiniz'
-/>
+                 <input
+                   type='email'
+                   required
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='E-posta adresiniz'
+                 />
       </div>
       </div>
 
@@ -781,12 +650,12 @@ placeholder='Şirket adınız'
         className='block text-sm font-medium text-gray-700 mb-2'>
 Mesaj *
       </label>
-<textarea
-required
-rows={4}
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Bu ürün hakkında bilgi almak istiyorum...'
->      </textarea>
+                 <textarea
+                   required
+                   rows={4}
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='Bu ürün hakkında bilgi almak istiyorum...'
+                 />
       </div>
 
       <div

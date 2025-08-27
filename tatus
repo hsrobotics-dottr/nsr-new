@@ -1,0 +1,1093 @@
+'use client';
+
+import { ClientWrapper } from '@/components/client-wrapper';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/language-context';
+import { useToast } from '@/hooks/use-toast';
+import {
+  ArrowRight,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Eye,
+  Settings,
+  Shield,
+  ThumbsUp,
+  Zap,
+} from 'lucide-react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+// Lazy load heavy components
+const Header = dynamic(
+  () => import('@/components/header').then(mod => ({ default: mod.Header })),
+  {
+    ssr: false,
+    loading: () => <div className='h-20 bg-gray-900' />,
+  }
+);
+
+const Footer = dynamic(
+  () => import('@/components/footer').then(mod => ({ default: mod.Footer })),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const ScrollToTop = dynamic(() => import('@/components/scroll-to-top'), {
+  ssr: false,
+  loading: () => null,
+});
+
+// Page translations
+const pageTranslations = {
+  tr: {
+    hero: {
+      slides: [
+        {
+          title: 'Endüstriyel İşbirlikçi Robotlar',
+          subtitle: 'Yüksek Hız, Yüksek Hassasiyet, Kararlı ve Güvenilir',
+          description: 'Güvenli ve Praktik',
+        },
+        {
+          title: 'Akıllı Otomasyon Çözümleri',
+          subtitle: 'Gelişmiş AI Teknolojisi ile Donatılmış',
+          description: 'Verimli ve Ekonomik',
+        },
+        {
+          title: 'Yeni Nesil Robot Teknolojisi',
+          subtitle: 'İnsan-Robot İşbirliği için Tasarlandı',
+          description: 'Esnek ve Güçlü',
+        },
+      ],
+      buttons: {
+        explore: 'Ürünleri Keşfet',
+        demo: 'Demo İzle',
+      },
+    },
+    productCenter: {
+      title: 'Ürün Merkezi',
+      description:
+        'Huashu Robotics endüstriyel robotları, hassas üretim teknolojisi, gelişmiş kontrol teknolojisi ve mükemmel performans ile çeşitli sektörlere verimli ve güvenilir otomasyon çözümleri sunarak işletmelerin akıllı üretim dönüşümünü destekler.',
+    },
+    industrialRobots: {
+      title: 'Endüstriyel Robotlar',
+      subtitle:
+        'Müşterilerimize insan-makine işbirliği çözümleri sunmaya odaklanıyoruz.',
+      description:
+        'Endüstriyel robotlar yüksek hassasiyet, yüksek hız ve yüksek güvenilirlik özelliklerine sahiptir. Otomotiv üretimi, elektronik montaj, metal işleme, gıda ambalajlama gibi alanlarda yaygın olarak kullanılır.',
+      button: 'Daha Fazla Bilgi',
+      features: [
+        'Güvenlik Sistemi',
+        'Görsel Tanıma',
+        'Akıllı Kontrol',
+        'Hassas Üretim',
+        'Güvenilir',
+        'Yüksek Verim',
+      ],
+    },
+    productSeries: {
+      title: 'Robot Ürün Serimiz',
+      description:
+        'Endüstriyel ihtiyaçlarınıza uygun, farklı kapasitelerde robot çözümleri',
+      specs: {
+        payload: 'Yük Kapasitesi',
+        reach: 'Kol Açıklığı',
+        dof: 'Eksen Sayısı',
+        details: 'Detayları İncele',
+      },
+      specialNeeds: {
+        title: 'Özel İhtiyaçlarınız mı Var?',
+        description:
+          'Standart ürünlerimizin yanında, özel gereksinimlerinize uygun robotik çözümler de geliştiriyoruz.',
+        button: 'Özel Çözüm Talep Et',
+      },
+    },
+    collaborativeRobots: {
+      title: 'İşbirlikçi Robotlar',
+      subtitle: 'İnsan-robot işbirliği için güvenli ve akıllı çözümler',
+      description:
+        'İşbirlikçi robotlarımız, yüksek hassasiyet ve güvenlik standartlarıyla çeşitli endüstrilerde insan operatörlerle güvenli bir şekilde çalışabilir. Gelişmiş sensör teknolojisi ve yapay zeka destekli kontrol sistemleri ile üretim verimliliğinizi artırın.',
+      seriesTitle: 'İşbirlikçi Robot Serimiz',
+      seriesDescription:
+        'Güvenli insan-robot işbirliği için tasarlanmış akıllı çözümler',
+      button: 'Daha Fazla Bilgi',
+    },
+    industries: {
+      title: 'Endüstri Çözümlerimiz',
+      description:
+        'Farklı endüstri sektörlerinde robotik otomasyon çözümlerimizi keşfedin',
+      button: 'Tüm Endüstrileri İncele',
+      categories: [
+        {
+          name: '3C Endüstrisi',
+          description: 'Bilgisayar, İletişim ve Tüketici Elektroniği',
+          icon: 'Smartphone',
+        },
+        {
+          name: 'Ayakkabı ve Giyim',
+          description: 'Tekstil ve Ayakkabı Üretimi',
+          icon: 'Shirt',
+        },
+        {
+          name: 'Otomobil Endüstrisi',
+          description: 'Otomotiv ve Araç Üretimi',
+          icon: 'Car',
+        },
+        {
+          name: 'Ev Aletleri',
+          description: 'Beyaz Eşya ve Ev Aletleri',
+          icon: 'Home',
+        },
+        {
+          name: 'Metal İşleme',
+          description: 'Metal İşleme ve Üretim',
+          icon: 'Wrench',
+        },
+        {
+          name: 'Diğer Endüstriler',
+          description: 'Çeşitli Endüstriyel Uygulamalar',
+          icon: 'Factory',
+        },
+      ],
+    },
+    solutions: {
+      title: 'Sektörel Çözümler',
+      description:
+        'Farklı sektörlerin özel ihtiyaçlarına yönelik robotik otomasyon çözümleri',
+      sectors: [
+        {
+          title: '3C Endüstrisi',
+          href: '/sectors/3c',
+          video: '/video/hsr-3c-endustrisi.mp4',
+        },
+        {
+          title: 'Otomotiv',
+          href: '/sectors/automotive',
+          video: '/video/hsr-otomotiv-sektoru.mp4',
+        },
+        {
+          title: 'Ayakkabı ve Tekstil',
+          href: '/sectors/shoes-clothes',
+          video: '/video/hsr-ayakkabi-sektoru.mp4',
+        },
+        {
+          title: 'Ev Aletleri Endüstrisi',
+          href: '/sectors/appliances',
+          video: '/video/hsr-ev-aletleri.mp4',
+        },
+        {
+          title: 'Metal İşleme Sektörü',
+          href: '/sectors/metalworking',
+          video: '/video/hsr-metal-isleme.mp4',
+        },
+        {
+          title: 'Diğer Sektörler',
+          href: '/sectors/others',
+          video: '/video/hsr-diger-sektor.mp4',
+        },
+      ],
+      viewDetails: 'Detayları İncele',
+    },
+    modal: {
+      close: 'Kapat',
+      technicalSpecs: 'Teknik Özellikler',
+      features: 'Özellikler',
+      applications: 'Uygulama Alanları',
+      getQuote: 'Fiyat Teklifi Al',
+      downloadBrochure: 'Broşür İndir',
+      specs: {
+        dof: 'Serbestlik Derecesi',
+        repeatability: 'Tekrarlanabilirlik',
+        maxSpeed: 'Maksimum Hız',
+        weight: 'Ağırlık',
+      },
+    },
+    contact: {
+      title: 'İletişim Formu',
+      form: {
+        name: 'Ad Soyad',
+        email: 'E-posta',
+        phone: 'Telefon',
+        message: 'Mesaj',
+        send: 'Gönder',
+        namePlaceholder: 'Adınızı ve soyadınızı girin',
+        emailPlaceholder: 'E-posta adresinizi girin',
+        phonePlaceholder: 'Telefon numaranızı girin',
+        messagePlaceholder: 'Mesajınızı yazın...',
+      },
+    },
+  },
+  en: {
+    hero: {
+      slides: [
+        {
+          title: 'Industrial Collaborative Robots',
+          subtitle: 'High Speed, High Precision, Stable and Reliable',
+          description: 'Safe and Practical',
+        },
+        {
+          title: 'Smart Automation Solutions',
+          subtitle: 'Equipped with Advanced AI Technology',
+          description: 'Efficient and Economic',
+        },
+        {
+          title: 'Next Generation Robot Technology',
+          subtitle: 'Designed for Human-Robot Collaboration',
+          description: 'Flexible and Powerful',
+        },
+      ],
+      buttons: {
+        explore: 'Explore Products',
+        demo: 'Watch Demo',
+      },
+    },
+    productCenter: {
+      title: 'Product Center',
+      description:
+        "Huashu Robotics industrial robots support enterprises' smart manufacturing transformation by providing efficient and reliable automation solutions to various industries with precision manufacturing technology, advanced control technology and excellent performance.",
+    },
+    industrialRobots: {
+      title: 'Industrial Robots',
+      subtitle:
+        'We focus on providing human-machine collaboration solutions to our customers.',
+      description:
+        'Industrial robots have high precision, high speed and high reliability features. They are widely used in automotive manufacturing, electronic assembly, metal processing, food packaging and other fields.',
+      button: 'Learn More',
+      features: [
+        'Safety System',
+        'Visual Recognition',
+        'Smart Control',
+        'Precision Manufacturing',
+        'Reliable',
+        'High Efficiency',
+      ],
+    },
+    productSeries: {
+      title: 'Our Robot Product Series',
+      description:
+        'Robot solutions with different capacities suitable for your industrial needs',
+      specs: {
+        payload: 'Payload',
+        reach: 'Reach',
+        dof: 'Degrees of Freedom',
+        details: 'View Details',
+      },
+      specialNeeds: {
+        title: 'Do You Have Special Needs?',
+        description:
+          'In addition to our standard products, we also develop robotic solutions tailored to your special requirements.',
+        button: 'Request Custom Solution',
+      },
+    },
+    collaborativeRobots: {
+      title: 'Collaborative Robots',
+      subtitle: 'Safe and smart solutions for human-robot collaboration',
+      description:
+        'Our collaborative robots can work safely with human operators in various industries with high precision and safety standards. Increase your production efficiency with advanced sensor technology and AI-supported control systems.',
+      seriesTitle: 'Our Collaborative Robot Series',
+      seriesDescription:
+        'Smart solutions designed for safe human-robot collaboration',
+      button: 'Learn More',
+    },
+    industries: {
+      title: 'Our Industry Solutions',
+      description:
+        'Discover our robotic automation solutions in different industry sectors',
+      button: 'Explore All Industries',
+      categories: [
+        {
+          name: '3C Industry',
+          description: 'Computer, Communication and Consumer Electronics',
+          icon: 'Smartphone',
+        },
+        {
+          name: 'Shoe & Clothing',
+          description: 'Textile and Shoe Manufacturing',
+          icon: 'Shirt',
+        },
+        {
+          name: 'Automotive Industry',
+          description: 'Automotive and Vehicle Manufacturing',
+          icon: 'Car',
+        },
+        {
+          name: 'Home Appliances',
+          description: 'White Goods and Home Appliances',
+          icon: 'Home',
+        },
+        {
+          name: 'Metal Processing',
+          description: 'Metal Processing and Manufacturing',
+          icon: 'Wrench',
+        },
+        {
+          name: 'Other Industries',
+          description: 'Various Industrial Applications',
+          icon: 'Factory',
+        },
+      ],
+    },
+    solutions: {
+      title: 'Industry Solutions',
+      description:
+        'Robotic automation solutions for the special needs of different industries',
+      sectors: [
+        {
+          title: '3C Industry',
+          href: '/sectors/3c',
+          video: '/video/hsr-3c-endustrisi.mp4',
+        },
+        {
+          title: 'Automotive',
+          href: '/sectors/automotive',
+          video: '/video/hsr-otomotiv-sektoru.mp4',
+        },
+        {
+          title: 'Footwear and Textile',
+          href: '/sectors/shoes-clothes',
+          video: '/video/hsr-ayakkabi-sektoru.mp4',
+        },
+        {
+          title: 'Home Appliance Industry',
+          href: '/sectors/appliances',
+          video: '/video/hsr-ev-aletleri.mp4',
+        },
+        {
+          title: 'Metal Processing Industry',
+          href: '/sectors/metalworking',
+          video: '/video/hsr-metal-isleme.mp4',
+        },
+        {
+          title: 'Other Industries',
+          href: '/sectors/others',
+          video: '/video/hsr-diger-sektor.mp4',
+        },
+      ],
+      viewDetails: 'View Details',
+    },
+    modal: {
+      close: 'Close',
+      technicalSpecs: 'Technical Specifications',
+      features: 'Features',
+      applications: 'Applications',
+      getQuote: 'Get Quote',
+      downloadBrochure: 'Download Brochure',
+      specs: {
+        dof: 'Degrees of Freedom',
+        repeatability: 'Repeatability',
+        maxSpeed: 'Maximum Speed',
+        weight: 'Weight',
+      },
+    },
+    contact: {
+      title: 'Contact Form',
+      form: {
+        name: 'Full Name',
+        email: 'Email',
+        phone: 'Phone',
+        message: 'Message',
+        send: 'Send',
+        namePlaceholder: 'Enter your full name',
+        emailPlaceholder: 'Enter your email address',
+        phonePlaceholder: 'Enter your phone number',
+        messagePlaceholder: 'Write your message...',
+      },
+    },
+  },
+};
+
+// Optimized image component with better performance
+const OptimizedImage = memo(
+  ({ src, alt, width, height, className, priority = false, ...props }: any) => (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+      quality={75}
+      placeholder='blur'
+      blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+      loading={priority ? 'eager' : 'lazy'}
+      {...props}
+    />
+  )
+);
+
+OptimizedImage.displayName = 'OptimizedImage';
+
+// Memoized data to prevent re-creation
+const heroSlides = [
+  {
+    image: '/img/industrial/JR/HSR-JR603-570.png',
+  },
+  {
+    image: '/img/industrial/JR/HSR-JR607-730.png',
+  },
+  {
+    image: '/img/industrial/JR/HSR-JR607-910.png',
+  },
+];
+
+const productData = [
+  // JR Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-JR603-570',
+    payload: '3kg',
+    reach: '571.5mm',
+    image: '/img/industrial/JR/HSR-JR603-570.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.03mm',
+      maxSpeed: '3.2 m/s',
+      weight: '18 kg',
+    },
+    features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'JR Serisi',
+  },
+  {
+    model: 'HSR-JR620-1800',
+    payload: '20kg',
+    reach: '1800mm',
+    image: '/img/industrial/JR/HSR-JR620-1800.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.12mm',
+      maxSpeed: '1.8 m/s',
+      weight: '55 kg',
+    },
+    features: ['En Yüksek Kapasite', 'Maksimum Erişim', 'Endüstriyel Güç'],
+    applications: ['Ağır Sanayi', 'Büyük Montaj', 'Otomotiv Üretimi'],
+    category: 'JR Serisi',
+  },
+  // JH Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-JH605-1500',
+    payload: '5kg',
+    reach: '1494mm',
+    image: '/img/industrial/JH/HSR-JH605-1500.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.03mm',
+      maxSpeed: '3.0 m/s',
+      weight: '25 kg',
+    },
+    features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'JH Serisi',
+  },
+  {
+    model: 'HSR-JH630-1800',
+    payload: '30kg',
+    reach: '1800mm',
+    image: '/img/industrial/JH/HSR-JH630-1800.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.1mm',
+      maxSpeed: '2.2 m/s',
+      weight: '55 kg',
+    },
+    features: ['Yüksek Yük Kapasitesi', 'Güçlü Motor', 'Endüstriyel Dayanım'],
+    applications: ['Ağır Sanayi', 'Otomotiv', 'Metal İşleme'],
+    category: 'JH Serisi',
+  },
+  // BR Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-BR312-1100',
+    payload: '12kg',
+    reach: '1100mm',
+    image: '/img/industrial/BR/HSR-BR312-1100.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.05mm',
+      maxSpeed: '2.8 m/s',
+      weight: '35 kg',
+    },
+    features: ['Yüksek Hassasiyet', 'Çoklu Sensör', 'Esnek Programlama'],
+    applications: ['Kaynak', 'Boyama', 'Malzeme Taşıma'],
+    category: 'BR Serisi',
+  },
+  {
+    model: 'HSR-BR625-1900',
+    payload: '25kg',
+    reach: '1900mm',
+    image: '/img/industrial/BR/HSR-BR625-1900.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.1mm',
+      maxSpeed: '2.0 m/s',
+      weight: '60 kg',
+    },
+    features: ['En Yüksek Kapasite', 'Maksimum Erişim', 'Endüstriyel Güç'],
+    applications: ['Ağır Sanayi', 'Büyük Montaj', 'Otomotiv Üretimi'],
+    category: 'BR Serisi',
+  },
+  // SR Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-SR3-400',
+    payload: '3kg',
+    reach: '400mm',
+    image: '/img/industrial/SR/HSR-SR3-400.png',
+    specs: {
+      dof: '4 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '3.5 m/s',
+      weight: '15 kg',
+    },
+    features: ['Kompakt Tasarım', 'Yüksek Hassasiyet', 'Kolay Programlama'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'SR Serisi',
+  },
+  {
+    model: 'HSR-SR20-1000',
+    payload: '20kg',
+    reach: '1000mm',
+    image: '/img/industrial/SR/HSR-SR20-1000.png',
+    specs: {
+      dof: '4 Eksen',
+      repeatability: '±0.1mm',
+      maxSpeed: '1.8 m/s',
+      weight: '50 kg',
+    },
+    features: ['Maksimum Yük', 'Geniş Erişim', 'Endüstriyel Güç'],
+    applications: ['Ağır Sanayi', 'Büyük Montaj', 'Otomotiv Üretimi'],
+    category: 'SR Serisi',
+  },
+  // MD Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-MD410-1500',
+    payload: '10kg',
+    reach: '1500mm',
+    image: '/img/industrial/MD/HSR-MD410-1500.png',
+    specs: {
+      dof: '4 Eksen',
+      repeatability: '±0.05mm',
+      maxSpeed: '2.8 m/s',
+      weight: '35 kg',
+    },
+    features: ['Kompakt Tasarım', 'Yüksek Hassasiyet', 'Kolay Programlama'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'MD Serisi',
+  },
+  {
+    model: 'HSR-MD4110-2500',
+    payload: '110kg',
+    reach: '2500mm',
+    image: '/img/industrial/MD/HSR-MD4110-2500.png',
+    specs: {
+      dof: '4 Eksen',
+      repeatability: '±0.15mm',
+      maxSpeed: '1.5 m/s',
+      weight: '120 kg',
+    },
+    features: [
+      'Yüksek Yük Kapasitesi',
+      'Geniş Çalışma Alanı',
+      'Endüstriyel Dayanım',
+    ],
+    applications: ['Ağır Sanayi', 'Otomotiv', 'Metal İşleme'],
+    category: 'MD Serisi',
+  },
+  // HC Serisi ürünleri (2 ürün)
+  {
+    model: 'HSR-HC403-590',
+    payload: '3kg',
+    reach: '590mm',
+    image: '/img/industrial/HC/HSR-HC403-590.png',
+    specs: {
+      dof: '4 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '3.5 m/s',
+      weight: '18 kg',
+    },
+    features: ['Kompakt Tasarım', 'Yüksek Hassasiyet', 'Kolay Programlama'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'HC Serisi',
+  },
+];
+
+// Ürün model adlarından slug oluşturan fonksiyon
+const getProductSlug = (model: string): string => {
+  const slugMap: { [key: string]: string } = {
+    // JR Serisi
+    'HSR-JR603-570': 'jr-series/hsr-jr603-570',
+    'HSR-JR620-1800': 'jr-series/hsr-jr620-1800',
+    // JH Serisi
+    'HSR-JH605-1500': 'jh-series/hsr-jh605-1500',
+    'HSR-JH630-1800': 'jh-series/hsr-jh630-1800',
+    // BR Serisi
+    'HSR-BR312-1100': 'br-series/hsr-br312-1100',
+    'HSR-BR625-1900': 'br-series/hsr-br625-1900',
+    // SR Serisi
+    'HSR-SR3-400': 'sr-series/hsr-sr3-400',
+    'HSR-SR20-1000': 'sr-series/hsr-sr20-1000',
+    // MD Serisi
+    'HSR-MD410-1500': 'md-series/hsr-md410-1500',
+    'HSR-MD4110-2500': 'md-series/hsr-md4110-2500',
+    // HC Serisi
+    'HSR-HC403-590': 'hc-series/hsr-hc403-590',
+    // CR Serisi
+    'HSR-CR605-790': 'cr-series/hsr-cr605-790',
+    'HSR-CR607-890': 'cr-series/hsr-cr607-890',
+    'HSR-CR616-1200': 'cr-series/hsr-cr616-1200',
+    'HSR-CR630-1750': 'cr-series/hsr-cr630-1750',
+    'HSR-CR625-2000': 'cr-series/hsr-cr625-2000',
+    // CO Serisi
+    'HSR-CO605-1000': 'co-series/hsr-co605-1000',
+    'HSR-CO610-1400': 'co-series/hsr-co610-1400',
+    'HSR-CO616-1100': 'co-series/hsr-co616-1100',
+  };
+
+  return slugMap[model] || model.toLowerCase().replace(/[^a-z0-9]/g, '-');
+};
+
+// CR Serisi ürünleri (Collaborative Robots)
+const collaborativeRobotsData = [
+  {
+    model: 'HSR-CR605-790',
+    payload: '5kg',
+    reach: '785mm',
+    image: '/img/Collaborative/CR/HSR-CR605-790.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '3.5 m/s',
+      weight: '24 kg',
+    },
+    features: ['IP67 Koruma', 'Yüksek Hız', '±0.02mm Hassasiyet'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'CR Serisi',
+  },
+  {
+    model: 'HSR-CR607-890',
+    payload: '7kg',
+    reach: '885mm',
+    image: '/img/Collaborative/CR/HSR-CR607-890.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '3.2 m/s',
+      weight: '35 kg',
+    },
+    features: ['IP67 Koruma', 'Yüksek Hız', '±0.02mm Hassasiyet'],
+    applications: ['Kaynak', 'Boyama', 'Malzeme Taşıma'],
+    category: 'CR Serisi',
+  },
+  {
+    model: 'HSR-CR616-1200',
+    payload: '16kg',
+    reach: '1155mm',
+    image: '/img/Collaborative/CR/HSR-CR616-1200.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.03mm',
+      maxSpeed: '2.5 m/s',
+      weight: '53.4 kg',
+    },
+    features: ['IP67 Koruma', 'Yüksek Hız', '±0.03mm Hassasiyet'],
+    applications: ['Ağır Montaj', 'Paletleme', 'CNC Besleme'],
+    category: 'CR Serisi',
+  },
+  {
+    model: 'HSR-CR630-1750',
+    payload: '30kg',
+    reach: '1750mm',
+    image: '/img/Collaborative/CR/HSR-CR630-1750.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.05mm',
+      maxSpeed: '2.0 m/s',
+      weight: '145 kg',
+    },
+    features: ['IP67 Koruma', 'Yüksek Hız', '±0.05mm Hassasiyet'],
+    applications: ['Ağır Sanayi', 'Büyük Montaj', 'Otomotiv Üretimi'],
+    category: 'CR Serisi',
+  },
+  {
+    model: 'HSR-CR625-2000',
+    payload: '25kg',
+    reach: '2000mm',
+    image: '/img/Collaborative/CR/HSR-CR625-200.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.05mm',
+      maxSpeed: '2.2 m/s',
+      weight: '150 kg',
+    },
+    features: ['IP67 Koruma', 'Yüksek Hız', '±0.05mm Hassasiyet'],
+    applications: ['Büyük Parça Montajı', 'Yükleme/Boşaltma', 'Pres Besleme'],
+    category: 'CR Serisi',
+  },
+  {
+    model: 'HSR-CO605-1000',
+    payload: '5kg',
+    reach: '1005mm',
+    image: '/img/Collaborative/CO/HSR-CO605-1000.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '2.5 m/s',
+      weight: '25 kg',
+    },
+    features: ['IP54 Koruma', 'Yüksek Hız', '±0.02mm Hassasiyet'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    category: 'CO Serisi',
+  },
+  {
+    model: 'HSR-CO610-1400',
+    payload: '10kg',
+    reach: '1355mm',
+    image: '/img/Collaborative/CO/HSR-CO610-1400.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.04mm',
+      maxSpeed: '2.2 m/s',
+      weight: '41 kg',
+    },
+    features: ['IP54 Koruma', 'Yüksek Hız', '±0.04mm Hassasiyet'],
+    applications: ['Montaj', 'Paketleme', 'Malzeme Taşıma'],
+    category: 'CO Serisi',
+  },
+  {
+    model: 'HSR-CO616-1100',
+    payload: '16kg',
+    reach: '1055mm',
+    image: '/img/Collaborative/CO/HSR-CO616-1100.png',
+    specs: {
+      dof: '6 Eksen',
+      repeatability: '±0.04mm',
+      maxSpeed: '2.0 m/s',
+      weight: '38.5 kg',
+    },
+    features: ['IP54 Koruma', 'Yüksek Hız', '±0.04mm Hassasiyet'],
+    applications: ['Ağır Montaj', 'Paletleme', 'CNC Besleme'],
+    category: 'CO Serisi',
+  },
+];
+
+// Memoized feature icons
+const featureIcons = [
+  { icon: Shield, label: 'Güvenlik Sistemi' },
+  { icon: Eye, label: 'Görsel Tanıma' },
+  { icon: Settings, label: 'Akıllı Kontrol' },
+  { icon: Award, label: 'Hassas Üretim' },
+  { icon: ThumbsUp, label: 'Güvenilir' },
+  { icon: Zap, label: 'Yüksek Verim' },
+];
+
+// Loading skeleton component
+const LoadingSkeleton = memo(({ className }: { className?: string }) => (
+  <div className={`animate-pulse bg-gray-200 rounded ${className}`} />
+));
+
+LoadingSkeleton.displayName = 'LoadingSkeleton';
+
+export default function HomePage() {
+  const { currentLang } = useLanguage();
+  const { toast } = useToast();
+  const t = pageTranslations[currentLang];
+
+  // Hero slider states
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [heroProgress, setHeroProgress] = useState(0);
+
+  // Product slider states
+  const [currentProductSlide, setCurrentProductSlide] = useState(0);
+  const [productsPerView, setProductsPerView] = useState(3);
+
+  // Collaborative robots slider states
+  const [currentCollabSlide, setCurrentCollabSlide] = useState(0);
+  const [collabPerView, setCollabPerView] = useState(3);
+
+  // Modal states
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<{
+    model: string;
+    payload: string;
+    reach: string;
+    specs: { dof: string };
+    image: string;
+    features: string[];
+    applications: string[];
+  } | null>(null);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  // Performance states
+  const [isLoading, setIsLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Video refs
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Refs for cleanup
+  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const slideIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Optimized image preloading
+  const preloadImages = useCallback(async () => {
+    try {
+      const imagePromises = heroSlides.slice(0, 2).map(slide => {
+        return new Promise<void>(resolve => {
+          const img = new window.Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+          img.src = slide.image;
+        });
+      });
+
+      await Promise.allSettled(imagePromises);
+      setImagesLoaded(true);
+    } catch (error) {
+      setImagesLoaded(true);
+    }
+  }, []);
+
+  // Initial loading effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 50);
+
+    // Force loading to false after a short delay
+    const forceTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 200);
+
+    preloadImages();
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(forceTimer);
+    };
+  }, [preloadImages]);
+
+  // Optimized hero slider with proper cleanup
+  useEffect(() => {
+    if (!imagesLoaded) return;
+
+    const resetAndStart = () => {
+      setHeroProgress(0);
+
+      // Clear existing intervals
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+      }
+      if (slideIntervalRef.current) {
+        clearTimeout(slideIntervalRef.current);
+      }
+
+      progressIntervalRef.current = setInterval(() => {
+        setHeroProgress(prev => {
+          const newProgress = prev + 2;
+          return newProgress >= 100 ? 100 : newProgress;
+        });
+      }, 100);
+
+      slideIntervalRef.current = setTimeout(() => {
+        setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length);
+        resetAndStart();
+      }, 5000);
+    };
+
+    resetAndStart();
+
+    return () => {
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+      }
+      if (slideIntervalRef.current) {
+        clearTimeout(slideIntervalRef.current);
+      }
+    };
+  }, [imagesLoaded]);
+
+  // Optimized resize handler with debouncing
+  useEffect(() => {
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+
+      resizeTimeoutRef.current = setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          const width = window.innerWidth;
+          if (width < 640) {
+            setProductsPerView(1);
+            setCollabPerView(1);
+          } else if (width < 1024) {
+            setProductsPerView(2);
+            setCollabPerView(2);
+          } else {
+            setProductsPerView(3);
+            setCollabPerView(3);
+          }
+        }
+      }, 100);
+    };
+
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      handleResize();
+      window.addEventListener('resize', handleResize, { passive: true });
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Body scroll lock optimization
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (isContactFormOpen || isProductModalOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = '';
+      }
+    };
+  }, [isContactFormOpen, isProductModalOpen]);
+
+  // Memoized handlers
+  const nextHeroSlide = useCallback(() => {
+    setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length);
+    setHeroProgress(0);
+  }, []);
+
+  const prevHeroSlide = useCallback(() => {
+    setCurrentHeroSlide(
+      prev => (prev - 1 + heroSlides.length) % heroSlides.length
+    );
+    setHeroProgress(0);
+  }, []);
+
+  const nextProductSlide = useCallback(() => {
+    const maxSlide = Math.max(0, productData.length - productsPerView);
+    setCurrentProductSlide(prev => Math.min(prev + 1, maxSlide));
+  }, [productsPerView]);
+
+  const prevProductSlide = useCallback(() => {
+    setCurrentProductSlide(prev => Math.max(prev - 1, 0));
+  }, []);
+
+  const nextCollabSlide = useCallback(() => {
+    const maxSlide = Math.max(
+      0,
+      collaborativeRobotsData.length - collabPerView
+    );
+    setCurrentCollabSlide(prev => Math.min(prev + 1, maxSlide));
+  }, [collabPerView]);
+
+  const prevCollabSlide = useCallback(() => {
+    setCurrentCollabSlide(prev => Math.max(prev - 1, 0));
+  }, []);
+
+  const openProductModal = useCallback(
+    (product: {
+      model: string;
+      payload: string;
+      reach: string;
+      specs: { dof: string };
+      image: string;
+      features: string[];
+      applications: string[];
+    }) => {
+      setSelectedProduct(product);
+      setIsProductModalOpen(true);
+    },
+    []
+  );
+
+  const handleContactSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      // Form validation
+      if (
+        !contactForm.name.trim() ||
+        !contactForm.email.trim() ||
+        !contactForm.message.trim()
+      ) {
+        toast({
+          title: 'Hata',
+          description: 'Lütfen tüm zorunlu alanları doldurun.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(contactForm.email)) {
+        toast({
+          title: 'Hata',
+          description: 'Lütfen geçerli bir email adresi girin.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      // Success notification
+      toast({
+        title: 'Başarılı!',
+        description:
+          'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.',
+        variant: 'success',
+      });
+
+      setIsContactFormOpen(false);
+      setContactForm({ name: '', email: '', phone: '', message: '' });
+    },
+    [contactForm, toast]
+  );
+
+  // Optimized video handlers
+  const handleVideoMouseEnter = useCallback((index: number) => {
+    const video = videoRefs.current[index];
+    if (video && video.readyState >= 2) {
+      video.play().catch(() => {
+        // Video play failed
+      });
+    }
+  }, []);
+
+  const handleVideoMouseLeave = useCallback((index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, []);
+
+  // Memoized calculations
+  const canSlidePrev = useMemo(
+    () => currentProductSlide > 0,
+    [currentProductSlide]
+  );
+  const can

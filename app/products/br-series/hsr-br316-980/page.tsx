@@ -1,17 +1,17 @@
 'use client';
 
 import { Footer } from '@/components/footer';
-import { ContactForm } from '@/components/forms/contact-form';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/language-context';
 import {
-  ChevronRight,
-Info,
-MessageCircle,
-Package,
-Settings,
-Zap,
+    ChevronRight,
+    Info,
+    MessageCircle,
+    Package,
+    Settings,
+    Zap,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -84,8 +84,6 @@ cabinetWeight: '15kg',
 },
 };
 
-const currentLang = 'tr';
-
 // Translations
 const translations = {
     tr: {
@@ -151,13 +149,13 @@ contactUs: 'Contact Us',
 };
 
 export default function HSRBR316980Page() {
-  
-const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-const t = translations[currentLang as keyof typeof translations];
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang as keyof typeof translations];
 
   return (
-          <div
-        className='min-h-screen bg-white'>
+    <div
+      className='min-h-screen bg-white'>
 <Header />
 
 {/* Breadcrumb */}
@@ -251,105 +249,78 @@ className='max-w-full max-h-full object-contain'
       </Card>
       </div>
 
-{/* Action Button */}
-      <div
-        className='flex flex-col sm:flex-row gap-4'>
-<Button
-onClick={() => setIsContactFormOpen(true)}
-className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-{t.product.contactForConsultation}
-      </Button>
-      </div>
+              {/* Action Button */}
+              <div className='flex flex-col sm:flex-row gap-4'>
+                <Button
+                  onClick={() => setIsContactFormOpen(true)}
+                  className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
+                >
+                  <MessageCircle className='w-5 h-5 mr-2' />
+                  {t.product.contactForConsultation}
+                </Button>
+              </div>
 
-{/* Key Features */}
-      <div
-        className='grid grid-cols-2 gap-4'>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-green-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-±0.05mm Hassasiyet
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
-      <Zap
-        className='w-5 h-5 text-blue-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-360°/s Maksimum Hız
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
-      <Package
-        className='w-5 h-5 text-purple-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-16kg Yük Kapasitesi
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-orange-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-980mm Kol Açıklığı
-      </span>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
+              {/* Key Features */}
+              <div className='grid grid-cols-2 gap-4'>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-green-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    ±0.05mm Hassasiyet
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
+                    <Zap className='w-5 h-5 text-blue-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    360°/s Maksimum Hız
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
+                    <Package className='w-5 h-5 text-purple-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    16kg Yük Kapasitesi
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-orange-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    980mm Kol Açıklığı
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-{/* Product Description */}
-            <section
-        className='py-12 bg-gray-50'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <div
-        className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
-      <h2
-        className='text-2xl font-bold text-gray-800 mb-6'>
-Ürün Açıklaması
-      </h2>
-      <p
-        className='text-gray-700 leading-relaxed text-lg'>
-{productData.description}
-      </p>
-      </div>
-      </div>
+      {/* Product Description */}
+      <section className='py-12 bg-gray-50'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <div className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
+            <h2 className='text-2xl font-bold text-gray-800 mb-6'>
+              Ürün Açıklaması
+            </h2>
+            <p className='text-gray-700 leading-relaxed text-lg'>
+              {productData.description}
+            </p>
+          </div>
+        </div>
       </section>
 
-{/* Technical Specifications */}
-            <section
-        className='py-12 bg-white'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <h2
-        className='text-3xl font-bold text-gray-800 mb-8 text-center'>
-Teknik Özellikler
-      </h2>
-      <div
+      {/* Technical Specifications */}
+      <section className='py-12 bg-white'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
+            Teknik Özellikler
+          </h2>
+          <div
         className='grid lg:grid-cols-2 gap-8'>
 {/* Basic Specifications */}
       <Card
@@ -807,132 +778,123 @@ className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-se
       </div>
       </section>
 
-{/* Contact Form Modal */}
-<ContactForm
-isOpen={isContactFormOpen}
-onClose={() => setIsContactFormOpen(false)}
-title="İletişim Formu"
-description="Bu ürün hakkında bilgi almak için formu doldurun."
-/>
-<button
-onClick={() => setIsContactFormOpen(false)}
-className='p-2 hover:bg-gray-100 rounded-full transition-colors'
->
-      <svg
-        className='w-6 h-6 text-gray-600'
-fill='none'
-viewBox='0 0 24 24'
-stroke='currentColor'
->
-<path
-strokeLinecap='round'
-strokeLinejoin='round'
-strokeWidth={2}
-d='M6 18L18 6M6 6l12 12'
-/>
-      </svg>
-      </button>
-      </div>
-      <p
-        className='text-gray-600 mt-2'>
-Bu ürün hakkında bilgi almak için formu doldurun.
-      </p>
-      </div>
+                  {/* Contact Form Modal */}
+                  {isContactFormOpen && (
+                    <div className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
+                      <div className='bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto'>
+                        <div className='p-6 border-b border-gray-200'>
+                          <div className='flex items-center justify-between'>
+                            <h3 className='text-2xl font-bold text-gray-800'>
+                              İletişim Formu
+                            </h3>
+                            <button
+                              onClick={() => setIsContactFormOpen(false)}
+                              className='p-2 hover:bg-gray-100 rounded-full transition-colors'
+                            >
+                              <svg
+                                className='w-6 h-6 text-gray-600'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke='currentColor'
+                              >
+                                <path
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                  strokeWidth={2}
+                                  d='M6 18L18 6M6 6l12 12'
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <p className='text-gray-600 mt-2'>
+                            Bu ürün hakkında bilgi almak için formu doldurun.
+                          </p>
+                        </div>
 
-      <div
-        className='p-6'>
-      <form
-        className='space-y-4'>
-      <div
-        className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Ad Soyad *
-      </label>
-<input
-type='text'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Adınız ve soyadınız'
-/>
-      </div>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-E-posta *
-      </label>
-<input
-type='email'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='E-posta adresiniz'
-/>
-      </div>
-      </div>
+                        <div className='p-6'>
+                          <form className='space-y-4'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                              <div>
+                                <label className='block text-sm font-medium text-gray-700 mb-2'>
+                                  Ad Soyad *
+                                </label>
+                                <input
+                                  type='text'
+                                  required
+                                  className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                  placeholder='Adınız ve soyadınız'
+                                />
+                              </div>
+                              <div>
+                                <label className='block text-sm font-medium text-gray-700 mb-2'>
+                                  E-posta *
+                                </label>
+                                <input
+                                  type='email'
+                                  required
+                                  className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                  placeholder='E-posta adresiniz'
+                                />
+                              </div>
+                            </div>
 
-      <div
-        className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Telefon
-      </label>
-<input
-type='tel'
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Telefon numaranız'
-/>
-      </div>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Şirket
-      </label>
-<input
-type='text'
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Şirket adınız'
-/>
-      </div>
-      </div>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                              <div>
+                                <label className='block text-sm font-medium text-gray-700 mb-2'>
+                                  Telefon
+                                </label>
+                                <input
+                                  type='tel'
+                                  className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                  placeholder='Telefon numaranız'
+                                />
+                              </div>
+                              <div>
+                                <label className='block text-sm font-medium text-gray-700 mb-2'>
+                                  Şirket
+                                </label>
+                                <input
+                                  type='text'
+                                  className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                  placeholder='Şirket adınız'
+                                />
+                              </div>
+                            </div>
 
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Mesaj *
-      </label>
-<textarea
-required
-rows={4}
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Bu ürün hakkında bilgi almak istiyorum...'
->      </textarea>
-      </div>
+                            <div>
+                              <label className='block text-sm font-medium text-gray-700 mb-2'>
+                                Mesaj *
+                              </label>
+                              <textarea
+                                required
+                                rows={4}
+                                className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                placeholder='Bu ürün hakkında bilgi almak istiyorum...'
+                              ></textarea>
+                            </div>
 
-      <div
-        className='flex gap-3 pt-4'>
-<Button
-type='submit'
-className='flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-Mesaj Gönder
-      </Button>
-<Button
-type='button'
-variant='outline'
-onClick={() => setIsContactFormOpen(false)}
-className='px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg'
->
-İptal
-      </Button>
-      </div>
-      </form>
-      </div>
-      </div>
-      </div>
+                            <div className='flex gap-3 pt-4'>
+                              <Button
+                                type='submit'
+                                className='flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold'
+                              >
+                                <MessageCircle className='w-5 h-5 mr-2' />
+                                Mesaj Gönder
+                              </Button>
+                              <Button
+                                type='button'
+                                variant='outline'
+                                onClick={() => setIsContactFormOpen(false)}
+                                className='px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg'
+                              >
+                                İptal
+                              </Button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 )}
 
 <Footer />

@@ -2,15 +2,8 @@
   "rules": [
     {
       "description": "Fix any errors, keep UI intact",
-      "include": [
-        "**/*.tsx",
-        "**/*.ts",
-        "**/*.js"
-      ],
-      "exclude": [
-        "**/*.css",
-        "**/*.scss"
-      ],
+      "include": ["**/*.tsx", "**/*.ts", "**/*.js"],
+      "exclude": ["**/*.css", "**/*.scss"],
       "actions": {
         "allow": [
           "fix-syntax-errors",

@@ -5,12 +5,12 @@ import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
-  ChevronRight,
-Info,
-MessageCircle,
-Package,
-Settings,
-Zap,
+    ChevronRight,
+    Info,
+    MessageCircle,
+    Package,
+    Settings,
+    Zap,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -96,34 +96,27 @@ contactUs: 'Contact Us',
 };
 
 export default function HSTC500Page() {
-  
+
 const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 const t = translations[currentLang as keyof typeof translations];
 
   return (
-          <div
-        className='min-h-screen bg-white'>
-<Header />
+    <div className='min-h-screen bg-white'>
+      <Header />
 
-{/* Breadcrumb */}
-            <section
-        className='py-5 bg-gray-50 border-b border-gray-200'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <nav
-        className='flex items-center space-x-2 text-sm text-gray-600'>
-      <span
-        className='text-gray-800 font-medium'>
-{productData.category}
-      </span>
-      <ChevronRight
-        className='w-4 h-4' />
-      <span
-        className='text-gray-800 font-medium'>
-{productData.model}
-      </span>
-      </nav>
-      </div>
+      {/* Breadcrumb */}
+      <section className='py-5 bg-gray-50 border-b border-gray-200'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <nav className='flex items-center space-x-2 text-sm text-gray-600'>
+            <span className='text-gray-800 font-medium'>
+              {productData.category}
+            </span>
+            <ChevronRight className='w-4 h-4' />
+            <span className='text-gray-800 font-medium'>
+              {productData.model}
+            </span>
+          </nav>
+        </div>
       </section>
 
 {/* Product Header */}
@@ -555,24 +548,24 @@ Bu ürün hakkında bilgi almak için formu doldurun.
         className='block text-sm font-medium text-gray-700 mb-2'>
 Ad Soyad *
       </label>
-<input
-type='text'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Adınız ve soyadınız'
-/>
+                 <input
+                   type='text'
+                   required
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='Adınız ve soyadınız'
+                 />
       </div>
 <div>
       <label
         className='block text-sm font-medium text-gray-700 mb-2'>
 E-posta *
       </label>
-<input
-type='email'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='E-posta adresiniz'
-/>
+                 <input
+                   type='email'
+                   required
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='E-posta adresiniz'
+                 />
       </div>
       </div>
 
@@ -607,12 +600,12 @@ placeholder='Şirket adınız'
         className='block text-sm font-medium text-gray-700 mb-2'>
 Mesaj *
       </label>
-<textarea
-required
-rows={4}
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Bu ürün hakkında bilgi almak istiyorum...'
->      </textarea>
+                 <textarea
+                   required
+                   rows={4}
+                   className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                   placeholder='Bu ürün hakkında bilgi almak istiyorum...'
+                 />
       </div>
 
       <div

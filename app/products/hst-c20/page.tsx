@@ -1,808 +1,498 @@
 'use client';
 
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import {
-  ChevronRight,
-Info,
-MessageCircle,
-Package,
-Settings,
-Zap,
-} from 'lucide-react';
-import Image from 'next/image';
-import { useState } from 'react';
+import { useLanguage } from '@/contexts/language-context';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
-// Product data
-const productData = {
-model: 'HST-C20',
-category: 'Hızlı Değiştirilen Disk',
-keywords: 'HST-C20, hızlı değiştirilen disk, takım değiştirici, HSRobot',
-capacity: '20 kg',
-material: 'Alüminyum Alaşım',
-weight: '900 g',
-description:
-'HST-C20, 20 kg yük kapasitesine sahip yüksek hassasiyetli hızlı değiştirilen disk sistemidir. Büyük parçaların işlenmesi ve ağır yüklerin taşınması için tasarlanmıştır.',
-image: '/img/quick/HST-C20.png',
-    specifications: {
-    capacity: '20 kg',
-material: 'Alüminyum Alaşım',
-weight: '900 g',
-dimensions: 'ø90mm',
-surfaceFinish: 'Yüksek Hassasiyet',
-hardness: 'Dayanıklı',
-tolerance: '±0.01mm',
-loadCapacity: '20 kg',
-allowableBendingMoment: '60 N·m',
-allowableTorque: '86.5 N·m',
-overallDimension: 'ø90mm',
-lockedStateThickness: '47mm',
-repeatedPositioningAccuracy: '±0.01mm',
-workingDrivingPressure: '0.4-0.7 MPa',
-lockingMechanism: 'Çelik bilya kilitleme',
-applicableAmbientTemperature: '0-60 ℃',
-applicableAmbientHumidity: '90%',
-bodyMaterial: 'Alüminyum Alaşım',
-lockingMechanismPart: 'Alaşım Çelik',
-mainDiskWeight: '550 g',
-toolTrayWeight: '350 g',
-gasPathChannel: '10',
-circuitChannel: '15',
-},
-features: [
-'20 kg yük kapasitesi',
-'±0.01mm hassasiyet',
-'Çelik bilya kilitleme sistemi',
-'0.4-0.7 MPa çalışma basıncı',
-'0-60 ℃ sıcaklık aralığı',
-'90% nem toleransı',
-'10 gaz yolu kanalı',
-'15 devre kanalı',
-],
-applications: [
-'Ağır parça işleme',
-'Büyük takım değiştirme sistemleri',
-'Endüstriyel robotik uygulamalar',
-'CNC makineleri',
-'Montaj hatları',
-'Kalite kontrol sistemleri',
-],
-advantages: [
-'Yüksek yük kapasitesi',
-'Üstün hassasiyet ve tekrarlanabilirlik',
-'Hızlı takım değişimi',
-'Dayanıklı alüminyum alaşım yapı',
-'Geniş sıcaklık ve nem aralığı',
-'Çoklu kanal desteği',
-'Güvenli çelik bilya kilitleme sistemi',
-'Endüstriyel standartlarda performans',
-],
-};
+const HSTC20Page = () => {
+  const { currentLang } = useLanguage();
+  const language = currentLang;
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: '',
+  });
 
-const currentLang = 'tr';
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-// Translations
-const translations = {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log('Form submitted:', formData);
+    setIsOpen(false);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: '',
+    });
+  };
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  const content = {
     tr: {
-    product: {
-category: 'Kategori',
-keywords: 'Anahtar Kelimeler',
-capacity: 'Kapasite',
-material: 'Malzeme',
-weight: 'Ağırlık',
-contactForConsultation: 'Mesaj bırakın',
-specifications: 'Teknik Özellikler',
-dimensions: 'Boyutlar',
-surfaceFinish: 'Yüzey Pürüzlülüğü',
-hardness: 'Sertlik',
-tolerance: 'Tolerans',
-features: 'Özellikler',
-applications: 'Uygulama Alanları',
-advantages: 'Avantajlar',
-requestQuote: 'Fiyat Teklifi İste',
-contactUs: 'İletişime Geç',
-},
-},
+      title: 'HST-C20 Serisi',
+      subtitle: 'Yüksek Performanslı Endüstriyel Bilgisayar',
+      description:
+        'HST-C20 serisi, endüstriyel uygulamalar için özel olarak tasarlanmış güçlü ve güvenilir bilgisayar sistemleridir. Bu seri, zorlu endüstriyel ortamlarda bile kesintisiz çalışma sağlar.',
+      features: [
+        'Intel Core i7-12700 işlemci',
+        '32GB DDR4 RAM',
+        '1TB NVMe SSD',
+        'Windows 11 Pro',
+        'Endüstriyel sıcaklık aralığı (-20°C ile +60°C)',
+        'IP65 koruma sınıfı',
+        'Çoklu seri port desteği',
+        'Gigabit Ethernet',
+        'USB 3.0 ve USB 2.0 portları',
+        'VGA ve HDMI çıkışları',
+      ],
+      specifications: {
+        processor: 'Intel Core i7-12700',
+        memory: '32GB DDR4',
+        storage: '1TB NVMe SSD',
+        os: 'Windows 11 Pro',
+        temperature: '-20°C ile +60°C',
+        protection: 'IP65',
+        ports:
+          '4x USB 3.0, 2x USB 2.0, 2x Serial, 1x Ethernet, 1x VGA, 1x HDMI',
+      },
+      applications: [
+        'Endüstriyel otomasyon',
+        'Makine kontrol sistemleri',
+        'Veri toplama ve analiz',
+        'Görüntü işleme',
+        'Kalite kontrol sistemleri',
+        'Üretim hattı yönetimi',
+      ],
+      benefits: [
+        'Yüksek performans ve güvenilirlik',
+        'Endüstriyel ortam uyumluluğu',
+        'Geniş sıcaklık aralığı',
+        'Çoklu port desteği',
+        'Kolay entegrasyon',
+        'Uzun ömürlü tasarım',
+      ],
+      cta: 'Teklif Alın',
+      contact: 'İletişime Geçin',
+      backToProducts: 'Ürünlere Dön',
+    },
     en: {
-    product: {
-category: 'Category',
-keywords: 'Keywords',
-capacity: 'Capacity',
-material: 'Material',
-weight: 'Weight',
-contactForConsultation: 'Leave a Message',
-specifications: 'Technical Specifications',
-dimensions: 'Dimensions',
-surfaceFinish: 'Surface Finish',
-hardness: 'Hardness',
-tolerance: 'Tolerance',
-features: 'Features',
-applications: 'Applications',
-advantages: 'Advantages',
-requestQuote: 'Request Quote',
-contactUs: 'Contact Us',
-},
-},
-};
+      title: 'HST-C20 Series',
+      subtitle: 'High Performance Industrial Computer',
+      description:
+        'The HST-C20 series are powerful and reliable computer systems specially designed for industrial applications. This series ensures uninterrupted operation even in challenging industrial environments.',
+      features: [
+        'Intel Core i7-12700 processor',
+        '32GB DDR4 RAM',
+        '1TB NVMe SSD',
+        'Windows 11 Pro',
+        'Industrial temperature range (-20°C to +60°C)',
+        'IP65 protection class',
+        'Multiple serial port support',
+        'Gigabit Ethernet',
+        'USB 3.0 and USB 2.0 ports',
+        'VGA and HDMI outputs',
+      ],
+      specifications: {
+        processor: 'Intel Core i7-12700',
+        memory: '32GB DDR4',
+        storage: '1TB NVMe SSD',
+        os: 'Windows 11 Pro',
+        temperature: '-20°C to +60°C',
+        protection: 'IP65',
+        ports:
+          '4x USB 3.0, 2x USB 2.0, 2x Serial, 1x Ethernet, 1x VGA, 1x HDMI',
+      },
+      applications: [
+        'Industrial automation',
+        'Machine control systems',
+        'Data collection and analysis',
+        'Image processing',
+        'Quality control systems',
+        'Production line management',
+      ],
+      benefits: [
+        'High performance and reliability',
+        'Industrial environment compatibility',
+        'Wide temperature range',
+        'Multiple port support',
+        'Easy integration',
+        'Long-lasting design',
+      ],
+      cta: 'Get Quote',
+      contact: 'Contact Us',
+      backToProducts: 'Back to Products',
+    },
+  };
 
-export default function HSTC20Page() {
-  
-const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-const t = translations[currentLang as keyof typeof translations];
+  const currentContent = content[currentLang as keyof typeof content];
 
   return (
-          <div
-        className='min-h-screen bg-white'>
-<Header />
-
-{/* Breadcrumb */}
-            <section
-        className='py-5 bg-gray-50 border-b border-gray-200'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <nav
-        className='flex items-center space-x-2 text-sm text-gray-600'>
-      <span
-        className='text-gray-800 font-medium'>
-{productData.category}
-      </span>
-      <ChevronRight
-        className='w-4 h-4' />
-      <span
-        className='text-gray-800 font-medium'>
-{productData.model}
-      </span>
-      </nav>
-      </div>
-      </section>
-
-{/* Product Header */}
-            <section
-        className='py-12 bg-white'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <div
-        className='grid lg:grid-cols-2 gap-12 items-start'>
-{/* Product Image */}
-      <div
-        className='relative'>
-      <div
-        className='bg-gray-50 rounded-2xl p-8 flex items-center justify-center min-h-[400px]'>
-<Image
-src={productData.image || '/placeholder.svg'}
-alt={productData.model}
-width={500}
-height={400}
-className='max-w-full max-h-full object-contain'
-/>
-      </div>
+    <div className='min-h-screen bg-gray-50'>
+      {/* Header */}
+      <div className='bg-white shadow-sm'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='flex justify-between items-center py-6'>
+            <div>
+              <h1 className='text-3xl font-bold text-gray-900'>
+                {currentContent.title}
+              </h1>
+              <p className='mt-2 text-lg text-gray-600'>
+                {currentContent.subtitle}
+              </p>
+            </div>
+            <Link
+              href='/products'
+              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700'
+            >
+              {currentContent.backToProducts}
+            </Link>
+          </div>
+        </div>
       </div>
 
-{/* Product Info */}
-      <div
-        className='space-y-6'>
-<div>
-      <h1
-        className='text-4xl font-bold text-gray-800 mb-4'>
-{productData.model}
-      </h1>
+      {/* Main Content */}
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+          {/* Left Column - Product Image */}
+          <div className='space-y-6'>
+            <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
+              <div className='aspect-w-16 aspect-h-9 bg-gray-200'>
+                <div className='w-full h-64 bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center'>
+                  <div className='text-center text-white'>
+                    <div className='text-6xl mb-4'>🖥️</div>
+                    <p className='text-xl font-semibold'>HST-C20</p>
+                    <p className='text-sm opacity-90'>Industrial Computer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Product Details */}
+          <div className='space-y-8'>
+            {/* Description */}
+            <div>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+                {currentLang === 'tr'
+                  ? 'Ürün Açıklaması'
+                  : 'Product Description'}
+              </h2>
+              <p className='text-gray-700 leading-relaxed'>
+                {currentContent.description}
+              </p>
+            </div>
+
+            {/* Features */}
+            <div>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+                {currentLang === 'tr' ? 'Özellikler' : 'Features'}
+              </h2>
+              <ul className='grid grid-cols-1 gap-3'>
+                {currentContent.features.map((feature, index) => (
+                  <li key={index} className='flex items-start'>
+                    <div className='flex-shrink-0 w-5 h-5 mt-0.5'>
+                      <div className='w-5 h-5 bg-green-100 rounded-full flex items-center justify-center'>
+                        <div className='w-2 h-2 bg-green-600 rounded-full'></div>
+                      </div>
+                    </div>
+                    <span className='ml-3 text-gray-700'>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Specifications */}
+            <div>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+                {language === 'tr'
+                  ? 'Teknik Özellikler'
+                  : 'Technical Specifications'}
+              </h2>
+              <div className='bg-gray-50 rounded-lg p-6'>
+                <dl className='grid grid-cols-1 gap-4'>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr' ? 'İşlemci:' : 'Processor:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.processor}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr' ? 'Bellek:' : 'Memory:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.memory}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr' ? 'Depolama:' : 'Storage:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.storage}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr'
+                        ? 'İşletim Sistemi:'
+                        : 'Operating System:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.os}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr'
+                        ? 'Sıcaklık Aralığı:'
+                        : 'Temperature Range:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.temperature}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr'
+                        ? 'Koruma Sınıfı:'
+                        : 'Protection Class:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.protection}
+                    </dd>
+                  </div>
+                  <div className='flex justify-between'>
+                    <dt className='font-medium text-gray-700'>
+                      {language === 'tr' ? 'Portlar:' : 'Ports:'}
+                    </dt>
+                    <dd className='text-gray-900'>
+                      {currentContent.specifications.ports}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            {/* Applications */}
+            <div>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+                {language === 'tr' ? 'Uygulama Alanları' : 'Applications'}
+              </h2>
+              <div className='grid grid-cols-2 gap-3'>
+                {currentContent.applications.map((app, index) => (
+                  <div key={index} className='bg-blue-50 rounded-lg p-3'>
+                    <span className='text-blue-800 text-sm font-medium'>
+                      {app}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+                {language === 'tr' ? 'Avantajlar' : 'Benefits'}
+              </h2>
+              <div className='grid grid-cols-1 gap-3'>
+                {currentContent.benefits.map((benefit, index) => (
+                  <div key={index} className='flex items-center'>
+                    <div className='flex-shrink-0 w-6 h-6'>
+                      <div className='w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center'>
+                        <svg
+                          className='w-4 h-4 text-blue-600'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                            clipRule='evenodd'
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <span className='ml-3 text-gray-700'>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className='flex flex-col sm:flex-row gap-4'>
+              <button
+                onClick={openModal}
+                className='flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'
+              >
+                {currentContent.cta}
+              </button>
+              <button
+                onClick={openModal}
+                className='flex-1 bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors'
+              >
+                {currentContent.contact}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
-{/* Quick Specs */}
-      <div
-        className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-      <Card
-        className='p-4 text-center border-2 border-blue-100 bg-blue-50'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.capacity}
-      </div>
-      <div
-        className='text-2xl font-bold text-blue-600'>
-{productData.specifications.capacity}
-      </div>
-      </Card>
-      <Card
-        className='p-4 text-center border-2 border-gray-100'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.material}
-      </div>
-      <div
-        className='text-2xl font-bold text-gray-800'>
-{productData.specifications.material}
-      </div>
-      </Card>
-      <Card
-        className='p-4 text-center border-2 border-gray-100'>
-      <div
-        className='text-sm text-gray-600 mb-1'>
-{t.product.weight}
-      </div>
-      <div
-        className='text-2xl font-bold text-gray-800'>
-{productData.specifications.weight}
-      </div>
-      </Card>
-      </div>
+      {/* Contact Modal */}
+      {isOpen && (
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
+          <div className='bg-white rounded-lg max-w-md w-full p-6'>
+            <div className='flex justify-between items-center mb-4'>
+              <h3 className='text-lg font-semibold text-gray-900'>
+                {language === 'tr' ? 'İletişim Formu' : 'Contact Form'}
+              </h3>
+              <button
+                onClick={closeModal}
+                className='text-gray-400 hover:text-gray-600'
+              >
+                <svg
+                  className='w-6 h-6'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+            </div>
 
-{/* Action Button */}
-      <div
-        className='flex flex-col sm:flex-row gap-4'>
-<Button
-onClick={() => setIsContactFormOpen(true)}
-className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-{t.product.contactForConsultation}
-      </Button>
-      </div>
+            <form onSubmit={handleSubmit} className='space-y-4'>
+              <div>
+                <label
+                  htmlFor='name'
+                  className='block text-sm font-medium text-gray-700 mb-1'
+                >
+                  {language === 'tr' ? 'Ad Soyad' : 'Full Name'}
+                </label>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+              </div>
 
-{/* Key Features */}
-      <div
-        className='grid grid-cols-2 gap-4'>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-green-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-±0.02mm Hassasiyet
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
-      <Zap
-        className='w-5 h-5 text-blue-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-Hızlı Değişim
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
-      <Package
-        className='w-5 h-5 text-purple-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-20mm Kapasite
-      </span>
-      </div>
-      <div
-        className='flex items-center space-x-3'>
-      <div
-        className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
-      <Settings
-        className='w-5 h-5 text-orange-600' />
-      </div>
-      <span
-        className='text-sm font-medium text-gray-700'>
-HRC 58-62 Sertlik
-      </span>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
+              <div>
+                <label
+                  htmlFor='email'
+                  className='block text-sm font-medium text-gray-700 mb-1'
+                >
+                  {language === 'tr' ? 'E-posta' : 'Email'}
+                </label>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+              </div>
 
-{/* Product Description */}
-            <section
-        className='py-12 bg-gray-50'>
-      <div
-        className='container mx-auto px-4 max-w-7xl'>
-      <div
-        className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
-      <h2
-        className='text-2xl font-bold text-gray-800 mb-6'>
-Ürün Açıklaması
-      </h2>
-      <p
-        className='text-gray-700 leading-relaxed text-lg'>
-{productData.description}
-      </p>
-      </div>
-      </div>
-      </section>
+              <div>
+                <label
+                  htmlFor='phone'
+                  className='block text-sm font-medium text-gray-700 mb-1'
+                >
+                  {language === 'tr' ? 'Telefon' : 'Phone'}
+                </label>
+                <input
+                  type='tel'
+                  id='phone'
+                  name='phone'
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+              </div>
 
-{/* Technical Specifications */}
-            <section
-        className='py-16 bg-gray-50'>
-      <div
-        className='container mx-auto px-4'>
-      <div
-        className='text-center mb-12'>
-      <h2
-        className='text-3xl font-bold text-gray-900 mb-4'>
-Teknik Özellikler
-      </h2>
-      <p
-        className='text-lg text-gray-600 max-w-2xl mx-auto'>
-HST-C20 hızlı değiştirilen disk sisteminin detaylı teknik;
-parametreleri
-      </p>
-      </div>
+              <div>
+                <label
+                  htmlFor='company'
+                  className='block text-sm font-medium text-gray-700 mb-1'
+                >
+                  {language === 'tr' ? 'Şirket' : 'Company'}
+                </label>
+                <input
+                  type='text'
+                  id='company'
+                  name='company'
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+              </div>
 
-      <div
-        className='grid md:grid-cols-2 gap-8 max-w-6xl mx-auto'>
-{/* Temel Özellikler */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Package
-        className='h-5 w-5 text-blue-600' />
-Temel Özellikler
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Yük Kapasitesi
-      </span>
-      <span
-        className='text-gray-900'>20 kg      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-İzin Verilen Eğilme Momenti
-      </span>
-      <span
-        className='text-gray-900'>60 N·m      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-İzin Verilen Tork
-      </span>
-      <span
-        className='text-gray-900'>86.5 N·m      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>Genel Boyut      </span>
-      <span
-        className='text-gray-900'>ø90mm      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitli Durum Kalınlığı
-      </span>
-      <span
-        className='text-gray-900'>47mm      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Tekrarlanan Konumlandırma Hassasiyeti
-      </span>
-      <span
-        className='text-gray-900'>±0.01mm      </span>
-      </div>
-      </CardContent>
-      </Card>
+              <div>
+                <label
+                  htmlFor='message'
+                  className='block text-sm font-medium text-gray-700 mb-1'
+                >
+                  {language === 'tr' ? 'Mesaj' : 'Message'}
+                </label>
+                <textarea
+                  id='message'
+                  name='message'
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+              </div>
 
-{/* Çalışma Parametreleri */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Settings
-        className='h-5 w-5 text-green-600' />
-Çalışma Parametreleri
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Çalışma Sürücü Basıncı
-      </span>
-      <span
-        className='text-gray-900'>0.4-0.7 MPa      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitleme Mekanizması
-      </span>
-      <span
-        className='text-gray-900'>Çelik Bilya Kilitleme      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Uygulanabilir Ortam Sıcaklığı
-      </span>
-      <span
-        className='text-gray-900'>0-60 ℃      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Uygulanabilir Ortam Nem Oranı
-      </span>
-      <span
-        className='text-gray-900'>90%      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Gaz Yolu Kanalları
-      </span>
-      <span
-        className='text-gray-900'>10      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Devre Kanalları
-      </span>
-      <span
-        className='text-gray-900'>15      </span>
-      </div>
-      </CardContent>
-      </Card>
+              <div className='flex gap-3'>
+                <button
+                  type='submit'
+                  className='flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors'
+                >
+                  {language === 'tr' ? 'Gönder' : 'Send'}
+                </button>
+                <button
+                  type='button'
+                  onClick={closeModal}
+                  className='flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition-colors'
+                >
+                  {language === 'tr' ? 'İptal' : 'Cancel'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-{/* Malzeme Özellikleri */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Zap
-        className='h-5 w-5 text-purple-600' />
-Malzeme Özellikleri
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Gövde Malzemesi
-      </span>
-      <span
-        className='text-gray-900'>Alüminyum Alaşım      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Kilitleme Mekanizması Parçası
-      </span>
-      <span
-        className='text-gray-900'>Alaşım Çelik      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Ana Disk Ağırlığı
-      </span>
-      <span
-        className='text-gray-900'>550 g      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Takım Tepsisi Ağırlığı
-      </span>
-      <span
-        className='text-gray-900'>350 g      </span>
-      </div>
-      <div
-        className='flex justify-between py-2 border-b border-gray-100'>
-      <span
-        className='font-medium text-gray-700'>
-Toplam Ağırlık
-      </span>
-      <span
-        className='text-gray-900'>900 g      </span>
-      </div>
-      </CardContent>
-      </Card>
-      </div>
-      </div>
-      </section>
-
-{/* Product Features and Advantages */}
-            <section
-        className='py-16 bg-white'>
-      <div
-        className='container mx-auto px-4'>
-      <div
-        className='text-center mb-12'>
-      <h2
-        className='text-3xl font-bold text-gray-900 mb-4'>
-Ürün Özellikleri ve Avantajları
-      </h2>
-      <p
-        className='text-lg text-gray-600 max-w-2xl mx-auto'>
-HST-C20'nin sunduğu gelişmiş özellikler ve endüstriyel avantajları
-      </p>
-      </div>
-
-      <div
-        className='grid md:grid-cols-3 gap-8 max-w-6xl mx-auto'>
-{/* Özellikler */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Zap
-        className='h-5 w-5 text-blue-600' />
-Özellikler
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.features.map((feature, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-blue-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{feature}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
-
-{/* Uygulama Alanları */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Package
-        className='h-5 w-5 text-green-600' />
-Uygulama Alanları
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.applications.map((application, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-green-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{application}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
-
-{/* Avantajlar */}
-      <Card
-        className='p-6'>
-      <CardHeader
-        className='pb-4'>
-      <CardTitle
-        className='flex items-center gap-2 text-xl'>
-      <Info
-        className='h-5 w-5 text-purple-600' />
-Avantajlar
-      </CardTitle>
-      </CardHeader>
-      <CardContent
-        className='space-y-3'>
-{productData.advantages.map((advantage, index) => (
-<div key={index} className='flex items-center space-x-3'>
-      <div
-        className='w-2 h-2 bg-purple-600 rounded-full'>      </div>
-      <span
-        className='text-gray-700'>{advantage}      </span>
-      </div>
-))}
-      </CardContent>
-      </Card>
-      </div>
-      </div>
-      </section>
-
-{/* Contact CTA */}
-            <section
-        className='py-16 bg-blue-600 text-white'>
-      <div
-        className='container mx-auto px-4 max-w-7xl text-center'>
-      <h2
-        className='text-3xl font-bold mb-4'>
-Bu Ürün Hakkında Daha Fazla Bilgi Almak İster misiniz?
-      </h2>
-      <p
-        className='text-xl text-blue-100 mb-8 max-w-2xl mx-auto'>
-Uzman ekibimiz size en uygun çözümü bulmak için yardımcı olmaya
-hazır
-      </p>
-      <div
-        className='flex flex-col sm:flex-row gap-4 justify-center'>
-<Button
-onClick={() => setIsContactFormOpen(true)}
-className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-İletişime Geç
-      </Button>
-      </div>
-      </div>
-      </section>
-
-{/* Contact Form Modal */}
-{isContactFormOpen && (
-      <div
-        className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
-      <div
-        className='bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto'>
-      <div
-        className='p-6 border-b border-gray-200'>
-      <div
-        className='flex items-center justify-between'>
-      <h3
-        className='text-2xl font-bold text-gray-800'>
-İletişim Formu
-      </h3>
-<button
-onClick={() => setIsContactFormOpen(false)}
-className='p-2 hover:bg-gray-100 rounded-full transition-colors'
->
-      <svg
-        className='w-6 h-6 text-gray-600'
-fill='none'
-viewBox='0 0 24 24'
-stroke='currentColor'
->
-<path
-strokeLinecap='round'
-strokeLinejoin='round'
-strokeWidth={2}
-d='M6 18L18 6M6 6l12 12'
-/>
-      </svg>
-      </button>
-      </div>
-      <p
-        className='text-gray-600 mt-2'>
-Bu ürün hakkında bilgi almak için formu doldurun.
-      </p>
-      </div>
-
-      <div
-        className='p-6'>
-      <form
-        className='space-y-4'>
-      <div
-        className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Ad Soyad *
-      </label>
-<input
-type='text'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Adınız ve soyadınız'
-/>
-      </div>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-E-posta *
-      </label>
-<input
-type='email'
-required;
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='E-posta adresiniz'
-/>
-      </div>
-      </div>
-
-      <div
-        className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Telefon
-      </label>
-<input
-type='tel'
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Telefon numaranız'
-/>
-      </div>
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Şirket
-      </label>
-<input
-type='text'
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Şirket adınız'
-/>
-      </div>
-      </div>
-
-<div>
-      <label
-        className='block text-sm font-medium text-gray-700 mb-2'>
-Mesaj *
-      </label>
-<textarea
-required
-rows={4}
-className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-placeholder='Bu ürün hakkında bilgi almak istiyorum...'
->      </textarea>
-      </div>
-
-      <div
-        className='flex gap-3 pt-4'>
-<Button
-type='submit'
-className='flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold'
->
-      <MessageCircle
-        className='w-5 h-5 mr-2' />
-Mesaj Gönder
-      </Button>
-<Button
-type='button'
-variant='outline'
-onClick={() => setIsContactFormOpen(false)}
-className='px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg'
->
-İptal
-      </Button>
-      </div>
-      </form>
-      </div>
-      </div>
-      </div>
-)}
-
-<Footer />
-      </div>
-);
-}
+export default HSTC20Page;

@@ -14,6 +14,9 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || 'https://facebook.com/hsr',
     instagram:
       process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || 'https://instagram.com/hsr',
+    github:
+      process.env.NEXT_PUBLIC_SOCIAL_GITHUB ||
+      'https://github.com/hsrobotics-dottr/hsr',
   },
   contact: {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@hsr.com',
@@ -127,6 +130,11 @@ export const socialLinks = [
     name: 'Instagram',
     href: siteConfig.links.instagram,
     icon: 'instagram',
+  },
+  {
+    name: 'GitHub',
+    href: siteConfig.links.github,
+    icon: 'github',
   },
 ] as const;
 

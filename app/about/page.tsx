@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import {
@@ -21,26 +23,12 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-// Lazy load heavy components
-const Header = dynamic(
-  () => import('@/components/header').then(mod => ({ default: mod.Header })),
-  {
-    ssr: false,
-    loading: () => <div className='h-20 bg-gray-900' />,
-  }
-);
-
-const Footer = dynamic(
-  () => import('@/components/footer').then(mod => ({ default: mod.Footer })),
-  {
-    ssr: false,
-    loading: () => null,
-  }
-);
+// Import components directly
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
 // PCLC Strategy data - Updated with official company information
 const pclcData = [

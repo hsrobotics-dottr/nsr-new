@@ -1,17 +1,16 @@
 'use client';
 
 import { Footer } from '@/components/footer';
-import { ContactForm } from '@/components/forms/contact-form';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
-    ChevronRight,
-    Info,
-    MessageCircle,
-    Package,
-    Settings,
-    Zap,
+  ChevronRight,
+  Info,
+  MessageCircle,
+  Package,
+  Settings,
+  Zap,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -579,13 +578,17 @@ export default function HSRCO6161100Page() {
             </Button>
           </div>
         </div>
-      </section>      {/* Contact Form Modal */}
-      <ContactForm
-        isOpen={isContactFormOpen}
-        onClose={() => setIsContactFormOpen(false)}
-        title="İletişim Formu"
-        description="Bu ürün hakkında bilgi almak için formu doldurun."
-      />
+      </section>
+
+      {/* Contact Form Modal */}
+      {isContactFormOpen && (
+        <div className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
+          <div className='bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto'>
+            <div className='p-6 border-b border-gray-200'>
+              <div className='flex items-center justify-between'>
+                <h3 className='text-2xl font-bold text-gray-800'>
+                  İletişim Formu
+                </h3>
                 <button
                   onClick={() => setIsContactFormOpen(false)}
                   className='p-2 hover:bg-gray-100 rounded-full transition-colors'

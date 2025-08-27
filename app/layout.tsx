@@ -95,22 +95,7 @@ export default function RootLayout({
         {/* Critical resource hints */}
         {/* Dış kaynak linkleri kaldırıldı - artık kendi görsellerimizi kullanıyoruz */}
 
-        {/* Critical CSS inlined */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            /* Critical above-the-fold CSS */
-            *,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
-            html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
-            body{margin:0;line-height:inherit;overflow-x:hidden}
-            .hero-section{min-height:600px;background:#1f2937;position:relative}
-            .header-fixed{position:fixed;top:0;left:0;right:0;z-index:50;height:80px}
-            .loading-skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}
-            @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
-            .gpu-layer{transform:translateZ(0);backface-visibility:hidden}
-            `,
-          }}
-        />
+
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
