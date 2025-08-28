@@ -16,49 +16,59 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 
-// Product data (JH Series - SCARA Robot)
+// Product data (SR Series - Precision Industrial 6-Axis Robot)
 const productData = {
-  model: 'HSR-JH605-1500',
-  category: 'JH Serisi (SCARA Robot)',
-  keywords: 'SCARA Robotlar',
-  axes: 4,
-  payload: '5 kg',
-  reach: '605mm',
-  description: `HSR-JH605-1500, Huashu Robotics'den gelen yüksek performanslı SCARA (Selective Compliance Assembly Robot Arm) robotudur. Montaj, taşıma ve hassas konumlandırma uygulamaları için idealdir. Kompakt tasarımı ve yüksek hızı ile üretim hatlarında maksimum verimlilik sağlar.`,
-  image: '/img/industrial/JH/HSR-JH605-1500.png',
+  model: 'HSR-SR3-400',
+  category: 'SR Serisi (Hassas Endüstriyel Altı Eksenli)',
+  keywords: 'Hassas Endüstriyel Robotlar',
+  axes: 6,
+  payload: '3 kg',
+  reach: '400mm',
+  description: `HSR-SR3-400, Huashu Robotics'den gelen hassas, çok amaçlı bir robottur ve "yüksek hassasiyet, hafif yük kapasitesi ve yüksek hız" gibi hassas üretimin gereksinimlerini karşılar. Tüm makine hafif tasarım kullanır, kompakt boyuttadır ve esnek kurulum yöntemleri sunar. Bağımsız olarak geliştirilen çekirdek bileşenleri kullanarak, önemli bir maliyet avantajını korurken yüksek performans sergiler. Hassas montaj, elektronik bileşen yerleştirme, test işlemleri ve kalite kontrol gibi alanlarda yaygın olarak kullanılır.`,
+  image: '/img/industrial/SR/HSR-SR3-400.png',
   specifications: {
-    model: 'HSR-JH605-1500',
-    dof: '4',
-    payload: '5kg',
-    reach: '605mm',
-    repeatability: '±0.02mm',
+    model: 'HSR-SR3-400',
+    dof: '6',
+    payload: '3kg',
+    reach: '400mm',
+    repeatability: '±0.03mm',
   },
   movementRange: {
-    J1: '±150°',
-    J2: '-60°/+150°',
-    J3: '±200°',
-    J4: '±360°',
+    J1: '±180°',
+    J2: '-135°/+45°',
+    J3: '-10°/+200°',
+    J4: '±180°',
+    J5: '±120°',
+    J6: '±360°',
   },
   maxSpeed: {
-    J1: '600°/s, 10.47rad/s',
-    J2: '600°/s, 10.47rad/s',
-    J3: '800°/s, 13.96rad/s',
-    J4: '1200°/s, 20.94rad/s',
+    J1: '380°/s, 6.63rad/s',
+    J2: '380°/s, 6.63rad/s',
+    J3: '380°/s, 6.63rad/s',
+    J4: '400°/s, 6.98rad/s',
+    J5: '400°/s, 6.98rad/s',
+    J6: '620°/s, 10.82rad/s',
   },
   ratedSpeed: {
-    J1: '300°/s, 5.24rad/s',
-    J2: '300°/s, 5.24rad/s',
-    J3: '400°/s, 6.98rad/s',
-    J4: '600°/s, 10.47rad/s',
+    J1: '190°/s, 3.32rad/s',
+    J2: '190°/s, 3.32rad/s',
+    J3: '190°/s, 3.32rad/s',
+    J4: '200°/s, 3.49rad/s',
+    J5: '200°/s, 3.49rad/s',
+    J6: '310°/s, 5.41rad/s',
   },
   allowedInertia: {
-    J4: '0.5kg·m²',
+    J4: '0.12kg·m²',
+    J5: '0.12kg·m²',
+    J6: '0.08kg·m²',
   },
   allowedTorque: {
-    J4: '8Nm',
+    J4: '6.8Nm',
+    J5: '6.8Nm',
+    J6: '4.5Nm',
   },
   environment: {
-    temperature: '0-40°C',
+    temperature: '0-45°C',
     humidity: '20%-80%',
   },
   additionalSpecs: {
@@ -68,13 +78,13 @@ const productData = {
     reservedSignalLines: '8 bit',
     reservedAirway: '1xΦ6',
     powerCapacity: '1.0kVA',
-    ratedPower: '0.75kW',
+    ratedPower: '0.6kW',
     ratedVoltage: 'Tek faz AC220V',
-    ratedCurrent: '4.0A',
+    ratedCurrent: '3.0A',
     protectionLevel: 'IP54',
-    installationMethod: 'Masa/Yan Kurulum',
-    weight: '25kg',
-    cabinetWeight: '12kg',
+    installationMethod: 'Zemin/Yan/Ters Kurulum',
+    weight: '18kg',
+    cabinetWeight: '10kg',
     cabinetProtectionLevel: 'IP20',
     other:
       'Yanıcı, patlayıcı veya aşındırıcı gaz ve sıvılarla temas etmekten kaçının. Elektronik gürültü kaynaklarından (plazma) uzak durun.',
@@ -185,7 +195,7 @@ const translations = {
   },
 };
 
-const HSRJH6051500Page = () => {
+const HSRJR6051500Page = () => {
   const { currentLang } = useLanguage();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactForm, setContactForm] = useState({
@@ -311,7 +321,7 @@ const HSRJH6051500Page = () => {
                     <Settings className='w-5 h-5 text-green-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    ±0.02mm Hassasiyet
+                    ±0.03mm Hassasiyet
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -319,7 +329,7 @@ const HSRJH6051500Page = () => {
                     <Zap className='w-5 h-5 text-blue-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    1200°/s Maksimum Hız
+                    620°/s Maksimum Hız
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -327,7 +337,7 @@ const HSRJH6051500Page = () => {
                     <Package className='w-5 h-5 text-purple-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    5kg Yük Kapasitesi
+                    3kg Yük Kapasitesi
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -335,7 +345,7 @@ const HSRJH6051500Page = () => {
                     <Settings className='w-5 h-5 text-orange-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    605mm Kol Açıklığı
+                    400mm Kol Açıklığı
                   </span>
                 </div>
               </div>
@@ -486,13 +496,13 @@ const HSRJH6051500Page = () => {
               <div className='space-y-3'>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>Ağırlık</span>
-                  <span className='font-semibold text-gray-800'>25kg</span>
+                  <span className='font-semibold text-gray-800'>18kg</span>
                 </div>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>
                     Dolap Ağırlığı
                   </span>
-                  <span className='font-semibold text-gray-800'>12kg</span>
+                  <span className='font-semibold text-gray-800'>10kg</span>
                 </div>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>
@@ -505,7 +515,7 @@ const HSRJH6051500Page = () => {
                     Kurulum Yöntemi
                   </span>
                   <span className='font-semibold text-gray-800'>
-                    Masa/Yan Kurulum
+                    Zemin/Yan/Ters Kurulum
                   </span>
                 </div>
               </div>
@@ -664,4 +674,4 @@ const HSRJH6051500Page = () => {
   );
 };
 
-export default HSRJH6051500Page;
+export default HSRJR6051500Page;

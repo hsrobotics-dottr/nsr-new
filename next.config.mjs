@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   // App Router için gerekli ayarlar
   experimental: {
     optimizeCss: true,
   },
-  // Static export'u devre dışı bırak - event handler sorununu çözer
-  output: 'standalone',
+  // Vercel için uygun output ayarı
+  output: undefined,
   // Build sırasında prerender hatalarını görmezden gel
   trailingSlash: false,
   images: {
@@ -22,9 +22,8 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [
-      // Dış kaynak hostname kaldırıldı - artık kendi görsellerimizi kullanıyoruz
-    ],
+    remotePatterns: [],
+    loader: 'default',
   },
   compress: true,
   poweredByHeader: false,

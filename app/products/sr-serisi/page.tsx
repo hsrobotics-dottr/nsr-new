@@ -25,7 +25,6 @@ const srSeriesRobots = [
     },
     features: ['Ultra Hassas', 'Kompakt Tasarım', 'Hızlı Hareket'],
     applications: ['Hassas Montaj', 'Elektronik', 'Test İşlemleri'],
-    slug: 'hsr-sr3-400',
   },
   {
     model: 'HSR-SR5-700',
@@ -40,7 +39,6 @@ const srSeriesRobots = [
     },
     features: ['Yüksek Hassasiyet', 'Orta Yük', 'Çok Amaçlı'],
     applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
-    slug: 'hsr-sr5-700',
   },
   {
     model: 'HSR-SR6-500',
@@ -55,7 +53,6 @@ const srSeriesRobots = [
     },
     features: ['Güçlü Yük', 'Kompakt', 'Hassas İşlem'],
     applications: ['Ağır Montaj', 'Makine Besleme', 'Taşıma'],
-    slug: 'hsr-sr6-500',
   },
   {
     model: 'HSR-SR6-600',
@@ -70,7 +67,6 @@ const srSeriesRobots = [
     },
     features: ['Orta Erişim', 'Güçlü Yük', 'Esnek Kullanım'],
     applications: ['Montaj', 'Paletleme', 'CNC Besleme'],
-    slug: 'hsr-sr6-600',
   },
   {
     model: 'HSR-SR10-600',
@@ -85,7 +81,6 @@ const srSeriesRobots = [
     },
     features: ['Yüksek Yük', 'Güçlü Motor', 'Dayanıklı'],
     applications: ['Ağır Montaj', 'Metal İşleme', 'Kaynak'],
-    slug: 'hsr-sr10-600',
   },
   {
     model: 'HSR-SR10-800',
@@ -100,7 +95,6 @@ const srSeriesRobots = [
     },
     features: ['Geniş Erişim', 'Yüksek Yük', 'Çok Amaçlı'],
     applications: ['Paletleme', 'Büyük Montaj', 'Malzeme Taşıma'],
-    slug: 'hsr-sr10-800',
   },
   {
     model: 'HSR-SR20-800',
@@ -115,7 +109,6 @@ const srSeriesRobots = [
     },
     features: ['Ağır Yük', 'Güçlü Yapı', 'Endüstriyel'],
     applications: ['Ağır Sanayi', 'Otomotiv', 'Pres Besleme'],
-    slug: 'hsr-sr20-800',
   },
   {
     model: 'HSR-SR20-1000',
@@ -130,7 +123,6 @@ const srSeriesRobots = [
     },
     features: ['Maksimum Erişim', 'Ağır Yük', 'Profesyonel'],
     applications: ['Büyük Montaj', 'Yükleme/Boşaltma', 'Endüstriyel'],
-    slug: 'hsr-sr20-1000',
   },
 ];
 
@@ -233,77 +225,61 @@ export default function SRSeriesPage() {
               {srSeriesRobots.map((robot, index) => (
                 <Card
                   key={index}
-                  className='overflow-hidden hover:shadow-xl transition-all duration-300'
+                  className='group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-gray-200'
                 >
-                  <div className='relative h-48 bg-gray-50 flex items-center justify-center'>
-                    <Image
-                      src={robot.image}
-                      alt={robot.model}
-                      width={200}
-                      height={150}
-                      className='max-w-full max-h-full object-contain'
-                    />
-                  </div>
                   <CardHeader className='pb-4'>
+                    <div className='relative h-48 bg-gray-50 rounded-lg overflow-hidden mb-4'>
+                      <Image
+                        src={robot.image}
+                        alt={robot.model}
+                        fill
+                        className='object-contain p-4 group-hover:scale-105 transition-transform duration-300'
+                      />
+                    </div>
                     <CardTitle className='text-xl font-bold text-gray-800 mb-2'>
                       {robot.model}
                     </CardTitle>
-                    <div className='grid grid-cols-2 gap-4 text-sm'>
-                      <div>
-                        <span className='text-gray-600'>Yük:</span>
-                        <span className='font-semibold ml-2'>
-                          {robot.payload}
-                        </span>
+                  </CardHeader>
+
+                  <CardContent className='space-y-4'>
+                    <div className='grid grid-cols-3 gap-3'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Eksen Sayısı
+                        </div>
+                        <div className='text-sm font-bold text-blue-600'>
+                          {robot.specs.dof}
+                        </div>
                       </div>
-                      <div>
-                        <span className='text-gray-600'>Erişim:</span>
-                        <span className='font-semibold ml-2'>
+                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Yük Kapasitesi
+                        </div>
+                        <div className='text-sm font-bold text-green-600'>
+                          {robot.payload}
+                        </div>
+                      </div>
+                      <div className='bg-purple-50 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Kol Açıklığı
+                        </div>
+                        <div className='text-sm font-bold text-purple-600'>
                           {robot.reach}
-                        </span>
+                        </div>
                       </div>
                     </div>
-                  </CardHeader>
-                  <CardContent className='pt-0'>
-                    <div className='space-y-4'>
-                      <div>
-                        <h4 className='font-semibold text-gray-800 mb-2'>
-                          Özellikler
-                        </h4>
-                        <div className='flex flex-wrap gap-2'>
-                          {robot.features.map((feature, idx) => (
-                            <span
-                              key={idx}
-                              className='px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full'
-                            >
-                              {feature}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className='font-semibold text-gray-800 mb-2'>
-                          Uygulamalar
-                        </h4>
-                        <div className='flex flex-wrap gap-2'>
-                          {robot.applications.map((app, idx) => (
-                            <span
-                              key={idx}
-                              className='px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full'
-                            >
-                              {app}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className='pt-4'>
-                        <Link
-                          href={`/products/sr-series/${robot.slug}`}
-                          className='inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300'
-                        >
-                          Detayları Gör
-                          <ExternalLink className='w-4 h-4 ml-2' />
-                        </Link>
-                      </div>
+
+                    <div className='pt-4'>
+                      <Link
+                        href={`/products/sr-series/${robot.model
+                          .toLowerCase()
+                          .replace(/\//g, '-')
+                          .replace(/-/g, '-')}`}
+                        className='w-full bg-blue-600 hover:bg-blue-700 text-white inline-flex items-center justify-center px-4 py-2 rounded-lg transition-colors duration-200'
+                      >
+                        <ExternalLink className='w-4 h-4 mr-2' />
+                        Detayları İncele
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -366,24 +342,26 @@ export default function SRSeriesPage() {
         </div>
       </section>
 
-      {/* İletişim CTA */}
+      {/* CTA Section */}
       <section className='py-16 bg-blue-600 text-white'>
         <div className='container mx-auto max-w-8xl text-center'>
           <h2 className='text-3xl md:text-4xl font-bold mb-6'>
             SR Serisi Hakkında Daha Fazla Bilgi
           </h2>
           <p className='text-xl text-blue-100 mb-8 max-w-3xl mx-auto'>
-            Uzman ekibimiz size en uygun SR serisi robot çözümünü bulmak için
-            yardımcı olmaya hazır.
+            Teknik özellikler, kullanım kılavuzları ve fiyat teklifleri için;
+            bizimle iletişime geçin.
           </p>
-          <Button
-            size='lg'
-            className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3'
-            onClick={() => setIsContactFormOpen(true)}
-          >
-            <MessageCircle className='w-5 h-5 mr-2' />
-            İletişime Geç
-          </Button>
+          <div className='flex justify-center'>
+            <Button
+              size='lg'
+              className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3'
+              onClick={() => setIsContactFormOpen(true)}
+            >
+              <MessageCircle className='w-5 h-5 mr-2' />
+              Teklif İste
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -4,7 +4,6 @@ import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useLanguage } from '@/contexts/language-context';
 import {
   ChevronRight,
   Info,
@@ -16,68 +15,74 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 
-// Product data (JH Series - SCARA Robot)
+// Product data (MD Series - 4-Axis Industrial Robot)
 const productData = {
-  model: 'HSR-JH605-1500',
-  category: 'JH Serisi (SCARA Robot)',
-  keywords: 'SCARA Robotlar',
+  model: 'HSR-MD4110-2500',
+  category: 'MD Serisi (Dört Eksenli Endüstriyel)',
+  keywords: 'Dört Eksenli Endüstriyel Robotlar',
   axes: 4,
-  payload: '5 kg',
-  reach: '605mm',
-  description: `HSR-JH605-1500, Huashu Robotics'den gelen yüksek performanslı SCARA (Selective Compliance Assembly Robot Arm) robotudur. Montaj, taşıma ve hassas konumlandırma uygulamaları için idealdir. Kompakt tasarımı ve yüksek hızı ile üretim hatlarında maksimum verimlilik sağlar.`,
-  image: '/img/industrial/JH/HSR-JH605-1500.png',
+  payload: '110 kg',
+  reach: '2500mm',
+  description: `HSR-MD4110-2500, Huashu Robotics'den gelen yüksek kapasiteli, dört eksenli ağır yük robottur ve "aşırı yüksek yük kapasitesi, uzun erişim ve güçlü yapı" gibi ağır endüstriyel üretimin gereksinimlerini karşılar. Tüm makine sağlam tasarım kullanır, maksimum erişim sunar ve esnek kurulum yöntemleri sağlar. Bağımsız olarak geliştirilen çekirdek bileşenleri kullanarak, önemli bir maliyet avantajını korurken yüksek performans sergiler. Ağır yük paletleme, büyük parça taşıma, endüstriyel montaj ve ağır sanayi uygulamalarında yaygın olarak kullanılır.`,
+  image: '/img/industrial/MD/HSR-MD4110-2500.png',
   specifications: {
-    model: 'HSR-JH605-1500',
+    model: 'HSR-MD4110-2500',
     dof: '4',
-    payload: '5kg',
-    reach: '605mm',
-    repeatability: '±0.02mm',
+    payload: '110kg',
+    reach: '2500mm',
+    repeatability: '±0.1mm',
   },
   movementRange: {
-    J1: '±150°',
-    J2: '-60°/+150°',
-    J3: '±200°',
-    J4: '±360°',
+    J1: '±180°',
+    J2: '-135°/+45°',
+    J3: '-10°/+200°',
+    J4: '±180°',
   },
   maxSpeed: {
-    J1: '600°/s, 10.47rad/s',
-    J2: '600°/s, 10.47rad/s',
-    J3: '800°/s, 13.96rad/s',
-    J4: '1200°/s, 20.94rad/s',
+    J1: '150°/s, 2.62rad/s',
+    J2: '150°/s, 2.62rad/s',
+    J3: '150°/s, 2.62rad/s',
+    J4: '180°/s, 3.14rad/s',
   },
   ratedSpeed: {
-    J1: '300°/s, 5.24rad/s',
-    J2: '300°/s, 5.24rad/s',
-    J3: '400°/s, 6.98rad/s',
-    J4: '600°/s, 10.47rad/s',
+    J1: '75°/s, 1.31rad/s',
+    J2: '75°/s, 1.31rad/s',
+    J3: '75°/s, 1.31rad/s',
+    J4: '90°/s, 1.57rad/s',
   },
   allowedInertia: {
-    J4: '0.5kg·m²',
+    J1: '2.5kg·m²',
+    J2: '2.5kg·m²',
+    J3: '2.0kg·m²',
+    J4: '1.5kg·m²',
   },
   allowedTorque: {
-    J4: '8Nm',
+    J1: '850Nm',
+    J2: '850Nm',
+    J3: '650Nm',
+    J4: '450Nm',
   },
   environment: {
-    temperature: '0-40°C',
+    temperature: '0-45°C',
     humidity: '20%-80%',
   },
   additionalSpecs: {
-    teachPendantCable: '5 metre',
-    mainUnitCabinetCable: '3 metre',
+    teachPendantCable: '10 metre',
+    mainUnitCabinetCable: '5 metre',
     ioParameters: 'Dijital: 32-bit giriş (NPN), 32-bit çıkış (NPN)',
-    reservedSignalLines: '8 bit',
-    reservedAirway: '1xΦ6',
-    powerCapacity: '1.0kVA',
-    ratedPower: '0.75kW',
-    ratedVoltage: 'Tek faz AC220V',
-    ratedCurrent: '4.0A',
+    reservedSignalLines: '12 bit',
+    reservedAirway: '1xΦ8',
+    powerCapacity: '15.0kVA',
+    ratedPower: '12.0kW',
+    ratedVoltage: '380V',
+    ratedCurrent: '22.5A',
     protectionLevel: 'IP54',
-    installationMethod: 'Masa/Yan Kurulum',
-    weight: '25kg',
-    cabinetWeight: '12kg',
+    installationMethod: 'Zemin/Tavan Kurulum',
+    weight: '280kg',
+    cabinetWeight: '85kg',
     cabinetProtectionLevel: 'IP20',
     other:
-      'Yanıcı, patlayıcı veya aşındırıcı gaz ve sıvılarla temas etmekten kaçının. Elektronik gürültü kaynaklarından (plazma) uzak durun.',
+      'Ağır yük uygulamaları için özel olarak tasarlanmıştır. Maksimum güvenlik önlemleri alınmıştır. Elektronik gürültü kaynaklarından (plazma) uzak durun.',
   },
 };
 
@@ -185,8 +190,9 @@ const translations = {
   },
 };
 
-const HSRJH6051500Page = () => {
-  const { currentLang } = useLanguage();
+const currentLang = 'tr';
+
+const HSRMD41102500Page = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -311,7 +317,7 @@ const HSRJH6051500Page = () => {
                     <Settings className='w-5 h-5 text-green-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    ±0.02mm Hassasiyet
+                    ±0.1mm Hassasiyet
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -319,7 +325,7 @@ const HSRJH6051500Page = () => {
                     <Zap className='w-5 h-5 text-blue-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    1200°/s Maksimum Hız
+                    180°/s Maksimum Hız
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -327,7 +333,7 @@ const HSRJH6051500Page = () => {
                     <Package className='w-5 h-5 text-purple-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    5kg Yük Kapasitesi
+                    110kg Yük Kapasitesi
                   </span>
                 </div>
                 <div className='flex items-center space-x-3'>
@@ -335,7 +341,7 @@ const HSRJH6051500Page = () => {
                     <Settings className='w-5 h-5 text-orange-600' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
-                    605mm Kol Açıklığı
+                    2500mm Kol Açıklığı
                   </span>
                 </div>
               </div>
@@ -486,13 +492,13 @@ const HSRJH6051500Page = () => {
               <div className='space-y-3'>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>Ağırlık</span>
-                  <span className='font-semibold text-gray-800'>25kg</span>
+                  <span className='font-semibold text-gray-800'>280kg</span>
                 </div>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>
                     Dolap Ağırlığı
                   </span>
-                  <span className='font-semibold text-gray-800'>12kg</span>
+                  <span className='font-semibold text-gray-800'>85kg</span>
                 </div>
                 <div className='flex justify-between py-2 border-b border-gray-100'>
                   <span className='text-gray-600 font-medium'>
@@ -505,7 +511,7 @@ const HSRJH6051500Page = () => {
                     Kurulum Yöntemi
                   </span>
                   <span className='font-semibold text-gray-800'>
-                    Masa/Yan Kurulum
+                    Zemin/Tavan Kurulum
                   </span>
                 </div>
               </div>
@@ -664,4 +670,4 @@ const HSRJH6051500Page = () => {
   );
 };
 
-export default HSRJH6051500Page;
+export default HSRMD41102500Page;
