@@ -1,506 +1,528 @@
 'use client';
 
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/language-context';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import {
+  ChevronRight,
+  Info,
+  MessageCircle,
+  Package,
+  Settings,
+  Zap,
+} from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
-const HSTAFCP100Page = () => {
+// Product data
+const productData = {
+  model: 'HST-AFC-P100',
+  category: 'Kuvvet Kontrol Serisi',
+  keywords: 'Kuvvet Kontrol Sistemleri',
+  maxForce: '100N',
+  accuracy: '0.1N',
+  protection: 'IP65',
+  temperature: '0°C to +50°C',
+  description: `HST-AFC-P100, hassas kuvvet kontrolü gerektiren endüstriyel uygulamalar için tasarlanmış gelişmiş bir sistemdir. 100N maksimum kuvvet kapasitesi ve 0.1N hassasiyet ile üstün performans sunar. IP65 koruma seviyesi ile zorlu endüstriyel ortamlarda güvenilir çalışır.`,
+  image: '/img/industrial/KuvvetKontrol/HST-AFC-P100.png',
+  specifications: {
+    model: 'HST-AFC-P100',
+    maxForce: '100N',
+    accuracy: '0.1N',
+    protection: 'IP65',
+    temperature: '0°C to +50°C',
+    resolution: '0.01N',
+  },
+  features: {
+    precision: 'Yüksek hassasiyet',
+    range: 'Geniş kuvvet aralığı',
+    protection: 'İyi koruma seviyesi',
+    temperature: 'Uygun sıcaklık aralığı',
+    reliability: 'Güvenilir çalışma',
+    calibration: 'Kolay kalibrasyon',
+  },
+  applications: {
+    testing: 'Ürün testi',
+    quality: 'Kalite kontrol',
+    assembly: 'Montaj kontrolü',
+    research: 'Araştırma ve geliştirme',
+    production: 'Üretim kontrolü',
+  },
+  benefits: {
+    accuracy: 'Yüksek doğruluk',
+    efficiency: 'Artırılmış verimlilik',
+    reliability: 'Güvenilir performans',
+    flexibility: 'Esnek kullanım',
+    maintenance: 'Kolay bakım',
+  },
+};
+
+// Translations
+const translations = {
+  tr: {
+    product: {
+      category: 'Kategori',
+      keywords: 'Anahtar Kelimeler',
+      maxForce: 'Maksimum Kuvvet',
+      accuracy: 'Hassasiyet',
+      protection: 'Koruma',
+      temperature: 'Sıcaklık',
+      resolution: 'Çözünürlük',
+      contactForConsultation: 'Mesaj bırakın',
+      specifications: 'Teknik Özellikler',
+      features: 'Özellikler',
+      applications: 'Uygulama Alanları',
+      benefits: 'Avantajlar',
+      requestQuote: 'Fiyat Teklifi İste',
+      contactUs: 'İletişime Geç',
+    },
+  },
+  en: {
+    product: {
+      category: 'Category',
+      keywords: 'Keywords',
+      maxForce: 'Maximum Force',
+      accuracy: 'Accuracy',
+      protection: 'Protection',
+      temperature: 'Temperature',
+      resolution: 'Resolution',
+      contactForConsultation: 'Leave a Message',
+      specifications: 'Technical Specifications',
+      features: 'Features',
+      applications: 'Applications',
+      benefits: 'Benefits',
+      requestQuote: 'Request Quote',
+      contactUs: 'Contact Us',
+    },
+  },
+};
+
+export default function HSTAFCP100Page() {
   const { currentLang } = useLanguage();
-  const language = currentLang;
-  const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: '',
-  });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    // Form submitted successfully
-    setIsOpen(false);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: '',
-    });
-  };
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
-  const content = {
-    tr: {
-      title: 'HST-AFC-P100',
-      subtitle: 'Gelişmiş Kuvvet Kontrol Sistemi',
-      description:
-        'HST-AFC-P100, endüstriyel uygulamalarda hassas kuvvet kontrolü sağlayan gelişmiş bir sistemdir. Bu sistem, robotik uygulamalarda güvenli ve hassas temas kontrolü sağlar.',
-      features: [
-        '100N maksimum kuvvet kapasitesi',
-        '0.1N hassasiyet',
-        'Gerçek zamanlı kuvvet kontrolü',
-        'Çoklu sensör desteği',
-        'Endüstriyel protokol uyumluluğu',
-        'IP65 koruma sınıfı',
-        'Geniş sıcaklık aralığı',
-        'Kolay entegrasyon',
-        'Gelişmiş güvenlik özellikleri',
-        'Uzaktan izleme ve kontrol',
-      ],
-      specifications: {
-        forceCapacity: '100N maksimum',
-        accuracy: '0.1N',
-        responseTime: '<1ms',
-        temperature: '-20°C ile +60°C',
-        protection: 'IP65',
-        communication: 'Ethernet, Modbus, Profinet',
-        powerSupply: '24V DC',
-        dimensions: '120x80x40mm',
-      },
-      applications: [
-        'Robotik montaj',
-        'Kalite kontrol',
-        'Hassas taşıma',
-        'Güvenli insan-robot işbirliği',
-        'Otomatik test sistemleri',
-        'Endüstriyel otomasyon',
-      ],
-      benefits: [
-        'Hassas kuvvet kontrolü',
-        'Güvenli robotik uygulamalar',
-        'Kolay entegrasyon',
-        'Gerçek zamanlı performans',
-        'Endüstriyel güvenilirlik',
-        'Maliyet etkin çözüm',
-      ],
-      cta: 'Teklif Alın',
-      contact: 'İletişime Geçin',
-      backToProducts: 'Ürünlere Dön',
-    },
-    en: {
-      title: 'HST-AFC-P100',
-      subtitle: 'Advanced Force Control System',
-      description:
-        'HST-AFC-P100 is an advanced system that provides precise force control in industrial applications. This system ensures safe and precise contact control in robotic applications.',
-      features: [
-        '100N maximum force capacity',
-        '0.1N accuracy',
-        'Real-time force control',
-        'Multi-sensor support',
-        'Industrial protocol compatibility',
-        'IP65 protection class',
-        'Wide temperature range',
-        'Easy integration',
-        'Advanced safety features',
-        'Remote monitoring and control',
-      ],
-      specifications: {
-        forceCapacity: '100N maximum',
-        accuracy: '0.1N',
-        responseTime: '<1ms',
-        temperature: '-20°C to +60°C',
-        protection: 'IP65',
-        communication: 'Ethernet, Modbus, Profinet',
-        powerSupply: '24V DC',
-        dimensions: '120x80x40mm',
-      },
-      applications: [
-        'Robotic assembly',
-        'Quality control',
-        'Precise handling',
-        'Safe human-robot collaboration',
-        'Automated testing systems',
-        'Industrial automation',
-      ],
-      benefits: [
-        'Precise force control',
-        'Safe robotic applications',
-        'Easy integration',
-        'Real-time performance',
-        'Industrial reliability',
-        'Cost-effective solution',
-      ],
-      cta: 'Get Quote',
-      contact: 'Contact Us',
-      backToProducts: 'Back to Products',
-    },
-  };
-
-  const currentContent = content[currentLang as keyof typeof content];
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const t = translations[currentLang as keyof typeof translations];
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      {/* Header */}
-      <div className='bg-white shadow-sm'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex justify-between items-center py-6'>
-            <div>
-              <h1 className='text-3xl font-bold text-gray-900'>
-                {currentContent.title}
-              </h1>
-              <p className='mt-2 text-lg text-gray-600'>
-                {currentContent.subtitle}
-              </p>
-            </div>
-            <Link
-              href='/products'
-              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700'
-            >
-              {currentContent.backToProducts}
-            </Link>
-          </div>
-        </div>
-      </div>
+    <div className='min-h-screen bg-white'>
+      <Header />
 
-      {/* Main Content */}
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
-          {/* Left Column - Product Image */}
-          <div className='space-y-6'>
-            <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
-              <div className='aspect-w-16 aspect-h-9 bg-gray-200'>
-                <div className='w-full h-64 bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center'>
-                  <div className='text-center text-white'>
-                    <div className='text-6xl mb-4'>⚡</div>
-                    <p className='text-xl font-semibold'>HST-AFC-P100</p>
-                    <p className='text-sm opacity-90'>Force Control System</p>
+      {/* Breadcrumb */}
+      <section className='py-5 bg-gray-50 border-b border-gray-200'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <nav className='flex items-center space-x-2 text-sm text-gray-600'>
+            <span className='text-gray-800 font-medium'>
+              {productData.category}
+            </span>
+            <ChevronRight className='w-4 h-4' />
+            <span className='text-gray-800 font-medium'>
+              {productData.model}
+            </span>
+          </nav>
+        </div>
+      </section>
+
+      {/* Product Header */}
+      <section className='py-12 bg-white'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <div className='grid lg:grid-cols-2 gap-12 items-start'>
+            {/* Product Image */}
+            <div className='relative'>
+              <div className='bg-gray-50 rounded-2xl p-8 flex items-center justify-center min-h-[400px]'>
+                <Image
+                  src={productData.image || '/placeholder.svg'}
+                  alt={productData.model}
+                  width={500}
+                  height={400}
+                  className='max-w-full max-h-full object-contain'
+                />
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div className='space-y-6'>
+              <div>
+                <h1 className='text-4xl font-bold text-gray-800 mb-4'>
+                  {productData.model}
+                </h1>
+              </div>
+
+              {/* Quick Specs */}
+              <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                <Card className='p-4 text-center border-2 border-blue-100 bg-blue-50'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.maxForce}
                   </div>
+                  <div className='text-2xl font-bold text-blue-600'>100N</div>
+                </Card>
+                <Card className='p-4 text-center border-2 border-gray-100'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.accuracy}
+                  </div>
+                  <div className='text-2xl font-bold text-gray-800'>0.1N</div>
+                </Card>
+                <Card className='p-4 text-center border-2 border-gray-100'>
+                  <div className='text-sm text-gray-600 mb-1'>
+                    {t.product.protection}
+                  </div>
+                  <div className='text-2xl font-bold text-gray-800'>IP65</div>
+                </Card>
+              </div>
+
+              {/* Action Button */}
+              <div className='flex flex-col sm:flex-row gap-4'>
+                <Button
+                  onClick={() => setIsContactFormOpen(true)}
+                  className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300'
+                >
+                  <MessageCircle className='w-5 h-5 mr-2' />
+                  {t.product.contactForConsultation}
+                </Button>
+              </div>
+
+              {/* Key Features */}
+              <div className='grid grid-cols-2 gap-4'>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-green-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    0.1N Hassasiyet
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center'>
+                    <Zap className='w-5 h-5 text-blue-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    100N Maksimum Kuvvet
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center'>
+                    <Package className='w-5 h-5 text-purple-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    IP65 Koruma
+                  </span>
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <div className='w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center'>
+                    <Settings className='w-5 h-5 text-orange-600' />
+                  </div>
+                  <span className='text-sm font-medium text-gray-700'>
+                    0°C to +50°C
+                  </span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right Column - Product Details */}
-          <div className='space-y-8'>
-            {/* Description */}
-            <div>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                {currentLang === 'tr'
-                  ? 'Ürün Açıklaması'
-                  : 'Product Description'}
-              </h2>
-              <p className='text-gray-700 leading-relaxed'>
-                {currentContent.description}
+      {/* Product Description */}
+      <section className='py-12 bg-gray-50'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <div className='rounded-lg border bg-card text-card-foreground shadow-sm p-8'>
+            <h2 className='text-2xl font-bold text-gray-800 mb-6'>
+              Ürün Açıklaması
+            </h2>
+            <p className='text-gray-700 leading-relaxed text-lg'>
+              {productData.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Technical Specifications */}
+      <section className='py-12 bg-white'>
+        <div className='container mx-auto px-4 max-w-7xl'>
+          <h2 className='text-3xl font-bold text-gray-800 mb-8 text-center'>
+            Teknik Özellikler
+          </h2>
+          <div className='grid lg:grid-cols-2 gap-8'>
+            {/* Basic Specifications */}
+            <Card className='p-6'>
+              <h3 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
+                <Info className='w-5 h-5 mr-2 text-blue-600' />
+                Temel Özellikler
+              </h3>
+              <div className='space-y-3'>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='text-gray-600 font-medium'>Model </span>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.model}
+                  </span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='text-gray-600 font-medium'>
+                    Maksimum Kuvvet
+                  </span>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.maxForce}
+                  </span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='text-gray-600 font-medium'>Hassasiyet</span>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.accuracy}
+                  </span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='text-gray-600 font-medium'>Çözünürlük</span>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.resolution}
+                  </span>
+                </div>
+                <div className='flex justify-between py-2 border-b border-gray-100'>
+                  <span className='text-gray-600 font-medium'>
+                    Koruma Seviyesi
+                  </span>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.protection}
+                  </span>
+                </div>
+              </div>
+            </Card>
+
+            {/* Features */}
+            <Card className='p-6'>
+              <h3 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
+                <Settings className='w-5 h-5 mr-2 text-blue-600' />
+                Özellikler
+              </h3>
+              <div className='space-y-3'>
+                {Object.entries(productData.features).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className='flex justify-between py-2 border-b border-gray-100'
+                  >
+                    <span className='text-gray-600 font-medium'>{key} </span>
+                    <span className='font-semibold text-gray-800'>{value}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            {/* Applications */}
+            <Card className='p-6'>
+              <h3 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
+                <Zap className='w-5 h-5 mr-2 text-blue-600' />
+                Uygulama Alanları
+              </h3>
+              <div className='space-y-3'>
+                {Object.entries(productData.applications).map(
+                  ([key, value]) => (
+                    <div
+                      key={key}
+                      className='flex justify-between py-2 border-b border-gray-100'
+                    >
+                      <span className='text-gray-600 font-medium'>{key} </span>
+                      <span className='font-semibold text-gray-800'>
+                        {value}{' '}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+            </Card>
+
+            {/* Benefits */}
+            <Card className='p-6'>
+              <h3 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
+                <Package className='w-5 h-5 mr-2 text-blue-600' />
+                Avantajlar
+              </h3>
+              <div className='space-y-3'>
+                {Object.entries(productData.benefits).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className='flex justify-between py-2 border-b border-gray-100'
+                  >
+                    <span className='text-gray-600 font-medium'>{key} </span>
+                    <span className='font-semibold text-gray-800'>{value}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          <div className='grid md:grid-cols-2 gap-8 mt-8'>
+            {/* Environment */}
+            <Card className='p-6'>
+              <h3 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
+                <Settings className='w-5 h-5 mr-2 text-blue-600' />
+                Çevresel Özellikler
+              </h3>
+              <div className='space-y-4'>
+                <div className='flex items-center justify-between py-3 px-4 bg-red-50 rounded-lg'>
+                  <div className='flex items-center space-x-3'>
+                    <span className='text-gray-700 font-medium'>
+                      {t.product.temperature}
+                    </span>
+                  </div>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.temperature}
+                  </span>
+                </div>
+                <div className='flex items-center justify-between py-3 px-4 bg-blue-50 rounded-lg'>
+                  <div className='flex items-center space-x-3'>
+                    <span className='text-gray-700 font-medium'>
+                      {t.product.protection}
+                    </span>
+                  </div>
+                  <span className='font-semibold text-gray-800'>
+                    {productData.specifications.protection}
+                  </span>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className='py-16 bg-blue-600 text-white'>
+        <div className='container mx-auto px-4 max-w-7xl text-center'>
+          <h2 className='text-3xl font-bold mb-4'>
+            Bu Ürün Hakkında Daha Fazla Bilgi Almak İster misiniz?
+          </h2>
+          <p className='text-xl text-blue-100 mb-8 max-w-2xl mx-auto'>
+            Uzman ekibimiz size en uygun çözümü bulmak için yardımcı olmaya
+            hazır
+          </p>
+          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            <Button
+              onClick={() => setIsContactFormOpen(true)}
+              className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105'
+            >
+              <MessageCircle className='w-5 h-5 mr-2' />
+              İletişime Geç
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Modal */}
+      {isContactFormOpen && (
+        <div className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
+          <div className='bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto'>
+            <div className='p-6 border-b border-gray-200'>
+              <div className='flex items-center justify-between'>
+                <h3 className='text-2xl font-bold text-gray-800'>
+                  İletişim Formu
+                </h3>
+                <button
+                  onClick={() => setIsContactFormOpen(false)}
+                  className='p-2 hover:bg-gray-100 rounded-full transition-colors'
+                >
+                  <svg
+                    className='w-6 h-6 text-gray-600'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M6 18L18 6M6 6l12 12'
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p className='text-gray-600 mt-2'>
+                Bu ürün hakkında bilgi almak için formu doldurun.
               </p>
             </div>
 
-            {/* Features */}
-            <div>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                {currentLang === 'tr' ? 'Özellikler' : 'Features'}
-              </h2>
-              <ul className='grid grid-cols-1 gap-3'>
-                {currentContent.features.map((feature, index) => (
-                  <li key={index} className='flex items-start'>
-                    <div className='flex-shrink-0 w-5 h-5 mt-0.5'>
-                      <div className='w-5 h-5 bg-green-100 rounded-full flex items-center justify-center'>
-                        <div className='w-2 h-2 bg-green-600 rounded-full'></div>
-                      </div>
-                    </div>
-                    <span className='ml-3 text-gray-700'>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className='p-6'>
+              <form className='space-y-4'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      Ad Soyad *
+                    </label>
+                    <input
+                      type='text'
+                      required
+                      className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                      placeholder='Adınız ve soyadınız'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      E-posta *
+                    </label>
+                    <input
+                      type='email'
+                      required
+                      className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                      placeholder='E-posta adresiniz'
+                    />
+                  </div>
+                </div>
 
-            {/* Specifications */}
-            <div>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                {language === 'tr'
-                  ? 'Teknik Özellikler'
-                  : 'Technical Specifications'}
-              </h2>
-              <div className='bg-gray-50 rounded-lg p-6'>
-                <dl className='grid grid-cols-1 gap-4'>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr'
-                        ? 'Kuvvet Kapasitesi:'
-                        : 'Force Capacity:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.forceCapacity}
-                    </dd>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      Telefon
+                    </label>
+                    <input
+                      type='tel'
+                      className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                      placeholder='Telefon numaranız'
+                    />
                   </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr' ? 'Hassasiyet:' : 'Accuracy:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.accuracy}
-                    </dd>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      Şirket
+                    </label>
+                    <input
+                      type='text'
+                      className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                      placeholder='Şirket adınız'
+                    />
                   </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr' ? 'Tepki Süresi:' : 'Response Time:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.responseTime}
-                    </dd>
-                  </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr'
-                        ? 'Sıcaklık Aralığı:'
-                        : 'Temperature Range:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.temperature}
-                    </dd>
-                  </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr'
-                        ? 'Koruma Sınıfı:'
-                        : 'Protection Class:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.protection}
-                    </dd>
-                  </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr' ? 'İletişim:' : 'Communication:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.communication}
-                    </dd>
-                  </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr' ? 'Güç Beslemesi:' : 'Power Supply:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.powerSupply}
-                    </dd>
-                  </div>
-                  <div className='flex justify-between'>
-                    <dt className='font-medium text-gray-700'>
-                      {language === 'tr' ? 'Boyutlar:' : 'Dimensions:'}
-                    </dt>
-                    <dd className='text-gray-900'>
-                      {currentContent.specifications.dimensions}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
+                </div>
 
-            {/* Applications */}
-            <div>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                {language === 'tr' ? 'Uygulama Alanları' : 'Applications'}
-              </h2>
-              <div className='grid grid-cols-2 gap-3'>
-                {currentContent.applications.map((app, index) => (
-                  <div key={index} className='bg-blue-50 rounded-lg p-3'>
-                    <span className='text-blue-800 text-sm font-medium'>
-                      {app}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Benefits */}
-            <div>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                {language === 'tr' ? 'Avantajlar' : 'Benefits'}
-              </h2>
-              <div className='grid grid-cols-1 gap-3'>
-                {currentContent.benefits.map((benefit, index) => (
-                  <div key={index} className='flex items-center'>
-                    <div className='flex-shrink-0 w-6 h-6'>
-                      <div className='w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center'>
-                        <svg
-                          className='w-4 h-4 text-blue-600'
-                          fill='currentColor'
-                          viewBox='0 0 20 20'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <span className='ml-3 text-gray-700'>{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className='flex flex-col sm:flex-row gap-4'>
-              <button
-                onClick={openModal}
-                className='flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'
-              >
-                {currentContent.cta}
-              </button>
-              <button
-                onClick={openModal}
-                className='flex-1 bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors'
-              >
-                {currentContent.contact}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Modal */}
-      {isOpen && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
-          <div className='bg-white rounded-lg max-w-md w-full p-6'>
-            <div className='flex justify-between items-center mb-4'>
-              <h3 className='text-lg font-semibold text-gray-900'>
-                {language === 'tr' ? 'İletişim Formu' : 'Contact Form'}
-              </h3>
-              <button
-                onClick={closeModal}
-                className='text-gray-400 hover:text-gray-600'
-              >
-                <svg
-                  className='w-6 h-6'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M6 18L18 6M6 6l12 12'
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    Mesaj *
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                    placeholder='Bu ürün hakkında bilgi almak istiyorum...'
                   />
-                </svg>
-              </button>
+                </div>
+
+                <div className='flex gap-3 pt-4'>
+                  <Button
+                    type='submit'
+                    className='flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold'
+                  >
+                    <MessageCircle className='w-5 h-5 mr-2' />
+                    Mesaj Gönder
+                  </Button>
+                  <Button
+                    type='button'
+                    variant='outline'
+                    onClick={() => setIsContactFormOpen(false)}
+                    className='px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg'
+                  >
+                    İptal
+                  </Button>
+                </div>
+              </form>
             </div>
-
-            <form onSubmit={handleSubmit} className='space-y-4'>
-              <div>
-                <label
-                  htmlFor='name'
-                  className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                  {language === 'tr' ? 'Ad Soyad' : 'Full Name'}
-                </label>
-                <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                  {language === 'tr' ? 'E-posta' : 'Email'}
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='phone'
-                  className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                  {language === 'tr' ? 'Telefon' : 'Phone'}
-                </label>
-                <input
-                  type='tel'
-                  id='phone'
-                  name='phone'
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='company'
-                  className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                  {language === 'tr' ? 'Şirket' : 'Company'}
-                </label>
-                <input
-                  type='text'
-                  id='company'
-                  name='company'
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='message'
-                  className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                  {language === 'tr' ? 'Mesaj' : 'Message'}
-                </label>
-                <textarea
-                  id='message'
-                  name='message'
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-              </div>
-
-              <div className='flex gap-3'>
-                <button
-                  type='submit'
-                  className='flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors'
-                >
-                  {language === 'tr' ? 'Gönder' : 'Send'}
-                </button>
-                <button
-                  type='button'
-                  onClick={closeModal}
-                  className='flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition-colors'
-                >
-                  {language === 'tr' ? 'İptal' : 'Cancel'}
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
-};
-
-export default HSTAFCP100Page;
+}
