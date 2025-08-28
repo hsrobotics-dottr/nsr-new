@@ -8,7 +8,7 @@ const nextConfig = {
   },
   // App Router için gerekli ayarlar
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
   },
   // Vercel için uygun output ayarı
   output: undefined,
