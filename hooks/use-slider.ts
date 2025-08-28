@@ -1,5 +1,5 @@
 import { UseSliderReturn } from '@/lib/types';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function useSlider(
   totalItems: number,
@@ -7,6 +7,29 @@ export function useSlider(
 ): UseSliderReturn {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(initialItemsPerView);
+
+  // Update items per view based on screen size
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth;
+        if (width < 768) {
+          // Mobile: show 1 item
+          setItemsPerView(1);
+        } else if (width < 1024) {
+          // Tablet: show 2 items
+          setItemsPerView(2);
+        } else {
+          // Desktop: show 3 items
+          setItemsPerView(3);
+        }
+      }
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
 
   const nextSlide = useCallback(() => {
     const maxSlide = Math.max(0, totalItems - itemsPerView);

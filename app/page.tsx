@@ -269,6 +269,22 @@ export default function HomePage() {
     }
   }, []);
 
+  // Touch handlers for mobile video interaction
+  const handleVideoTouchStart = useCallback((index: number) => {
+    const video = videoRefs.current[index];
+    if (video && video.readyState >= 2) {
+      video.play().catch(() => {});
+    }
+  }, []);
+
+  const handleVideoTouchEnd = useCallback((index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, []);
+
   // Loading state check
   if (isLoading) {
     return (
@@ -836,6 +852,8 @@ export default function HomePage() {
                   className='group sector-card relative bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105'
                   onMouseEnter={() => handleVideoMouseEnter(index)}
                   onMouseLeave={() => handleVideoMouseLeave(index)}
+                  onTouchStart={() => handleVideoTouchStart(index)}
+                  onTouchEnd={() => handleVideoTouchEnd(index)}
                 >
                   <div className='relative h-64 md:h-72 overflow-hidden'>
                     <video
@@ -850,6 +868,9 @@ export default function HomePage() {
                       loop
                       playsInline
                       preload='metadata'
+                      webkit-playsinline='true'
+                      x5-playsinline='true'
+                      x5-video-player-type='h5'
                       onLoadedData={() => {
                         // Video loaded
                       }}
@@ -857,6 +878,8 @@ export default function HomePage() {
                         // Video error
                       }}
                     ></video>
+                    {/* Fallback background for mobile */}
+                    <div className='absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-20'></div>
                     <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent'></div>
                     <div className='absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                   </div>
@@ -1082,12 +1105,12 @@ export default function HomePage() {
                       type='email'
                       required
                       value={contactForm.email}
-                                              onChange={e =>
-                          updateForm({
-                            ...contactForm,
-                            email: e.target.value,
-                          })
-                        }
+                      onChange={e =>
+                        updateForm({
+                          ...contactForm,
+                          email: e.target.value,
+                        })
+                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.emailPlaceholder}
                     />
@@ -1100,12 +1123,12 @@ export default function HomePage() {
                     <input
                       type='tel'
                       value={contactForm.phone}
-                                              onChange={e =>
-                          updateForm({
-                            ...contactForm,
-                            phone: e.target.value,
-                          })
-                        }
+                      onChange={e =>
+                        updateForm({
+                          ...contactForm,
+                          phone: e.target.value,
+                        })
+                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.phonePlaceholder}
                     />
@@ -1119,12 +1142,12 @@ export default function HomePage() {
                       required
                       rows={4}
                       value={contactForm.message}
-                                              onChange={e =>
-                          updateForm({
-                            ...contactForm,
-                            message: e.target.value,
-                          })
-                        }
+                      onChange={e =>
+                        updateForm({
+                          ...contactForm,
+                          message: e.target.value,
+                        })
+                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none'
                       placeholder={t.contact.form.messagePlaceholder}
                     />

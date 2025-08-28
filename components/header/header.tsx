@@ -276,8 +276,8 @@ const megaMenuData = {
 
 // Dil verisi
 const languages = [
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'tr', name: 'Türkçe', displayName: 'TR' },
+  { code: 'en', name: 'English', displayName: 'EN' },
 ];
 
 // Çeviri metinleri
@@ -635,7 +635,7 @@ export function Header() {
             >
               <Globe className='h-5 w-5' />
               <span className='text-sm font-medium'>
-                {languages.find(lang => lang.code === currentLang)?.flag}
+                {languages.find(lang => lang.code === currentLang)?.displayName}
               </span>
             </button>
           </div>
@@ -665,8 +665,8 @@ export function Header() {
               }`}
               aria-label='Language'
             >
-              <span className='text-lg font-medium leading-none'>
-                {languages.find(lang => lang.code === currentLang)?.flag}
+              <span className='text-sm font-medium leading-none'>
+                {languages.find(lang => lang.code === currentLang)?.displayName}
               </span>
             </button>
 

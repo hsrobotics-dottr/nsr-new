@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 interface Language {
   code: string;
   name: string;
-  flag: string;
+  displayName: string;
 }
 
 interface LanguageSelectorProps {
@@ -68,7 +68,11 @@ export function LanguageSelector({
                     : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
                 }`}
               >
-                <span className='text-2xl'>{language.flag}</span>
+                <div className='w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center'>
+                  <span className='text-lg font-bold text-blue-600'>
+                    {language.displayName}
+                  </span>
+                </div>
                 <div>
                   <div className='text-lg font-semibold'>{language.name}</div>
                   <div className='text-sm text-gray-600 mt-1'>
