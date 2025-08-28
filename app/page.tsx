@@ -1,17 +1,20 @@
-'use client';
+﻿'use client';
 
 import { ClientWrapper } from '@/components/client-wrapper';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/language-context';
 import { useHeroSlider } from '@/hooks/use-hero-slider';
-import { useContactForm } from '@/hooks/use-modals';
+import {
+  useContactForm,
+  useContactModal,
+  useProductModal,
+} from '@/hooks/use-modals';
 import { useResize } from '@/hooks/use-resize';
 import { useSlider } from '@/hooks/use-slider';
 import { useToast } from '@/hooks/use-toast';
 import { allCollaborativeRobots } from '@/lib/collaborative-data';
 import { allProducts, getProductSlug } from '@/lib/product-data';
 import { pageTranslations } from '@/lib/translations';
-import { OptimizedImageProps } from '@/lib/types';
 import {
   ArrowRight,
   Award,
@@ -53,385 +56,36 @@ const ScrollToTop = dynamic(() => import('@/components/scroll-to-top'), {
 });
 
 // Page translations are now imported from lib/translations.ts
-  tr: {
-    hero: {
-      slides: [
-        {
-          title: 'Endüstriyel İşbirlikçi Robotlar',
-          subtitle: 'Yüksek Hız, Yüksek Hassasiyet, Kararlı ve Güvenilir',
-          description: 'Güvenli ve Praktik',
-        },
-        {
-          title: 'Akıllı Otomasyon Çözümleri',
-          subtitle: 'Gelişmiş AI Teknolojisi ile Donatılmış',
-          description: 'Verimli ve Ekonomik',
-        },
-        {
-          title: 'Yeni Nesil Robot Teknolojisi',
-          subtitle: 'İnsan-Robot İşbirliği için Tasarlandı',
-          description: 'Esnek ve Güçlü',
-        },
-      ],
-      buttons: {
-        explore: 'Ürünleri Keşfet',
-        demo: 'Demo İzle',
-      },
-    },
-    productCenter: {
-      title: 'Ürün Merkezi',
-      description:
-        'Huashu Robotics endüstriyel robotları, hassas üretim teknolojisi, gelişmiş kontrol teknolojisi ve mükemmel performans ile çeşitli sektörlere verimli ve güvenilir otomasyon çözümleri sunarak işletmelerin akıllı üretim dönüşümünü destekler.',
-    },
-    industrialRobots: {
-      title: 'Endüstriyel Robotlar',
-      subtitle:
-        'Müşterilerimize insan-makine işbirliği çözümleri sunmaya odaklanıyoruz.',
-      description:
-        'Endüstriyel robotlar yüksek hassasiyet, yüksek hız ve yüksek güvenilirlik özelliklerine sahiptir. Otomotiv üretimi, elektronik montaj, metal işleme, gıda ambalajlama gibi alanlarda yaygın olarak kullanılır.',
-      button: 'Daha Fazla Bilgi',
-      features: [
-        'Güvenlik Sistemi',
-        'Görsel Tanıma',
-        'Akıllı Kontrol',
-        'Hassas Üretim',
-        'Güvenilir',
-        'Yüksek Verim',
-      ],
-    },
-    productSeries: {
-      title: 'Robot Ürün Serimiz',
-      description:
-        'Endüstriyel ihtiyaçlarınıza uygun, farklı kapasitelerde robot çözümleri',
-      specs: {
-        payload: 'Yük Kapasitesi',
-        reach: 'Kol Açıklığı',
-        dof: 'Eksen Sayısı',
-        details: 'Detayları İncele',
-      },
-      specialNeeds: {
-        title: 'Özel İhtiyaçlarınız mı Var?',
-        description:
-          'Standart ürünlerimizin yanında, özel gereksinimlerinize uygun robotik çözümler de geliştiriyoruz.',
-        button: 'Özel Çözüm Talep Et',
-      },
-    },
-    collaborativeRobots: {
-      title: 'İşbirlikçi Robotlar',
-      subtitle: 'İnsan-robot işbirliği için güvenli ve akıllı çözümler',
-      description:
-        'İşbirlikçi robotlarımız, yüksek hassasiyet ve güvenlik standartlarıyla çeşitli endüstrilerde insan operatörlerle güvenli bir şekilde çalışabilir. Gelişmiş sensör teknolojisi ve yapay zeka destekli kontrol sistemleri ile üretim verimliliğinizi artırın.',
-      seriesTitle: 'İşbirlikçi Robot Serimiz',
-      seriesDescription:
-        'Güvenli insan-robot işbirliği için tasarlanmış akıllı çözümler',
-      button: 'Daha Fazla Bilgi',
-    },
-    industries: {
-      title: 'Endüstri Çözümlerimiz',
-      description:
-        'Farklı endüstri sektörlerinde robotik otomasyon çözümlerimizi keşfedin',
-      button: 'Tüm Endüstrileri İncele',
-      categories: [
-        {
-          name: '3C Endüstrisi',
-          description: 'Bilgisayar, İletişim ve Tüketici Elektroniği',
-          icon: 'Smartphone',
-        },
-        {
-          name: 'Ayakkabı ve Giyim',
-          description: 'Tekstil ve Ayakkabı Üretimi',
-          icon: 'Shirt',
-        },
-        {
-          name: 'Otomobil Endüstrisi',
-          description: 'Otomotiv ve Araç Üretimi',
-          icon: 'Car',
-        },
-        {
-          name: 'Ev Aletleri',
-          description: 'Beyaz Eşya ve Ev Aletleri',
-          icon: 'Home',
-        },
-        {
-          name: 'Metal İşleme',
-          description: 'Metal İşleme ve Üretim',
-          icon: 'Wrench',
-        },
-        {
-          name: 'Diğer Endüstriler',
-          description: 'Çeşitli Endüstriyel Uygulamalar',
-          icon: 'Factory',
-        },
-      ],
-    },
-    solutions: {
-      title: 'Sektörel Çözümler',
-      description:
-        'Farklı sektörlerin özel ihtiyaçlarına yönelik robotik otomasyon çözümleri',
-      sectors: [
-        {
-          title: '3C Endüstrisi',
-          href: '/sectors/3c',
-          video: '/video/hsr-3c-endustrisi.mp4',
-        },
-        {
-          title: 'Otomotiv',
-          href: '/sectors/automotive',
-          video: '/video/hsr-otomotiv-sektoru.mp4',
-        },
-        {
-          title: 'Ayakkabı ve Tekstil',
-          href: '/sectors/shoes-clothes',
-          video: '/video/hsr-ayakkabi-sektoru.mp4',
-        },
-        {
-          title: 'Ev Aletleri Endüstrisi',
-          href: '/sectors/appliances',
-          video: '/video/hsr-ev-aletleri.mp4',
-        },
-        {
-          title: 'Metal İşleme Sektörü',
-          href: '/sectors/metalworking',
-          video: '/video/hsr-metal-isleme.mp4',
-        },
-        {
-          title: 'Diğer Sektörler',
-          href: '/sectors/others',
-          video: '/video/hsr-diger-sektor.mp4',
-        },
-      ],
-      viewDetails: 'Detayları İncele',
-    },
-    modal: {
-      close: 'Kapat',
-      technicalSpecs: 'Teknik Özellikler',
-      features: 'Özellikler',
-      applications: 'Uygulama Alanları',
-      getQuote: 'Fiyat Teklifi Al',
-      downloadBrochure: 'Broşür İndir',
-      specs: {
-        dof: 'Serbestlik Derecesi',
-        repeatability: 'Tekrarlanabilirlik',
-        maxSpeed: 'Maksimum Hız',
-        weight: 'Ağırlık',
-      },
-    },
-    contact: {
-      title: 'İletişim Formu',
-      form: {
-        name: 'Ad Soyad',
-        email: 'E-posta',
-        phone: 'Telefon',
-        message: 'Mesaj',
-        send: 'Gönder',
-        namePlaceholder: 'Adınızı ve soyadınızı girin',
-        emailPlaceholder: 'E-posta adresinizi girin',
-        phonePlaceholder: 'Telefon numaranızı girin',
-        messagePlaceholder: 'Mesajınızı yazın...',
-      },
-    },
-  },
-  en: {
-    hero: {
-      slides: [
-        {
-          title: 'Industrial Collaborative Robots',
-          subtitle: 'High Speed, High Precision, Stable and Reliable',
-          description: 'Safe and Practical',
-        },
-        {
-          title: 'Smart Automation Solutions',
-          subtitle: 'Equipped with Advanced AI Technology',
-          description: 'Efficient and Economic',
-        },
-        {
-          title: 'Next Generation Robot Technology',
-          subtitle: 'Designed for Human-Robot Collaboration',
-          description: 'Flexible and Powerful',
-        },
-      ],
-      buttons: {
-        explore: 'Explore Products',
-        demo: 'Watch Demo',
-      },
-    },
-    productCenter: {
-      title: 'Product Center',
-      description:
-        "Huashu Robotics industrial robots support enterprises' smart manufacturing transformation by providing efficient and reliable automation solutions to various industries with precision manufacturing technology, advanced control technology and excellent performance.",
-    },
-    industrialRobots: {
-      title: 'Industrial Robots',
-      subtitle:
-        'We focus on providing human-machine collaboration solutions to our customers.',
-      description:
-        'Industrial robots have high precision, high speed and high reliability features. They are widely used in automotive manufacturing, electronic assembly, metal processing, food packaging and other fields.',
-      button: 'Learn More',
-      features: [
-        'Safety System',
-        'Visual Recognition',
-        'Smart Control',
-        'Precision Manufacturing',
-        'Reliable',
-        'High Efficiency',
-      ],
-    },
-    productSeries: {
-      title: 'Our Robot Product Series',
-      description:
-        'Robot solutions with different capacities suitable for your industrial needs',
-      specs: {
-        payload: 'Payload',
-        reach: 'Reach',
-        dof: 'Degrees of Freedom',
-        details: 'View Details',
-      },
-      specialNeeds: {
-        title: 'Do You Have Special Needs?',
-        description:
-          'In addition to our standard products, we also develop robotic solutions tailored to your special requirements.',
-        button: 'Request Custom Solution',
-      },
-    },
-    collaborativeRobots: {
-      title: 'Collaborative Robots',
-      subtitle: 'Safe and smart solutions for human-robot collaboration',
-      description:
-        'Our collaborative robots can work safely with human operators in various industries with high precision and safety standards. Increase your production efficiency with advanced sensor technology and AI-supported control systems.',
-      seriesTitle: 'Our Collaborative Robot Series',
-      seriesDescription:
-        'Smart solutions designed for safe human-robot collaboration',
-      button: 'Learn More',
-    },
-    industries: {
-      title: 'Our Industry Solutions',
-      description:
-        'Discover our robotic automation solutions in different industry sectors',
-      button: 'Explore All Industries',
-      categories: [
-        {
-          name: '3C Industry',
-          description: 'Computer, Communication and Consumer Electronics',
-          icon: 'Smartphone',
-        },
-        {
-          name: 'Shoe & Clothing',
-          description: 'Textile and Shoe Manufacturing',
-          icon: 'Shirt',
-        },
-        {
-          name: 'Automotive Industry',
-          description: 'Automotive and Vehicle Manufacturing',
-          icon: 'Car',
-        },
-        {
-          name: 'Home Appliances',
-          description: 'White Goods and Home Appliances',
-          icon: 'Home',
-        },
-        {
-          name: 'Metal Processing',
-          description: 'Metal Processing and Manufacturing',
-          icon: 'Wrench',
-        },
-        {
-          name: 'Other Industries',
-          description: 'Various Industrial Applications',
-          icon: 'Factory',
-        },
-      ],
-    },
-    solutions: {
-      title: 'Industry Solutions',
-      description:
-        'Robotic automation solutions for the special needs of different industries',
-      sectors: [
-        {
-          title: '3C Industry',
-          href: '/sectors/3c',
-          video: '/video/hsr-3c-endustrisi.mp4',
-        },
-        {
-          title: 'Automotive',
-          href: '/sectors/automotive',
-          video: '/video/hsr-otomotiv-sektoru.mp4',
-        },
-        {
-          title: 'Footwear and Textile',
-          href: '/sectors/shoes-clothes',
-          video: '/video/hsr-ayakkabi-sektoru.mp4',
-        },
-        {
-          title: 'Home Appliance Industry',
-          href: '/sectors/appliances',
-          video: '/video/hsr-ev-aletleri.mp4',
-        },
-        {
-          title: 'Metal Processing Industry',
-          href: '/sectors/metalworking',
-          video: '/video/hsr-metal-isleme.mp4',
-        },
-        {
-          title: 'Other Industries',
-          href: '/sectors/others',
-          video: '/video/hsr-diger-sektor.mp4',
-        },
-      ],
-      viewDetails: 'View Details',
-    },
-    modal: {
-      close: 'Close',
-      technicalSpecs: 'Technical Specifications',
-      features: 'Features',
-      applications: 'Applications',
-      getQuote: 'Get Quote',
-      downloadBrochure: 'Download Brochure',
-      specs: {
-        dof: 'Degrees of Freedom',
-        repeatability: 'Repeatability',
-        maxSpeed: 'Maximum Speed',
-        weight: 'Weight',
-      },
-    },
-    contact: {
-      title: 'Contact Form',
-      form: {
-        name: 'Full Name',
-        email: 'Email',
-        phone: 'Phone',
-        message: 'Message',
-        send: 'Send',
-        namePlaceholder: 'Enter your full name',
-        emailPlaceholder: 'Enter your email address',
-        phonePlaceholder: 'Enter your phone number',
-        messagePlaceholder: 'Write your message...',
-      },
-    },
-  },
-};
 
 // Optimized image component with better performance
-const OptimizedImage = memo<OptimizedImageProps>(
-  ({ src, alt, width, height, className, priority = false, ...props }) => (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      className={className}
-      priority={priority}
-      quality={75}
-      placeholder='blur'
-      blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-      loading={priority ? 'eager' : 'lazy'}
-      {...props}
-    />
-  )
-);
+const OptimizedImage = memo<{
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  priority?: boolean;
+  [key: string]: any;
+}>(({ src, alt, width, height, className, priority = false, ...props }) => (
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    className={className}
+    priority={priority}
+    quality={75}
+    placeholder='blur'
+    blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+    loading={priority ? 'eager' : 'lazy'}
+    {...props}
+  />
+));
 
 OptimizedImage.displayName = 'OptimizedImage';
 
-// Hero slides data - moved from large inline data
+// Hero slides data
 const heroSlides = [
   {
     image: '/img/industrial/JR/HSR-JR603-570.png',
@@ -444,25 +98,6 @@ const heroSlides = [
   },
 ];
 
-// Product and collaborative data are now imported from separate files
-
-// Memoized feature icons
-const featureIcons = [
-  { icon: Shield, label: 'Güvenlik Sistemi' },
-  { icon: Eye, label: 'Görsel Tanıma' },
-  { icon: Settings, label: 'Akıllı Kontrol' },
-  { icon: Award, label: 'Hassas Üretim' },
-  { icon: ThumbsUp, label: 'Güvenilir' },
-  { icon: Zap, label: 'Yüksek Verim' },
-];
-
-// Loading skeleton component
-const LoadingSkeleton = memo(({ className }: { className?: string }) => (
-  <div className={`animate-pulse bg-gray-200 rounded ${className}`} />
-));
-
-LoadingSkeleton.displayName = 'LoadingSkeleton';
-
 export default function HomePage() {
   const { currentLang } = useLanguage();
   const { toast } = useToast();
@@ -470,15 +105,67 @@ export default function HomePage() {
 
   // Custom hooks for state management
   const heroSlider = useHeroSlider(heroSlides.length);
-  const productSlider = useSlider(allProducts.length, 3);
-  const collabSlider = useSlider(allCollaborativeRobots.length, 3);
+  const {
+    currentSlide: currentProductSlide,
+    itemsPerView: productsPerView,
+    nextSlide: nextProductSlide,
+    prevSlide: prevProductSlide,
+    goToSlide: goToProductSlide,
+    canSlideNext,
+    canSlidePrev,
+  } = useSlider(allProducts.length, 3);
+
+  const {
+    currentSlide: currentCollabSlide,
+    itemsPerView: collabPerView,
+    nextSlide: nextCollabSlide,
+    prevSlide: prevCollabSlide,
+    goToSlide: goToCollabSlide,
+    canSlideNext: canCollabSlideNext,
+    canSlidePrev: canCollabSlidePrev,
+  } = useSlider(allCollaborativeRobots.length, 3);
+
   const productModal = useProductModal();
   const contactModal = useContactModal();
   const { form: contactForm, updateForm, resetForm } = useContactForm();
 
+  // Extract modal states and functions
+  const {
+    isOpen: isProductModalOpen,
+    openModal: openProductModal,
+    closeModal: closeProductModal,
+  } = productModal;
+  const {
+    isOpen: isContactModalOpen,
+    openModal: openContactModal,
+    closeModal: closeContactModal,
+  } = contactModal;
+
   // Performance states
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Modal states (from hooks)
+  const { selectedProduct } = productModal;
+  const isContactFormOpen = isContactModalOpen;
+
+  // Data aliases
+  const productData = allProducts;
+  const collaborativeRobotsData = allCollaborativeRobots;
+
+  // Memoized feature icons
+  const featureIcons = [
+    { icon: Shield, label: 'Güvenlik Sistemi' },
+    { icon: Eye, label: 'Görsel Tanıma' },
+    { icon: Settings, label: 'Akıllı Kontrol' },
+    { icon: Award, label: 'Hassas Üretim' },
+    { icon: ThumbsUp, label: 'Güvenilir' },
+    { icon: Zap, label: 'Yüksek Verim' },
+  ];
+
+  // Slider control functions
+  const setCurrentProductSlide = (index: number) => goToProductSlide(index);
+  const setCurrentCollabSlide = (index: number) => goToCollabSlide(index);
 
   // Video refs
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -530,10 +217,14 @@ export default function HomePage() {
     (e: React.FormEvent) => {
       e.preventDefault();
 
-      if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
+      if (
+        !contactForm.name.trim() ||
+        !contactForm.email.trim() ||
+        !contactForm.message.trim()
+      ) {
         toast({
           title: 'Hata',
-          description: 'Lütfen tüm zorunlu alanları doldurun.',
+          description: 'LÃ¼tfen tÃ¼m zorunlu alanlarÄ± doldurun.',
           variant: 'destructive',
         });
         return;
@@ -543,22 +234,23 @@ export default function HomePage() {
       if (!emailRegex.test(contactForm.email)) {
         toast({
           title: 'Hata',
-          description: 'Lütfen geçerli bir email adresi girin.',
+          description: 'LÃ¼tfen geÃ§erli bir email adresi girin.',
           variant: 'destructive',
         });
         return;
       }
 
       toast({
-        title: 'Başarılı!',
-        description: 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.',
+        title: 'BaÅŸarÄ±lÄ±!',
+        description:
+          'MesajÄ±nÄ±z baÅŸarÄ±yla gÃ¶nderildi. En kÄ±sa sÃ¼rede size dÃ¶nÃ¼ÅŸ yapacaÄŸÄ±z.',
         variant: 'success',
       });
 
-      contactModal.closeModal();
+      closeContactModal();
       resetForm();
     },
-    [contactForm, toast, contactModal, resetForm]
+    [contactForm, toast, closeContactModal, resetForm]
   );
 
   // Video handlers
@@ -580,13 +272,13 @@ export default function HomePage() {
   // Loading state check
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white">
-        <div className="hero-section" />
-        <div className="container mx-auto max-w-8xl py-16">
-          <LoadingSkeleton className="h-8 w-64 mx-auto mb-8" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className='min-h-screen bg-white'>
+        <div className='hero-section' />
+        <div className='container mx-auto max-w-8xl py-16'>
+          <div className='h-8 w-64 mx-auto mb-8 bg-gray-200 rounded animate-pulse' />
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             {[...Array(6)].map((_, i) => (
-              <LoadingSkeleton key={i} className="h-64" />
+              <div key={i} className='h-64 bg-gray-200 rounded animate-pulse' />
             ))}
           </div>
         </div>
@@ -612,7 +304,9 @@ export default function HomePage() {
                   <div
                     key={index}
                     className={`absolute inset-0 transition-opacity duration-700 gpu-layer ${
-                      index === heroSlider.currentSlide ? 'opacity-100' : 'opacity-0'
+                      index === heroSlider.currentSlide
+                        ? 'opacity-100'
+                        : 'opacity-0'
                     }`}
                   >
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center h-full'>
@@ -918,7 +612,7 @@ export default function HomePage() {
                     {t.productSeries.specialNeeds.description}
                   </p>
                   <Button
-                    onClick={() => setIsContactFormOpen(true)}
+                    onClick={openContactModal}
                     className='bg-blue-600 text-white hover:bg-blue-700 px-6 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl'
                   >
                     {t.productSeries.specialNeeds.button}
@@ -1192,7 +886,7 @@ export default function HomePage() {
                     {selectedProduct.model}
                   </h2>
                   <button
-                    onClick={() => setIsProductModalOpen(false)}
+                    onClick={closeProductModal}
                     className='p-2 hover:bg-gray-100 rounded-full transition-colors duration-200'
                     aria-label={t.modal.close}
                   >
@@ -1314,7 +1008,7 @@ export default function HomePage() {
 
                     <div className='flex space-x-4 pt-4'>
                       <Button
-                        onClick={() => setIsContactFormOpen(true)}
+                        onClick={openContactModal}
                         className='flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-all duration-300'
                       >
                         {t.modal.getQuote}
@@ -1343,7 +1037,7 @@ export default function HomePage() {
                     {t.contact.title}
                   </h2>
                   <button
-                    onClick={() => setIsContactFormOpen(false)}
+                    onClick={closeContactModal}
                     className='p-2 hover:bg-gray-100 rounded-full transition-colors duration-200'
                     aria-label={t.modal.close}
                   >
