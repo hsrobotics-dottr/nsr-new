@@ -1,6 +1,5 @@
 'use client';
 
-import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -896,8 +895,4 @@ className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-se
                     </div>
                   )}
 )}
-
-<Footer />
-      </div>
-);
 }

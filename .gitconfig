@@ -1,0 +1,16 @@
+[core]
+    autocrlf = true
+    longpaths = true
+    compression = 6
+[push]
+    default = simple
+[credential]
+    helper = manager
+[init]
+    defaultBranch = main
+[fetch]
+    prune = true
+[gc]
+    auto = 256
+[pull]
+    rebase = true
