@@ -26,7 +26,7 @@ const productData = {
   protection: 'IP65',
   temperature: '0°C to +50°C',
   description: `HST-AFC-P100, hassas kuvvet kontrolü gerektiren endüstriyel uygulamalar için tasarlanmış gelişmiş bir sistemdir. 100N maksimum kuvvet kapasitesi ve 0.1N hassasiyet ile üstün performans sunar. IP65 koruma seviyesi ile zorlu endüstriyel ortamlarda güvenilir çalışır.`,
-  image: '/img/industrial/KuvvetKontrol/HST-AFC-P100.png',
+  image: '/img/industrial/ForceControl/hst-afc-p100.png',
   specifications: {
     model: 'HST-AFC-P100',
     maxForce: '100N',

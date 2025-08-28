@@ -27,7 +27,7 @@ const productData = {
   protection: 'IP66',
   temperature: '-30°C to +65°C',
   description: `HST-C300, yüksek performans gerektiren endüstriyel uygulamalar için tasarlanmış güçlü bir bilgisayardır. Intel Core i7-13700 işlemci, 32GB DDR5 RAM ve 1TB NVMe SSD ile üstün işlem gücü sunar. IP66 koruma seviyesi ve -30°C ile +65°C arası sıcaklık aralığı ile zorlu endüstriyel koşullarda güvenilir çalışır.`,
-  image: '/img/industrial/HST/HST-C300.png',
+  image: '/img/industrial/HST/hst-c300.png',
   specifications: {
     model: 'HST-C300',
     processor: 'Intel Core i7-13700',
