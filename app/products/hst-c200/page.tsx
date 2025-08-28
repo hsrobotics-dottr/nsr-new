@@ -27,7 +27,7 @@ const productData = {
   protection: 'IP65',
   temperature: '-20°C to +60°C',
   description: `HST-C200, orta seviye endüstriyel uygulamalar için tasarlanmış güvenilir bir bilgisayardır. Intel Core i5-13600 işlemci, 16GB DDR4 RAM ve 512GB NVMe SSD ile dengeli performans sunar. IP65 koruma seviyesi ve -20°C ile +60°C arası sıcaklık aralığı ile çeşitli endüstriyel ortamlarda kararlı çalışır.`,
-  image: '/img/industrial/HST/hst-c200.png',
+  image: '/img/quick/HST-C200.png',
   specifications: {
     model: 'HST-C200',
     processor: 'Intel Core i5-13600',

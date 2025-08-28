@@ -27,7 +27,7 @@ const productData = {
   protection: 'IP67',
   temperature: '-40°C to +70°C',
   description: `HST-C70, endüstriyel ortamlarda yüksek performans gerektiren uygulamalar için tasarlanmış güçlü bir bilgisayardır. Intel Core i9-13900 işlemci, 64GB DDR5 RAM ve 2TB NVMe SSD ile üstün işlem gücü sunar. IP67 koruma seviyesi ve -40°C ile +70°C arası sıcaklık aralığı ile zorlu endüstriyel koşullarda güvenilir çalışır.`,
-  image: '/img/industrial/HST/hst-c70.png',
+  image: '/img/quick/HST-C70.png',
   specifications: {
     model: 'HST-C70',
     processor: 'Intel Core i9-13900',

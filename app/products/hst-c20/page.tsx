@@ -27,7 +27,7 @@ const productData = {
   protection: 'IP54',
   temperature: '0°C to +50°C',
   description: `HST-C20, temel endüstriyel uygulamalar için tasarlanmış güvenilir bir bilgisayardır. Intel Core i3-12100 işlemci, 8GB DDR4 RAM ve 256GB NVMe SSD ile temel işlem gücü sunar. IP54 koruma seviyesi ve 0°C ile +50°C arası sıcaklık aralığı ile çeşitli endüstriyel ortamlarda kararlı çalışır.`,
-  image: '/img/industrial/HST/hst-c20.png',
+  image: '/img/quick/HST-C20.png',
   specifications: {
     model: 'HST-C20',
     processor: 'Intel Core i3-12100',

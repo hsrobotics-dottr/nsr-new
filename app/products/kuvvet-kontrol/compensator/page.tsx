@@ -26,7 +26,7 @@ const productData = {
   protection: 'IP67',
   temperature: '-10°C to +60°C',
   description: `Compensator, endüstriyel uygulamalarda kuvvet kompansasyonu sağlayan gelişmiş bir sistemdir. 0-500N arası kuvvet aralığında 0.5N hassasiyet ile üstün performans sunar. IP67 koruma seviyesi ile zorlu endüstriyel ortamlarda güvenilir çalışır.`,
-  image: '/img/industrial/ForceControl/compensator.png',
+  image: '/img/forcecontrol/compensator.png',
   specifications: {
     model: 'Compensator',
     maxForce: '500N',
