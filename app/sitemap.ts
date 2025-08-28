@@ -172,12 +172,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/products/jr-series/hsr-jr618-2000`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+
     {
       url: `${baseUrl}/products/jr-series/hsr-jr6210-2700`,
       lastModified: new Date(),

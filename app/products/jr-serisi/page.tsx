@@ -94,20 +94,7 @@ const jrSeriesRobots = [
     features: ['Maksimum Yük', 'Geniş Erişim', 'Profesyonel Çözüm'],
     applications: ['Büyük Parça Montajı', 'Yükleme/Boşaltma', 'Pres Besleme'],
   },
-  {
-    model: 'HSR-JR618-2000',
-    payload: '18kg',
-    reach: '2000mm',
-    image: '/img/industrial/JR/HSR-JR618-2000.png',
-    specs: {
-      dof: '6 Eksen',
-      repeatability: '±0.12mm',
-      maxSpeed: '1.8 m/s',
-      weight: '48 kg',
-    },
-    features: ['Yüksek Yük Kapasitesi', 'Geniş Erişim', 'Endüstriyel Güç'],
-    applications: ['Ağır Sanayi', 'Büyük Montaj', 'Otomotiv Üretimi'],
-  },
+
   {
     model: 'HSR-JR620-1800',
     payload: '20kg',

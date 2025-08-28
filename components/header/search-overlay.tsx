@@ -111,16 +111,7 @@ const productData = [
     series: 'JR Serisi',
     href: '/products/jr-series/hsr-jr670-2100',
   },
-  {
-    id: 10,
-    model: 'HSR-JR618-2000',
-    payload: '18kg',
-    reach: '2000mm',
-    image: '/img/industrial/JR/HSR-JR618-2000.png',
-    category: 'Endüstriyel Robot',
-    series: 'JR Serisi',
-    href: '/products/jr-series/hsr-jr618-2000',
-  },
+
   {
     id: 11,
     model: 'HSR-JR6210-2700',
