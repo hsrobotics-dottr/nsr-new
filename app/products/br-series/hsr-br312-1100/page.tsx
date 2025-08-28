@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/language-context';
 import {
-    ChevronRight,
-    Info,
-    MessageCircle,
-    Package,
-    Settings,
-    Zap,
+  ChevronRight,
+  Info,
+  MessageCircle,
+  Package,
+  Settings,
+  Zap,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -890,6 +890,6 @@ className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-se
             </form>
           </div>
         </div>
-      )}
+}
 )}
 }
