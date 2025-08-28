@@ -1,3 +1,6 @@
+'use client';
+
+import React from 'react';
 import { IndustryLayout } from '@/components/industry-layout';
 import { generateIndustryVideos, industryData } from '@/lib/industry-data';
 

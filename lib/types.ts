@@ -105,6 +105,8 @@ export interface UseSliderReturn {
 export interface UseHeroSliderReturn extends UseSliderReturn {
   progress: number;
   setProgress: (progress: number) => void;
+  pauseAutoPlay: () => void;
+  resumeAutoPlay: () => void;
 }
 
 // Video ref type
@@ -115,3 +117,13 @@ export type IntervalRef = React.MutableRefObject<NodeJS.Timeout | null>;
 
 // Resize timeout ref type
 export type ResizeTimeoutRef = React.MutableRefObject<NodeJS.Timeout | null>;
+
+// Analytics event type
+export interface AnalyticsEvent {
+  name: string;
+  category: string;
+  action: string;
+  label?: string;
+  value?: number;
+  customParameters?: Record<string, any>;
+}

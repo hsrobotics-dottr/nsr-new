@@ -210,7 +210,7 @@ const HSRJH6301800Page = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', contactForm);
+    // Form submitted successfully
     setIsContactOpen(false);
     setContactForm({
       name: '',

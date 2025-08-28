@@ -86,5 +86,6 @@ export function useHeroSlider(slidesCount: number): UseHeroSliderReturn {
     canSlidePrev: true,
     pauseAutoPlay,
     resumeAutoPlay,
+    setProgress,
   };
 }

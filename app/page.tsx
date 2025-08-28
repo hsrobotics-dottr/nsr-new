@@ -1067,7 +1067,7 @@ export default function HomePage() {
                       required
                       value={contactForm.name}
                       onChange={e =>
-                        setContactForm({ ...contactForm, name: e.target.value })
+                        updateForm({ ...contactForm, name: e.target.value })
                       }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.namePlaceholder}
@@ -1082,12 +1082,12 @@ export default function HomePage() {
                       type='email'
                       required
                       value={contactForm.email}
-                      onChange={e =>
-                        setContactForm({
-                          ...contactForm,
-                          email: e.target.value,
-                        })
-                      }
+                                              onChange={e =>
+                          updateForm({
+                            ...contactForm,
+                            email: e.target.value,
+                          })
+                        }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.emailPlaceholder}
                     />
@@ -1100,12 +1100,12 @@ export default function HomePage() {
                     <input
                       type='tel'
                       value={contactForm.phone}
-                      onChange={e =>
-                        setContactForm({
-                          ...contactForm,
-                          phone: e.target.value,
-                        })
-                      }
+                                              onChange={e =>
+                          updateForm({
+                            ...contactForm,
+                            phone: e.target.value,
+                          })
+                        }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.phonePlaceholder}
                     />
@@ -1119,12 +1119,12 @@ export default function HomePage() {
                       required
                       rows={4}
                       value={contactForm.message}
-                      onChange={e =>
-                        setContactForm({
-                          ...contactForm,
-                          message: e.target.value,
-                        })
-                      }
+                                              onChange={e =>
+                          updateForm({
+                            ...contactForm,
+                            message: e.target.value,
+                          })
+                        }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none'
                       placeholder={t.contact.form.messagePlaceholder}
                     />

@@ -12,16 +12,16 @@ export default function HSRBR3121100Page() {
 
       <div className='container mx-auto px-4 py-8'>
         <h1 className='text-3xl font-bold text-center'>
-          {currentLang === 'tr'
-            ? 'HSR-BR312-1100 Ürün Sayfası'
-            : 'HSR-BR312-1100 Product Page'}
+          {currentLang === 'tr' ? 'HSR-BR312-1100 Ürün Sayfası' : 'HSR-BR312-1100 Product Page'}
         </h1>
         <p className='text-center mt-4'>
           {currentLang === 'tr'
             ? 'Bu sayfa yakında güncellenecektir.'
-            : 'This page will be updated soon.'}
+            : 'This page will be updated soon.'
+          }
         </p>
       </div>
     </div>
   );
 }
+

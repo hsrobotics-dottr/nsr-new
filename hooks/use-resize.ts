@@ -34,6 +34,8 @@ export function useResize(
         }
       };
     }
+    // Return undefined when window is not available
+    return undefined;
   }, [handleResize]);
 
   return null;
