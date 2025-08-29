@@ -796,38 +796,23 @@ export default function SupportPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleSupportSubmit} className='space-y-4'>
+                    <form
+                      action='https://hook.eu2.make.com/u0og4qi3l5yru52fyhv8i64w3jwg9flz'
+                      method='POST'
+                      className='space-y-4'
+                    >
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.name} {t.contact.form.required}
                           </label>
-                          <Input
-                            value={supportForm.name}
-                            onChange={e =>
-                              setSupportForm({
-                                ...supportForm,
-                                name: e.target.value,
-                              })
-                            }
-                            required
-                          />
+                          <Input name='name' required />
                         </div>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.email} {t.contact.form.required}
                           </label>
-                          <Input
-                            type='email'
-                            value={supportForm.email}
-                            onChange={e =>
-                              setSupportForm({
-                                ...supportForm,
-                                email: e.target.value,
-                              })
-                            }
-                            required
-                          />
+                          <Input type='email' name='email' required />
                         </div>
                       </div>
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -835,29 +820,13 @@ export default function SupportPage() {
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.phone}
                           </label>
-                          <Input
-                            value={supportForm.phone}
-                            onChange={e =>
-                              setSupportForm({
-                                ...supportForm,
-                                phone: e.target.value,
-                              })
-                            }
-                          />
+                          <Input name='phone' />
                         </div>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.company}
                           </label>
-                          <Input
-                            value={supportForm.company}
-                            onChange={e =>
-                              setSupportForm({
-                                ...supportForm,
-                                company: e.target.value,
-                              })
-                            }
-                          />
+                          <Input name='company' />
                         </div>
                       </div>
 
@@ -866,14 +835,7 @@ export default function SupportPage() {
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.issueType} {t.contact.form.required}
                           </label>
-                          <Select
-                            onValueChange={value =>
-                              setSupportForm({
-                                ...supportForm,
-                                issueType: value,
-                              })
-                            }
-                          >
+                          <Select name='issueType'>
                             <SelectTrigger>
                               <SelectValue
                                 placeholder={t.contact.form.selectIssue}
@@ -905,14 +867,7 @@ export default function SupportPage() {
                           <label className='text-sm font-medium mb-2 block'>
                             {t.contact.form.priority} {t.contact.form.required}
                           </label>
-                          <Select
-                            onValueChange={value =>
-                              setSupportForm({
-                                ...supportForm,
-                                priority: value,
-                              })
-                            }
-                          >
+                          <Select name='priority'>
                             <SelectTrigger>
                               <SelectValue
                                 placeholder={t.contact.form.selectPriority}
@@ -940,14 +895,8 @@ export default function SupportPage() {
                           {t.contact.form.description} {t.contact.form.required}
                         </label>
                         <Textarea
+                          name='description'
                           rows={4}
-                          value={supportForm.description}
-                          onChange={e =>
-                            setSupportForm({
-                              ...supportForm,
-                              description: e.target.value,
-                            })
-                          }
                           placeholder={t.contact.form.descriptionPlaceholder}
                           required
                         />
@@ -1345,38 +1294,23 @@ export default function SupportPage() {
                     <CardDescription>{t.service.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleServiceSubmit} className='space-y-4'>
+                    <form
+                      action='https://hook.eu2.make.com/u0og4qi3l5yru52fyhv8i64w3jwg9flz'
+                      method='POST'
+                      className='space-y-4'
+                    >
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.service.form.name} {t.service.form.required}
                           </label>
-                          <Input
-                            value={serviceForm.name}
-                            onChange={e =>
-                              setServiceForm({
-                                ...serviceForm,
-                                name: e.target.value,
-                              })
-                            }
-                            required
-                          />
+                          <Input name='name' required />
                         </div>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.service.form.email} {t.service.form.required}
                           </label>
-                          <Input
-                            type='email'
-                            value={serviceForm.email}
-                            onChange={e =>
-                              setServiceForm({
-                                ...serviceForm,
-                                email: e.target.value,
-                              })
-                            }
-                            required
-                          />
+                          <Input type='email' name='email' required />
                         </div>
                       </div>
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -1384,30 +1318,13 @@ export default function SupportPage() {
                           <label className='text-sm font-medium mb-2 block'>
                             {t.service.form.phone} {t.service.form.required}
                           </label>
-                          <Input
-                            value={serviceForm.phone}
-                            onChange={e =>
-                              setServiceForm({
-                                ...serviceForm,
-                                phone: e.target.value,
-                              })
-                            }
-                            required
-                          />
+                          <Input name='phone' required />
                         </div>
                         <div>
                           <label className='text-sm font-medium mb-2 block'>
                             {t.service.form.company}
                           </label>
-                          <Input
-                            value={serviceForm.company}
-                            onChange={e =>
-                              setServiceForm({
-                                ...serviceForm,
-                                company: e.target.value,
-                              })
-                            }
-                          />
+                          <Input name='company' />
                         </div>
                       </div>
                       <div>
@@ -1415,14 +1332,8 @@ export default function SupportPage() {
                           {t.service.form.address} {t.service.form.required}
                         </label>
                         <Textarea
+                          name='address'
                           rows={2}
-                          value={serviceForm.address}
-                          onChange={e =>
-                            setServiceForm({
-                              ...serviceForm,
-                              address: e.target.value,
-                            })
-                          }
                           placeholder={t.service.form.addressPlaceholder}
                           required
                         />
@@ -1434,14 +1345,7 @@ export default function SupportPage() {
                             {t.service.form.serviceType}{' '}
                             {t.service.form.required}
                           </label>
-                          <Select
-                            onValueChange={value =>
-                              setServiceForm({
-                                ...serviceForm,
-                                serviceType: value,
-                              })
-                            }
-                          >
+                          <Select name='serviceType'>
                             <SelectTrigger>
                               <SelectValue
                                 placeholder={t.service.form.selectService}
@@ -1473,16 +1377,7 @@ export default function SupportPage() {
                           <label className='text-sm font-medium mb-2 block'>
                             {t.service.form.preferredDate}
                           </label>
-                          <Input
-                            type='date'
-                            value={serviceForm.preferredDate}
-                            onChange={e =>
-                              setServiceForm({
-                                ...serviceForm,
-                                preferredDate: e.target.value,
-                              })
-                            }
-                          />
+                          <Input type='date' name='preferredDate' />
                         </div>
                       </div>
                       <div>
@@ -1490,14 +1385,8 @@ export default function SupportPage() {
                           {t.service.form.description}
                         </label>
                         <Textarea
+                          name='description'
                           rows={4}
-                          value={serviceForm.description}
-                          onChange={e =>
-                            setServiceForm({
-                              ...serviceForm,
-                              description: e.target.value,
-                            })
-                          }
                           placeholder={t.service.form.descriptionPlaceholder}
                         />
                       </div>

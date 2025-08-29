@@ -461,6 +461,18 @@ video {
   box-shadow: none !important;
 }
 
+/* Fix image aspect ratio warnings */
+img {
+  width: auto;
+  height: auto;
+}
+
+/* Ensure Next.js Image components maintain aspect ratio */
+[data-nimg] {
+  width: auto !important;
+  height: auto !important;
+}
+
 /* Remove outline from all interactive elements */
 button:focus,
 a:focus,

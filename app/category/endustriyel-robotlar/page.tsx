@@ -172,15 +172,15 @@ export default function IndustrialRobotsPage() {
                   </CardHeader>
                   <CardContent className='space-y-4'>
                     <div className='grid grid-cols-2 gap-3'>
-                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>Yük</div>
-                        <div className='text-sm font-bold text-blue-600'>
+                        <div className='text-sm font-bold text-blue-700'>
                           {category.specs.payload}
                         </div>
                       </div>
-                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>Erişim</div>
-                        <div className='text-sm font-bold text-green-600'>
+                        <div className='text-sm font-bold text-blue-600'>
                           {category.specs.reach}
                         </div>
                       </div>
@@ -260,7 +260,11 @@ export default function IndustrialRobotsPage() {
             </div>
 
             <div className='p-6'>
-              <form className='space-y-4'>
+              <form
+                action='https://hook.eu2.make.com/u0og4qi3l5yru52fyhv8i64w3jwg9flz'
+                method='POST'
+                className='space-y-4'
+              >
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   <div>
                     <label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -268,6 +272,7 @@ export default function IndustrialRobotsPage() {
                     </label>
                     <input
                       type='text'
+                      name='name'
                       required
                       className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                       placeholder='Adınız ve soyadınız'
@@ -279,6 +284,7 @@ export default function IndustrialRobotsPage() {
                     </label>
                     <input
                       type='email'
+                      name='email'
                       required
                       className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                       placeholder='E-posta adresiniz'
@@ -293,6 +299,7 @@ export default function IndustrialRobotsPage() {
                     </label>
                     <input
                       type='tel'
+                      name='phone'
                       className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                       placeholder='Telefon numaranız'
                     />
@@ -303,6 +310,7 @@ export default function IndustrialRobotsPage() {
                     </label>
                     <input
                       type='text'
+                      name='company'
                       className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                       placeholder='Şirket adınız'
                     />
@@ -314,6 +322,7 @@ export default function IndustrialRobotsPage() {
                     Mesaj *
                   </label>
                   <textarea
+                    name='message'
                     required
                     rows={4}
                     className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'

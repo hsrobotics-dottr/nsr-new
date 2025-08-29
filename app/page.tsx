@@ -61,27 +61,60 @@ const ScrollToTop = dynamic(() => import('@/components/scroll-to-top'), {
 const OptimizedImage = memo<{
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className?: string;
   priority?: boolean;
+  fill?: boolean;
   [key: string]: any;
-}>(({ src, alt, width, height, className, priority = false, ...props }) => (
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    className={className}
-    priority={priority}
-    quality={75}
-    placeholder='blur'
-    blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
-    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-    loading={priority ? 'eager' : 'lazy'}
-    {...props}
-  />
-));
+}>(
+  ({
+    src,
+    alt,
+    width,
+    height,
+    className,
+    priority = false,
+    fill = false,
+    ...props
+  }) => {
+    // If using fill prop, don't pass width/height to avoid aspect ratio warnings
+    if (fill) {
+      return (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className={className}
+          priority={priority}
+          quality={75}
+          placeholder='blur'
+          blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH8AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          loading={priority ? 'eager' : 'lazy'}
+          {...props}
+        />
+      );
+    }
+
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        className={className}
+        priority={priority}
+        quality={75}
+        placeholder='blur'
+        blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH8AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        loading={priority ? 'eager' : 'lazy'}
+        {...props}
+      />
+    );
+  }
+);
 
 OptimizedImage.displayName = 'OptimizedImage';
 
@@ -1088,18 +1121,19 @@ export default function HomePage() {
                   </button>
                 </div>
 
-                <form onSubmit={handleContactSubmit} className='space-y-4'>
+                <form
+                  action='https://hook.eu2.make.com/u0og4qi3l5yru52fyhv8i64w3jwg9flz'
+                  method='POST'
+                  className='space-y-4'
+                >
                   <div>
                     <label className='block text-sm font-medium text-gray-700 mb-2'>
                       {t.contact.form.name}
                     </label>
                     <input
                       type='text'
+                      name='name'
                       required
-                      value={contactForm.name}
-                      onChange={e =>
-                        updateForm({ ...contactForm, name: e.target.value })
-                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.namePlaceholder}
                     />
@@ -1111,14 +1145,8 @@ export default function HomePage() {
                     </label>
                     <input
                       type='email'
+                      name='email'
                       required
-                      value={contactForm.email}
-                      onChange={e =>
-                        updateForm({
-                          ...contactForm,
-                          email: e.target.value,
-                        })
-                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.emailPlaceholder}
                     />
@@ -1130,13 +1158,7 @@ export default function HomePage() {
                     </label>
                     <input
                       type='tel'
-                      value={contactForm.phone}
-                      onChange={e =>
-                        updateForm({
-                          ...contactForm,
-                          phone: e.target.value,
-                        })
-                      }
+                      name='phone'
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                       placeholder={t.contact.form.phonePlaceholder}
                     />
@@ -1147,15 +1169,9 @@ export default function HomePage() {
                       {t.contact.form.message}
                     </label>
                     <textarea
+                      name='message'
                       required
                       rows={4}
-                      value={contactForm.message}
-                      onChange={e =>
-                        updateForm({
-                          ...contactForm,
-                          message: e.target.value,
-                        })
-                      }
                       className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none'
                       placeholder={t.contact.form.messagePlaceholder}
                     />

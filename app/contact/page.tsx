@@ -234,7 +234,11 @@ export default function ContactPage() {
                   </p>
                 </CardHeader>
                 <CardContent className='p-8'>
-                  <form onSubmit={handleSubmit} className='space-y-6'>
+                  <form
+                    action='https://hook.eu2.make.com/u0og4qi3l5yru52fyhv8i64w3jwg9flz'
+                    method='POST'
+                    className='space-y-6'
+                  >
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                       <div>
                         <label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -243,8 +247,6 @@ export default function ContactPage() {
                         <Input
                           type='text'
                           name='name'
-                          value={formData.name}
-                          onChange={handleInputChange}
                           required
                           className='w-full'
                           placeholder='Adınız ve soyadınız'
@@ -257,8 +259,6 @@ export default function ContactPage() {
                         <Input
                           type='email'
                           name='email'
-                          value={formData.email}
-                          onChange={handleInputChange}
                           required
                           className='w-full'
                           placeholder='E-posta adresiniz'
@@ -274,21 +274,17 @@ export default function ContactPage() {
                         <Input
                           type='tel'
                           name='phone'
-                          value={formData.phone}
-                          onChange={handleInputChange}
                           className='w-full'
                           placeholder='Telefon numaranız'
                         />
                       </div>
                       <div>
-                        <label className='block text-sm font-medium text-gray-700 mb-2'>
+                        <label className='block text-sm font-medium text-gray-2'>
                           Şirket
                         </label>
                         <Input
                           type='text'
                           name='company'
-                          value={formData.company}
-                          onChange={handleInputChange}
                           className='w-full'
                           placeholder='Şirket adınız'
                         />
@@ -302,8 +298,6 @@ export default function ContactPage() {
                       <Input
                         type='text'
                         name='subject'
-                        value={formData.subject}
-                        onChange={handleInputChange}
                         required
                         className='w-full'
                         placeholder='Mesaj konusu'
@@ -316,8 +310,6 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         name='message'
-                        value={formData.message}
-                        onChange={handleInputChange}
                         required
                         rows={5}
                         className='w-full'
@@ -327,17 +319,10 @@ export default function ContactPage() {
 
                     <Button
                       type='submit'
-                      disabled={isSubmitting}
                       className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold'
                     >
-                      {isSubmitting ? (
-                        'Gönderiliyor...'
-                      ) : (
-                        <>
-                          <Send className='w-5 h-5 mr-2' />
-                          Mesaj Gönder
-                        </>
-                      )}
+                      <Send className='w-5 h-5 mr-2' />
+                      Mesaj Gönder
                     </Button>
                   </form>
                 </CardContent>
