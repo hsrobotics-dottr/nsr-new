@@ -101,8 +101,8 @@ const OptimizedImage = memo<{
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={width || 400}
+        height={height || 400}
         className={className}
         priority={priority}
         quality={75}
