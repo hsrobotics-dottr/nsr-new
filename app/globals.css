@@ -390,6 +390,26 @@ video {
     background-color: #eff6ff;
   }
 
+  /* Collaborative robot card spec fields - uniform styling */
+  .dof-box,
+  .payload-box,
+  .reach-box {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+
+  /* Ensure consistent height for spec field labels */
+  .dof-box .text-xs,
+  .payload-box .text-xs,
+  .reach-box .text-xs {
+    height: 16px !important;
+    line-height: 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
   /* High contrast mode support */
   @media (prefers-contrast: high) {
     .bg-gray-50 {
@@ -433,11 +453,22 @@ video {
   }
 }
 
-/* Focus styles for accessibility - REMOVED */
-/* :focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-} */
+/* Remove all focus outlines */
+:focus,
+:focus-visible,
+:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove outline from all interactive elements */
+button:focus,
+a:focus,
+[role='button']:focus,
+[role='link']:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 /* Print styles */
 @media print {

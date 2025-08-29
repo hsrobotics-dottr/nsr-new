@@ -789,19 +789,19 @@ export default function HomePage() {
                             </div>
 
                             <div className='grid grid-cols-3 gap-3'>
-                              <div className='dof-box bg-blue-600/30 backdrop-blur-sm border border-blue-400/40 p-3 rounded-lg text-center'>
+                              <div className='dof-box bg-blue-400/10 backdrop-blur-sm border border-blue-200/20 p-3 rounded-lg text-center'>
                                 <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.dof}
                                 </div>
-                                <div className='text-sm md:text-lg font-bold text-blue-300'>
+                                <div className='text-sm md:text-lg font-bold text-blue-200'>
                                   {robot.specs.dof}
                                 </div>
                               </div>
-                              <div className='payload-box bg-blue-500/20 backdrop-blur-sm border border-blue-300/30 p-3 rounded-lg text-center'>
+                              <div className='payload-box bg-blue-400/10 backdrop-blur-sm border border-blue-200/20 p-3 rounded-lg text-center'>
                                 <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.payload}
                                 </div>
-                                <div className='text-sm md:text-lg font-bold text-blue-300'>
+                                <div className='text-sm md:text-lg font-bold text-blue-200'>
                                   {robot.payload}
                                 </div>
                               </div>
