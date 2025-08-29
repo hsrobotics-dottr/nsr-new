@@ -290,7 +290,7 @@ export default function HomePage() {
     return (
       <div className='min-h-screen bg-white'>
         <div className='hero-section' />
-        <div className='container mx-auto max-w-8xl py-16'>
+        <div className='container mx-auto max-w-7xl xl:max-w-8xl py-16'>
           <div className='h-8 w-64 mx-auto mb-8 bg-gray-200 rounded animate-pulse' />
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             {[...Array(6)].map((_, i) => (
@@ -314,7 +314,7 @@ export default function HomePage() {
               style={{ backgroundImage: "url('/img/hero-bg.jpg')" }}
             ></div>
             <div className='absolute inset-0 bg-black/40'></div>
-            <div className='container mx-auto max-w-8xl relative z-10'>
+            <div className='container mx-auto max-w-7xl xl:max-w-8xl relative z-10'>
               <div className='relative min-h-[500px] md:min-h-[600px] flex items-center'>
                 {heroSlides.map((slide, index) => (
                   <div
@@ -328,14 +328,14 @@ export default function HomePage() {
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center h-full'>
                       <div className='space-y-6 md:space-y-8 text-center lg:text-left'>
                         <div className='space-y-4 md:space-y-6'>
-                          <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight'>
+                          <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight'>
                             <span className='block'>
                               {t.hero.slides[index]?.title || ''}
                             </span>
                             <span className='block text-blue-400'>
                               {t.hero.slides[index]?.subtitle || ''}
                             </span>
-                            <span className='block text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-gray-300 mt-4'>
+                            <span className='block text-sm sm:text-base md:text-lg lg:text-xl font-medium text-gray-300 mt-4'>
                               {t.hero.slides[index]?.description || ''}
                             </span>
                           </h1>
@@ -414,12 +414,12 @@ export default function HomePage() {
 
         {/* Product Center Section */}
         <section className='py-16 md:py-20 bg-gray-50'>
-          <div className='container mx-auto max-w-8xl text-center'>
+          <div className='container mx-auto max-w-7xl xl:max-w-8xl text-center'>
             <div className='max-w-4xl mx-auto space-y-6'>
-              <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800'>
+              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800'>
                 {t.productCenter.title}
               </h2>
-              <p className='text-base md:text-lg text-gray-600 leading-relaxed'>
+              <p className='text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed'>
                 {t.productCenter.description}
               </p>
             </div>
@@ -428,17 +428,17 @@ export default function HomePage() {
 
         {/* Industrial Robot Section */}
         <section className='py-16 md:py-20 bg-white'>
-          <div className='container mx-auto max-w-8xl'>
+          <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='grid lg:grid-cols-2 gap-12 md:gap-16 items-center'>
               <div className='space-y-6 md:space-y-8'>
                 <div className='space-y-4'>
-                  <h3 className='text-3xl md:text-4xl font-bold text-gray-800'>
+                  <h3 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800'>
                     {t.industrialRobots.title}
                   </h3>
-                  <p className='text-lg text-gray-600'>
+                  <p className='text-sm sm:text-base md:text-lg text-gray-600'>
                     {t.industrialRobots.subtitle}
                   </p>
-                  <p className='text-gray-600 leading-relaxed'>
+                  <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
                     {t.industrialRobots.description}
                   </p>
                 </div>
@@ -479,12 +479,12 @@ export default function HomePage() {
 
         {/* Product Slider Section */}
         <section className='py-16 md:py-20 bg-gray-50'>
-          <div className='container mx-auto max-w-8xl'>
+          <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='text-center mb-12 md:mb-16'>
-              <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
+              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
                 {t.productSeries.title}
               </h2>
-              <p className='text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
+              <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
                 {t.productSeries.description}
               </p>
             </div>
@@ -644,7 +644,7 @@ export default function HomePage() {
         <section className='py-16 md:py-20 bg-gray-900 text-white relative overflow-hidden'>
           <div className='absolute top-0 right-0 bottom-0 w-full bg-gradient-to-l from-blue-500/30 via-blue-400/20 to-transparent blur-3xl transform translate-x-1/2 animate-pulse'></div>
 
-          <div className='container mx-auto max-w-8xl relative z-10'>
+          <div className='container mx-auto max-w-7xl xl:max-w-8xl relative z-10'>
             <div className='grid lg:grid-cols-2 gap-12 md:gap-16 items-center'>
               <div className='relative order-2 lg:order-1'>
                 <div className='relative rounded-3xl overflow-hidden bg-gray-800/50 p-8 flex items-center justify-center'>
@@ -660,13 +660,13 @@ export default function HomePage() {
 
               <div className='space-y-6 md:space-y-8 order-1 lg:order-2'>
                 <div className='space-y-4'>
-                  <h3 className='text-3xl md:text-4xl font-bold text-white'>
+                  <h3 className='text-2xl sm:text-3xl md:text-4xl font-bold text-white'>
                     {t.collaborativeRobots.title}
                   </h3>
-                  <p className='text-lg md:text-xl text-gray-300'>
+                  <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300'>
                     {t.collaborativeRobots.subtitle}
                   </p>
-                  <p className='text-gray-300 leading-relaxed'>
+                  <p className='text-sm sm:text-base text-gray-300 leading-relaxed'>
                     {t.collaborativeRobots.description}
                   </p>
                 </div>
@@ -694,10 +694,10 @@ export default function HomePage() {
             {/* Collaborative Robots Product Slider */}
             <div className='mt-16 md:mt-20'>
               <div className='text-center mb-12 md:mb-16'>
-                <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
+                <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
                   {t.collaborativeRobots.seriesTitle}
                 </h2>
-                <p className='text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed'>
+                <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed'>
                   {t.collaborativeRobots.seriesDescription}
                 </p>
               </div>
@@ -834,12 +834,12 @@ export default function HomePage() {
 
         {/* Solutions Section */}
         <section className='py-16 md:py-20 bg-white'>
-          <div className='container mx-auto max-w-8xl'>
+          <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='text-center mb-12 md:mb-16'>
-              <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
+              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
                 {t.solutions.title}
               </h2>
-              <p className='text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
+              <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
                 {t.solutions.description}
               </p>
             </div>

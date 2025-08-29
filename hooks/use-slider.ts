@@ -13,7 +13,7 @@ export function useSlider(
     const updateItemsPerView = () => {
       if (typeof window !== 'undefined') {
         const width = window.innerWidth;
-        if (width < 768) {
+        if (width < 640) {
           // Mobile: show 1 item
           setItemsPerView(1);
         } else if (width < 1024) {
