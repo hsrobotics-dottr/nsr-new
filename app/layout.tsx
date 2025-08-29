@@ -26,18 +26,33 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:4000'
   ),
-  title: 'Huashu Robotics - Endüstriyel Robot Çözümleri',
+  title: {
+    default: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
+    template: '%s | HSR Robotics',
+  },
   description:
-    'Profesyonel endüstriyel robot üreticisi, müşterilerimize yüksek kaliteli otomasyon çözümleri sunmaya odaklanmaktadır.',
-  keywords:
-    'endüstriyel robot, otomasyon, robotik çözümler, 6 eksenli robot, işbirlikçi robot, Huashu',
-  authors: [{ name: 'Huashu Robotics' }],
-  creator: 'Huashu Robotics',
-  publisher: 'Huashu Robotics',
+    'HSR Robotics, endüstriyel robotik çözümleri, işbirlikçi robotlar, SCARA robotlar ve otomasyon sistemleri ile üretim verimliliğinizi artırın. Profesyonel robotik çözümler.',
+  keywords: [
+    'endüstriyel robot',
+    'otomasyon',
+    'robotik çözümler',
+    'işbirlikçi robot',
+    'SCARA robot',
+    '6 eksenli robot',
+    'endüstriyel otomasyon',
+    'robotik sistemler',
+    'üretim otomasyonu',
+    'HSR Robotics',
+  ],
+  authors: [{ name: 'HSR Robotics' }],
+  creator: 'HSR Robotics',
+  publisher: 'HSR Robotics',
   generator: 'Next.js',
-  applicationName: 'Huashu Robotics',
+  applicationName: 'HSR Robotics',
   referrer: 'origin-when-cross-origin',
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
+  category: 'Technology',
+  classification: 'Business',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -50,26 +65,30 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://huashu-robotik.com',
-    siteName: 'Huashu Robotics',
-    title: 'Huashu Robotics - Endüstriyel Robot Çözümleri',
+    alternateLocale: 'en_US',
+    url: 'https://hsr-robotics.com',
+    siteName: 'HSR Robotics',
+    title: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
     description:
-      'Profesyonel endüstriyel robot üreticisi, müşterilerimize yüksek kaliteli otomasyon çözümleri sunmaya odaklanmaktadır.',
+      'HSR Robotics, endüstriyel robotik çözümleri, işbirlikçi robotlar, SCARA robotlar ve otomasyon sistemleri ile üretim verimliliğinizi artırın.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Huashu Robotics - Endüstriyel Robot Çözümleri',
+        alt: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
+        type: 'image/jpeg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Huashu Robotics - Endüstriyel Robot Çözümleri',
+    title: 'HSR Robotics - Endüstriyel Robotik Çözümleri',
     description:
-      'Profesyonel endüstriyel robot üreticisi, müşterilerimize yüksek kaliteli otomasyon çözümleri sunmaya odaklanmaktadır.',
+      'HSR Robotics, endüstriyel robotik çözümleri, işbirlikçi robotlar, SCARA robotlar ve otomasyon sistemleri ile üretim verimliliğinizi artırın.',
     images: ['/og-image.jpg'],
+    creator: '@HSRRobotics',
+    site: '@HSRRobotics',
   },
   robots: {
     index: true,
@@ -80,6 +99,19 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
+      noimageindex: false,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'tr-TR': '/',
+      'en-US': '/en',
     },
   },
 };
@@ -93,9 +125,42 @@ export default function RootLayout({
     <html lang='tr'>
       <head>
         {/* Critical resource hints */}
-        {/* Dış kaynak linkleri kaldırıldı - artık kendi görsellerimizi kullanıyoruz */}
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin='anonymous'
+        />
+        <link rel='dns-prefetch' href='//www.google-analytics.com' />
 
-
+        {/* Structured Data */}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'HSR Robotics',
+              url: 'https://hsr-robotics.com',
+              logo: 'https://hsr-robotics.com/img/hsr-logo.svg',
+              description:
+                'Endüstriyel robotik çözümleri ve otomasyon sistemleri',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'TR',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                availableLanguage: ['Turkish', 'English'],
+              },
+              sameAs: [
+                'https://www.linkedin.com/company/hsr-robotics',
+                'https://twitter.com/HSRRobotics',
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ErrorBoundary>

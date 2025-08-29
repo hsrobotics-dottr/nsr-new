@@ -233,6 +233,7 @@ export {
 export { Skeleton } from './skeleton';
 export { Slider } from './slider';
 
+export { useIsMobile } from '@/hooks/use-mobile';
 export { Switch } from './switch';
 export {
   Table,
@@ -263,5 +264,4 @@ export {
   TooltipProvider,
   TooltipTrigger,
 } from './tooltip';
-export { useIsMobile } from './use-mobile';
 export { useToast } from './use-toast';

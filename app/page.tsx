@@ -224,7 +224,7 @@ export default function HomePage() {
       ) {
         toast({
           title: 'Hata',
-          description: 'LÃ¼tfen tÃ¼m zorunlu alanlarÄ± doldurun.',
+          description: 'Lütfen tüm zorunlu alanları doldurun.',
           variant: 'destructive',
         });
         return;
@@ -234,16 +234,16 @@ export default function HomePage() {
       if (!emailRegex.test(contactForm.email)) {
         toast({
           title: 'Hata',
-          description: 'LÃ¼tfen geÃ§erli bir email adresi girin.',
+          description: 'Lütfen geçerli bir email adresi girin.',
           variant: 'destructive',
         });
         return;
       }
 
       toast({
-        title: 'BaÅŸarÄ±lÄ±!',
+        title: 'Başarılı!',
         description:
-          'MesajÄ±nÄ±z baÅŸarÄ±yla gÃ¶nderildi. En kÄ±sa sÃ¼rede size dÃ¶nÃ¼ÅŸ yapacaÄŸÄ±z.',
+          'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.',
         variant: 'success',
       });
 
@@ -305,7 +305,7 @@ export default function HomePage() {
   return (
     <div className='min-h-screen bg-white overflow-x-hidden'>
       <Header />
-      <main id='main-content' tabIndex={-1} className='pt-16'>
+      <main id='main-content' tabIndex={-1} className='pt-16' role='main'>
         {/* Hero Section */}
         <ClientWrapper>
           <section className='relative text-white pt-8 md:pt-12 pb-8 md:pb-12 overflow-hidden z-10 hero-section'>
@@ -372,7 +372,8 @@ export default function HomePage() {
                   <button
                     onClick={heroSlider.prevSlide}
                     className='p-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all duration-300'
-                    aria-label='Previous slide'
+                    aria-label='Önceki slayt'
+                    type='button'
                   >
                     <ChevronLeft className='w-4 h-4 md:w-5 md:h-5 text-white' />
                   </button>
@@ -387,7 +388,11 @@ export default function HomePage() {
                             ? 'bg-blue-400 scale-125'
                             : 'bg-white/50 hover:bg-white/70'
                         }`}
-                        aria-label={`Go to slide ${index + 1}`}
+                        aria-label={`Slayt ${index + 1}'e git`}
+                        type='button'
+                        aria-current={
+                          index === heroSlider.currentSlide ? 'true' : 'false'
+                        }
                       />
                     ))}
                   </div>
@@ -395,7 +400,8 @@ export default function HomePage() {
                   <button
                     onClick={heroSlider.nextSlide}
                     className='p-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all duration-300'
-                    aria-label='Next slide'
+                    aria-label='Sonraki slayt'
+                    type='button'
                   >
                     <ChevronRight className='w-4 h-4 md:w-5 md:h-5 text-white' />
                   </button>
@@ -413,12 +419,19 @@ export default function HomePage() {
         </ClientWrapper>
 
         {/* Product Center Section */}
-        <section className='py-16 md:py-20 bg-gray-50'>
+        <section
+          className='py-16 md:py-20 bg-gray-50'
+          aria-labelledby='product-center-heading'
+        >
           <div className='container mx-auto max-w-7xl xl:max-w-8xl text-center'>
             <div className='max-w-4xl mx-auto space-y-6'>
-              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800'>
+              <h2
+                id='product-center-heading'
+                className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800'
+              >
                 {t.productCenter.title}
               </h2>
+
               <p className='text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed'>
                 {t.productCenter.description}
               </p>
@@ -427,12 +440,18 @@ export default function HomePage() {
         </section>
 
         {/* Industrial Robot Section */}
-        <section className='py-16 md:py-20 bg-white'>
+        <section
+          className='py-16 md:py-20 bg-white'
+          aria-labelledby='industrial-robots-heading'
+        >
           <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='grid lg:grid-cols-2 gap-12 md:gap-16 items-center'>
               <div className='space-y-6 md:space-y-8'>
                 <div className='space-y-4'>
-                  <h3 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800'>
+                  <h3
+                    id='industrial-robots-heading'
+                    className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800'
+                  >
                     {t.industrialRobots.title}
                   </h3>
                   <p className='text-sm sm:text-base md:text-lg text-gray-600'>
@@ -478,10 +497,16 @@ export default function HomePage() {
         </section>
 
         {/* Product Slider Section */}
-        <section className='py-16 md:py-20 bg-gray-50'>
+        <section
+          className='py-16 md:py-20 bg-gray-50'
+          aria-labelledby='product-series-heading'
+        >
           <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='text-center mb-12 md:mb-16'>
-              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
+              <h2
+                id='product-series-heading'
+                className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'
+              >
                 {t.productSeries.title}
               </h2>
               <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
@@ -499,7 +524,8 @@ export default function HomePage() {
                       ? 'hover:shadow-xl transform hover:scale-110 text-gray-600 hover:text-blue-600'
                       : 'opacity-50 cursor-not-allowed text-gray-400'
                   }`}
-                  aria-label='Previous products'
+                  aria-label='Önceki ürünler'
+                  type='button'
                 >
                   <ChevronLeft className='w-4 h-4 md:w-5 md:h-5' />
                 </button>
@@ -514,7 +540,8 @@ export default function HomePage() {
                       ? 'hover:shadow-xl transform hover:scale-110 text-gray-600 hover:text-blue-600'
                       : 'opacity-50 cursor-not-allowed text-gray-400'
                   }`}
-                  aria-label='Next products'
+                  aria-label='Sonraki ürünler'
+                  type='button'
                 >
                   <ChevronRight className='w-4 h-4 md:w-5 md:h-5' />
                 </button>
@@ -539,7 +566,7 @@ export default function HomePage() {
                         <div className='relative h-48 md:h-64 bg-gray-50 overflow-hidden p-4 flex items-center justify-center'>
                           <OptimizedImage
                             src={robot.image}
-                            alt={robot.model}
+                            alt={`${robot.model} robot görseli`}
                             width={300}
                             height={300}
                             className='max-w-full max-h-full object-contain'
@@ -607,7 +634,11 @@ export default function HomePage() {
                         ? 'bg-blue-600 scale-125'
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
-                    aria-label={`Go to product slide ${index + 1}`}
+                    aria-label={`Ürün slayt ${index + 1}'e git`}
+                    type='button'
+                    aria-current={
+                      index === currentProductSlide ? 'true' : 'false'
+                    }
                   />
                 ))}
               </div>
@@ -641,7 +672,10 @@ export default function HomePage() {
         </section>
 
         {/* Collaborative Robots Section */}
-        <section className='py-16 md:py-20 bg-gray-900 text-white relative overflow-hidden'>
+        <section
+          className='py-16 md:py-20 bg-gray-900 text-white relative overflow-hidden'
+          aria-labelledby='collaborative-robots-heading'
+        >
           <div className='absolute top-0 right-0 bottom-0 w-full bg-gradient-to-l from-blue-500/30 via-blue-400/20 to-transparent blur-3xl transform translate-x-1/2 animate-pulse'></div>
 
           <div className='container mx-auto max-w-7xl xl:max-w-8xl relative z-10'>
@@ -650,7 +684,7 @@ export default function HomePage() {
                 <div className='relative rounded-3xl overflow-hidden bg-gray-800/50 p-8 flex items-center justify-center'>
                   <OptimizedImage
                     src='/img/Collaborative/CO/HSR-CO605-1000.png'
-                    alt={t.collaborativeRobots.title}
+                    alt={`${t.collaborativeRobots.title} işbirlikçi robot görseli`}
                     width={500}
                     height={400}
                     className='max-w-full max-h-96 object-contain'
@@ -660,7 +694,10 @@ export default function HomePage() {
 
               <div className='space-y-6 md:space-y-8 order-1 lg:order-2'>
                 <div className='space-y-4'>
-                  <h3 className='text-2xl sm:text-3xl md:text-4xl font-bold text-white'>
+                  <h3
+                    id='collaborative-robots-heading'
+                    className='text-2xl sm:text-3xl md:text-4xl font-bold text-white'
+                  >
                     {t.collaborativeRobots.title}
                   </h3>
                   <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300'>
@@ -694,7 +731,10 @@ export default function HomePage() {
             {/* Collaborative Robots Product Slider */}
             <div className='mt-16 md:mt-20'>
               <div className='text-center mb-12 md:mb-16'>
-                <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
+                <h2
+                  id='collaborative-robots-series-heading'
+                  className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'
+                >
                   {t.collaborativeRobots.seriesTitle}
                 </h2>
                 <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed'>
@@ -833,10 +873,16 @@ export default function HomePage() {
         </section>
 
         {/* Solutions Section */}
-        <section className='py-16 md:py-20 bg-white'>
+        <section
+          className='py-16 md:py-20 bg-white'
+          aria-labelledby='solutions-heading'
+        >
           <div className='container mx-auto max-w-7xl xl:max-w-8xl'>
             <div className='text-center mb-12 md:mb-16'>
-              <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'>
+              <h2
+                id='solutions-heading'
+                className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6'
+              >
                 {t.solutions.title}
               </h2>
               <p className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed'>
@@ -876,6 +922,7 @@ export default function HomePage() {
                       }}
                       onError={e => {
                         // Video error
+                        console.error('Video loading error:', e);
                       }}
                     ></video>
                     {/* Fallback background for mobile */}
@@ -934,7 +981,7 @@ export default function HomePage() {
                     <div className='bg-gray-50 rounded-xl p-6 flex items-center justify-center'>
                       <OptimizedImage
                         src={selectedProduct.image}
-                        alt={selectedProduct.model}
+                        alt={`${selectedProduct.model} ürün detay görseli`}
                         width={400}
                         height={400}
                         className='max-w-full max-h-80 object-contain'

@@ -579,7 +579,11 @@ export function Header() {
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
           <div className='flex-shrink-0'>
-            <Link href='/' className='flex items-center space-x-3'>
+            <Link
+              href='/'
+              className='flex items-center space-x-3'
+              aria-label='Ana sayfa'
+            >
               <Image
                 src={
                   isScrolled ? '/img/hsr-logo-blue.svg' : '/img/hsr-logo.svg'
@@ -588,6 +592,7 @@ export function Header() {
                 width={80}
                 height={80}
                 className='w-20 h-20 transition-all duration-300'
+                priority
               />
             </Link>
           </div>
@@ -678,7 +683,9 @@ export function Header() {
                   ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                   : 'text-white hover:text-gray-300 hover:bg-white/20'
               } ${isMobileMenuOpen ? 'bg-white/30' : ''}`}
-              aria-label='Menu'
+              aria-label={isMobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls='mobile-menu'
             >
               <div className='relative w-5 h-5 flex items-center justify-center'>
                 <span
@@ -765,7 +772,12 @@ export function Header() {
                 </div>
 
                 {/* Menu Content - İlk Sayfa (Ana Başlıklar) */}
-                <div className='flex-1 overflow-y-auto p-4 space-y-3 min-h-0'>
+                <div
+                  id='mobile-menu'
+                  className='flex-1 overflow-y-auto p-4 space-y-3 min-h-0'
+                  role='navigation'
+                  aria-label='Ana navigasyon menüsü'
+                >
                   {/* Anasayfa */}
                   <Link
                     href='/'
@@ -794,6 +806,8 @@ export function Header() {
                   <button
                     onClick={() => handleMobileSubmenuOpen('products')}
                     className='w-full flex items-center justify-between p-3 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 hover:scale-[1.02] group'
+                    aria-expanded={activeMobileMenu === 'products'}
+                    aria-controls='products-submenu'
                   >
                     <div className='flex items-center'>
                       <div className='w-8 h-8 bg-blue-100 rounded-lg mr-3 flex items-center justify-center group-hover:bg-blue-200 transition-colors'>

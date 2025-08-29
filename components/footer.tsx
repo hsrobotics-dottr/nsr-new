@@ -114,7 +114,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className='bg-gray-900 text-white py-12 md:py-16'>
+    <footer
+      className='bg-gray-900 text-white py-12 md:py-16'
+      role='contentinfo'
+      aria-label='Site altbilgisi'
+    >
       <div className='container mx-auto max-w-8xl'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
           {/* Hızlı Erişim */}
