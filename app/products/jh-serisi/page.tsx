@@ -10,81 +10,80 @@ import { useState } from 'react';
 
 // JH Serisi robot modelleri;
 const jhSeriesRobots = [
-{
-model: 'HSR-JH605-1500',
-payload: '5Kg',
-reach: '1494mm',
-image: '/img/industrial/JH/HSR-JH605-1500.png',
+  {
+    model: 'HSR-JH605-1500',
+    payload: '5Kg',
+    reach: '1494mm',
+    image: '/img/industrial/JH/HSR-JH605-1500.png',
     specs: {
-    dof: '6 Eksen',
-repeatability: '±0.03mm',
-maxSpeed: '3.0 m/s',
-weight: '25 kg',
-},
-features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
-applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
-},
-{
-model: 'HSR-JH615-2000',
-payload: '15Kg',
-reach: '2000mm',
-image: '/img/industrial/JH/HSR-JH615-2000.png',
+      dof: '6 Eksen',
+      repeatability: '±0.03mm',
+      maxSpeed: '3.0 m/s',
+      weight: '25 kg',
+    },
+    features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+  },
+  {
+    model: 'HSR-JH615-2000',
+    payload: '15Kg',
+    reach: '2000mm',
+    image: '/img/industrial/JH/HSR-JH615-2000.png',
     specs: {
-    dof: '6 Eksen',
-repeatability: '±0.05mm',
-maxSpeed: '2.8 m/s',
-weight: '35 kg',
-},
-features: ['Yüksek Hassasiyet', 'Çoklu Sensör', 'Esnek Programlama'],
-applications: ['Kaynak', 'Boyama', 'Malzeme Taşıma'],
-},
-{
-model: 'HSR-JH620-1800',
-payload: '20Kg',
-reach: '1800mm',
-image: '/img/industrial/JH/HSR-JH620-1800.png',
+      dof: '6 Eksen',
+      repeatability: '±0.05mm',
+      maxSpeed: '2.8 m/s',
+      weight: '35 kg',
+    },
+    features: ['Yüksek Hassasiyet', 'Çoklu Sensör', 'Esnek Programlama'],
+    applications: ['Kaynak', 'Boyama', 'Malzeme Taşıma'],
+  },
+  {
+    model: 'HSR-JH620-1800',
+    payload: '20Kg',
+    reach: '1800mm',
+    image: '/img/industrial/JH/HSR-JH620-1800.png',
     specs: {
-    dof: '6 Eksen',
-repeatability: '±0.08mm',
-maxSpeed: '2.5 m/s',
-weight: '45 kg',
-},
-features: ['Geniş Çalışma Alanı', 'Yüksek Yük', 'Dayanıklı Yapı'],
-applications: ['Ağır Montaj', 'Paletleme', 'CNC Besleme'],
-},
-{
-model: 'HSR-JH630-1800',
-payload: '30kg',
-reach: '1800mm',
-image: '/img/industrial/JH/HSR-JH630-1800.png',
+      dof: '6 Eksen',
+      repeatability: '±0.08mm',
+      maxSpeed: '2.5 m/s',
+      weight: '45 kg',
+    },
+    features: ['Geniş Çalışma Alanı', 'Yüksek Yük', 'Dayanıklı Yapı'],
+    applications: ['Ağır Montaj', 'Paletleme', 'CNC Besleme'],
+  },
+  {
+    model: 'HSR-JH630-1800',
+    payload: '30kg',
+    reach: '1800mm',
+    image: '/img/industrial/JH/HSR-JH630-1800.png',
     specs: {
-    dof: '6 Eksen',
-repeatability: '±0.1mm',
-maxSpeed: '2.2 m/s',
-weight: '55 kg',
-},
-features: ['Yüksek Yük Kapasitesi', 'Güçlü Motor', 'Endüstriyel Dayanım'],
-applications: ['Ağır Sanayi', 'Otomotiv', 'Metal İşleme'],
-},
+      dof: '6 Eksen',
+      repeatability: '±0.1mm',
+      maxSpeed: '2.2 m/s',
+      weight: '55 kg',
+    },
+    features: ['Yüksek Yük Kapasitesi', 'Güçlü Motor', 'Endüstriyel Dayanım'],
+    applications: ['Ağır Sanayi', 'Otomotiv', 'Metal İşleme'],
+  },
 ];
 
 // Kullanım alanları;
 const applicationAreas = [
-'Otomotiv Endüstrisi - Montaj ve Kaynak İşlemleri',
-'Elektronik Sektörü - Hassas Montaj ve Test',
-'Metal İşleme - Kesme, Kaynak ve Taşlama',
-'Gıda ve İlaç - Hijyenik Üretim Hatları',
-'Plastik Endüstrisi - Enjeksiyon ve Kalıp İşlemleri',
-'Tekstil Sektörü - Dokuma ve Dikim Otomasyonu',
-'Cam ve Seramik - Şekillendirme ve Sırlama',
-'Ahşap İşleme - Kesme ve Montaj İşlemleri',
-'Kimyasal Endüstri - Tehlikeli Ortam Uygulamaları',
-'Lojistik ve Depolama - Paletleme ve Sıralama',
+  'Otomotiv Endüstrisi - Montaj ve Kaynak İşlemleri',
+  'Elektronik Sektörü - Hassas Montaj ve Test',
+  'Metal İşleme - Kesme, Kaynak ve Taşlama',
+  'Gıda ve İlaç - Hijyenik Üretim Hatları',
+  'Plastik Endüstrisi - Enjeksiyon ve Kalıp İşlemleri',
+  'Tekstil Sektörü - Dokuma ve Dikim Otomasyonu',
+  'Cam ve Seramik - Şekillendirme ve Sırlama',
+  'Ahşap İşleme - Kesme ve Montaj İşlemleri',
+  'Kimyasal Endüstri - Tehlikeli Ortam Uygulamaları',
+  'Lojistik ve Depolama - Paletleme ve Sıralama',
 ];
 
 export default function JHSerisiPage() {
-
-const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
   return (
     <div className='min-h-screen bg-white'>
@@ -109,7 +108,9 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
               Endüstriyel Altı Eksenli Robotlar
             </p>
             <p className='text-lg text-blue-200 max-w-3xl mx-auto leading-relaxed'>
-              Yüksek hassasiyet, güvenilirlik ve esneklik sunan JH serisi robotlar, çeşitli endüstriyel uygulamalar için optimize edilmiş çözümler sağlar.
+              Yüksek hassasiyet, güvenilirlik ve esneklik sunan JH serisi
+              robotlar, çeşitli endüstriyel uygulamalar için optimize edilmiş
+              çözümler sağlar.
             </p>
           </div>
         </div>
@@ -124,7 +125,8 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
                 Kullanım Alanları
               </h2>
               <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
-                JH serisi robotlar, endüstrinin çeşitli alanlarında yaygın olarak kullanılmaktadır.
+                JH serisi robotlar, endüstrinin çeşitli alanlarında yaygın
+                olarak kullanılmaktadır.
               </p>
             </div>
 
@@ -156,7 +158,8 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
                 JH Serisi Robot Modelleri
               </h2>
               <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
-                Farklı yük kapasiteleri ve erişim mesafeleri ile ihtiyaçlarınıza uygun robot seçimi yapın.
+                Farklı yük kapasiteleri ve erişim mesafeleri ile ihtiyaçlarınıza
+                uygun robot seçimi yapın.
               </p>
             </div>
 
@@ -172,80 +175,81 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
                         src={robot.image}
                         alt={robot.model}
                         fill
-            className='object-contain p-4 group-hover:scale-105 transition-transform duration-300'
-          />
-        </div>
-        <CardTitle className='text-xl font-bold text-gray-800 mb-2'>
-          {robot.model}
-        </CardTitle>
-      </CardHeader>
+                        className='object-contain p-4 group-hover:scale-105 transition-transform duration-300'
+                      />
+                    </div>
+                    <CardTitle className='text-xl font-bold text-gray-800 mb-2'>
+                      {robot.model}
+                    </CardTitle>
+                  </CardHeader>
 
-        <CardContent className='space-y-4'>
-          <div className='grid grid-cols-3 gap-3'>
-            <div className='bg-blue-50 p-3 rounded-lg text-center'>
-              <div className='text-xs text-gray-600 mb-1'>
-                Eksen Sayısı
-              </div>
-              <div className='text-sm font-bold text-blue-600'>
-                {robot.specs.dof}
-              </div>
-            </div>
-            <div className='bg-green-50 p-3 rounded-lg text-center'>
-              <div className='text-xs text-gray-600 mb-1'>
-                Yük Kapasitesi
-              </div>
-              <div className='text-sm font-bold text-green-600'>
-                {robot.payload}
-              </div>
-            </div>
-            <div className='bg-purple-50 p-3 rounded-lg text-center'>
-              <div className='text-xs text-gray-600 mb-1'>
-                Kol Açıklığı
-              </div>
-              <div className='text-sm font-bold text-purple-600'>
-                {robot.reach}
-              </div>
+                  <CardContent className='space-y-4'>
+                    <div className='grid grid-cols-3 gap-3'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Eksen Sayısı
+                        </div>
+                        <div className='text-sm font-bold text-blue-700'>
+                          {robot.specs.dof}
+                        </div>
+                      </div>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Yük Kapasitesi
+                        </div>
+                        <div className='text-sm font-bold text-blue-600'>
+                          {robot.payload}
+                        </div>
+                      </div>
+                      <div className='bg-blue-25 p-3 rounded-lg text-center'>
+                        <div className='text-xs text-gray-600 mb-1'>
+                          Kol Açıklığı
+                        </div>
+                        <div className='text-sm font-bold text-blue-500'>
+                          {robot.reach}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='pt-4'>
+                      <Link
+                        href={`/products/jh-series/${robot.model
+                          .toLowerCase()
+                          .replace(/\//g, '-')}`}
+                        className='w-full bg-blue-600 hover:bg-blue-700 text-white inline-flex items-center justify-center px-4 py-2 rounded-lg transition-colors duration-200'
+                      >
+                        <ExternalLink className='w-4 h-4 mr-2' />
+                        Detayları İncele
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className='pt-4'>
-            <Link
-              href={`/products/jh-series/${robot.model
-                .toLowerCase()
-                .replace(/\//g, '-')}`}
-              className='w-full bg-blue-600 hover:bg-blue-700 text-white inline-flex items-center justify-center px-4 py-2 rounded-lg transition-colors duration-200'
+      {/* CTA Section */}
+      <section className='py-16 bg-blue-600 text-white'>
+        <div className='container mx-auto max-w-8xl text-center'>
+          <h2 className='text-3xl md:text-4xl font-bold mb-6'>
+            JH Serisi Hakkında Daha Fazla Bilgi
+          </h2>
+          <p className='text-xl text-blue-100 mb-8 max-w-3xl mx-auto'>
+            Teknik özellikler, kullanım kılavuzları ve fiyat teklifleri için
+            bizimle iletişime geçin.
+          </p>
+          <div className='flex justify-center'>
+            <Button
+              size='lg'
+              className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3'
+              onClick={() => setIsContactFormOpen(true)}
             >
-              <ExternalLink className='w-4 h-4 mr-2' />
-              Detayları İncele
-            </Link>
+              <MessageCircle className='w-5 h-5 mr-2' />
+              Teklif İste
+            </Button>
           </div>
-        </CardContent>
-      </Card>
-    ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* CTA Section */}
-    <section className='py-16 bg-blue-600 text-white'>
-      <div className='container mx-auto max-w-8xl text-center'>
-        <h2 className='text-3xl md:text-4xl font-bold mb-6'>
-          JH Serisi Hakkında Daha Fazla Bilgi
-        </h2>
-        <p className='text-xl text-blue-100 mb-8 max-w-3xl mx-auto'>
-          Teknik özellikler, kullanım kılavuzları ve fiyat teklifleri için bizimle iletişime geçin.
-        </p>
-        <div className='flex justify-center'>
-          <Button
-            size='lg'
-            className='bg-white text-blue-600 hover:bg-gray-100 px-8 py-3'
-            onClick={() => setIsContactFormOpen(true)}
-          >
-            <MessageCircle className='w-5 h-5 mr-2' />
-            Teklif İste
-          </Button>
-        </div>
         </div>
       </section>
 
@@ -282,8 +286,7 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
               </p>
             </div>
 
-      <div
-            className='p-6'>
+            <div className='p-6'>
               <form className='space-y-4'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   <div>
@@ -368,7 +371,7 @@ const [isContactFormOpen, setIsContactFormOpen] = useState(false);
         </div>
       )}
 
-<Footer />
-      </div>
-);
+      <Footer />
+    </div>
+  );
 }

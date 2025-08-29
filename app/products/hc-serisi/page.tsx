@@ -8,35 +8,35 @@ import Link from 'next/link';
 
 // HC Serisi robot modelleri;
 const hcSeriesRobots = [
-{
-model: 'HSR-HC403-590',
-payload: '3kg',
-reach: '590mm',
-image: '/img/industrial/HC/HSR-HC403-590.png',
+  {
+    model: 'HSR-HC403-590',
+    payload: '3kg',
+    reach: '590mm',
+    image: '/img/industrial/HC/HSR-HC403-590.png',
     specs: {
-    dof: '6 Eksen',
-repeatability: '±0.02mm',
-maxSpeed: '3.5 m/s',
-weight: '18 kg',
-},
-features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
-applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
-slug: 'hsr-hc403-590',
-},
+      dof: '6 Eksen',
+      repeatability: '±0.02mm',
+      maxSpeed: '3.5 m/s',
+      weight: '18 kg',
+    },
+    features: ['Güvenlik Sensörleri', 'Kolay Programlama', 'Kompakt Tasarım'],
+    applications: ['Montaj', 'Paketleme', 'Kalite Kontrol'],
+    slug: 'hsr-hc403-590',
+  },
 ];
 
 // Kullanım alanları;
 const applicationAreas = [
-'Otomotiv Endüstrisi - Montaj ve Kaynak İşlemleri',
-'Elektronik Sektörü - Hassas Montaj ve Test',
-'Metal İşleme - Kesme, Kaynak ve Taşlama',
-'Gıda ve İlaç - Hijyenik Üretim Hatları',
-'Plastik Endüstrisi - Enjeksiyon ve Kalıp İşlemleri',
-'Tekstil Sektörü - Dokuma ve Dikim Otomasyonu',
-'Cam ve Seramik - Şekillendirme ve Sırlama',
-'Ahşap İşleme - Kesme ve Montaj İşlemleri',
-'Kimyasal Endüstri - Tehlikeli Ortam Uygulamaları',
-'Lojistik ve Depolama - Paletleme ve Sıralama',
+  'Otomotiv Endüstrisi - Montaj ve Kaynak İşlemleri',
+  'Elektronik Sektörü - Hassas Montaj ve Test',
+  'Metal İşleme - Kesme, Kaynak ve Taşlama',
+  'Gıda ve İlaç - Hijyenik Üretim Hatları',
+  'Plastik Endüstrisi - Enjeksiyon ve Kalıp İşlemleri',
+  'Tekstil Sektörü - Dokuma ve Dikim Otomasyonu',
+  'Cam ve Seramik - Şekillendirme ve Sırlama',
+  'Ahşap İşleme - Kesme ve Montaj İşlemleri',
+  'Kimyasal Endüstri - Tehlikeli Ortam Uygulamaları',
+  'Lojistik ve Depolama - Paletleme ve Sıralama',
 ];
 
 export default function HCFSerisiPage() {
@@ -58,9 +58,7 @@ export default function HCFSerisiPage() {
                 Ürün Merkezi
               </Link>
             </div>
-            <h1 className='text-4xl md:text-6xl font-bold mb-6'>
-              HC Serisi
-            </h1>
+            <h1 className='text-4xl md:text-6xl font-bold mb-6'>HC Serisi</h1>
             <p className='text-xl md:text-2xl text-blue-100 mb-8'>
               Endüstriyel Altı Eksenli Robotlar
             </p>
@@ -143,27 +141,27 @@ export default function HCFSerisiPage() {
                   </CardHeader>
                   <CardContent className='space-y-4'>
                     <div className='grid grid-cols-3 gap-4'>
-                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Eksen Sayısı
                         </div>
-                        <div className='text-lg font-bold text-blue-600'>
+                        <div className='text-lg font-bold text-blue-700'>
                           {robot.specs.dof}
                         </div>
                       </div>
-                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Yük Kapasitesi
                         </div>
-                        <div className='text-lg font-bold text-green-600'>
+                        <div className='text-lg font-bold text-blue-600'>
                           {robot.payload}
                         </div>
                       </div>
-                      <div className='bg-purple-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-25 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Kol Açıklığı
                         </div>
-                        <div className='text-lg font-bold text-purple-600'>
+                        <div className='text-lg font-bold text-blue-500'>
                           {robot.reach}
                         </div>
                       </div>

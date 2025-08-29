@@ -378,22 +378,24 @@ export default function HomePage() {
                     <ChevronLeft className='w-4 h-4 md:w-5 md:h-5 text-white' />
                   </button>
 
-                  <div className='flex space-x-2'>
+                  <div className='flex space-x-3'>
                     {heroSlides.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => heroSlider.goToSlide(index)}
-                        className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                        className={`w-6 h-6 md:w-8 md:h-8 rounded-full transition-all duration-300 flex items-center justify-center ${
                           index === heroSlider.currentSlide
                             ? 'bg-blue-400 scale-125'
-                            : 'bg-white/50 hover:bg-white/70'
+                            : 'bg-white/50 hover:bg-white/80'
                         }`}
                         aria-label={`Slayt ${index + 1}'e git`}
                         type='button'
                         aria-current={
                           index === heroSlider.currentSlide ? 'true' : 'false'
                         }
-                      />
+                      >
+                        <span className='sr-only'>Slayt {index + 1}</span>
+                      </button>
                     ))}
                   </div>
 
@@ -582,27 +584,27 @@ export default function HomePage() {
                           </div>
 
                           <div className='grid grid-cols-3 gap-3'>
-                            <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                            <div className='bg-blue-100 p-3 rounded-lg text-center'>
                               <div className='text-xs text-gray-600 mb-1'>
                                 {t.productSeries.specs.dof}
                               </div>
-                              <div className='text-sm md:text-lg font-bold text-blue-600'>
+                              <div className='text-sm md:text-lg font-bold text-blue-700'>
                                 {robot.specs.dof}
                               </div>
                             </div>
-                            <div className='bg-green-50 p-3 rounded-lg text-center'>
+                            <div className='bg-blue-50 p-3 rounded-lg text-center'>
                               <div className='text-xs text-gray-600 mb-1'>
                                 {t.productSeries.specs.payload}
                               </div>
-                              <div className='text-sm md:text-lg font-bold text-green-600'>
+                              <div className='text-sm md:text-lg font-bold text-blue-600'>
                                 {robot.payload}
                               </div>
                             </div>
-                            <div className='bg-gray-50 p-3 rounded-lg text-center'>
+                            <div className='bg-blue-25 p-3 rounded-lg text-center'>
                               <div className='text-xs text-gray-600 mb-1'>
                                 {t.productSeries.specs.reach}
                               </div>
-                              <div className='text-sm md:text-lg font-bold text-gray-700'>
+                              <div className='text-sm md:text-lg font-bold text-blue-500'>
                                 {robot.reach}
                               </div>
                             </div>
@@ -620,27 +622,6 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-              </div>
-
-              <div className='flex justify-center mt-8 space-x-2'>
-                {Array.from({
-                  length: Math.max(0, productData.length - productsPerView + 1),
-                }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentProductSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentProductSlide
-                        ? 'bg-blue-600 scale-125'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    aria-label={`Ürün slayt ${index + 1}'e git`}
-                    type='button'
-                    aria-current={
-                      index === currentProductSlide ? 'true' : 'false'
-                    }
-                  />
-                ))}
               </div>
             </div>
 
@@ -808,27 +789,27 @@ export default function HomePage() {
                             </div>
 
                             <div className='grid grid-cols-3 gap-3'>
-                              <div className='dof-box bg-white/10 backdrop-blur-sm border border-white/20 p-3 rounded-lg text-center'>
-                                <div className='text-xs text-gray-300 mb-1'>
+                              <div className='dof-box bg-blue-600/30 backdrop-blur-sm border border-blue-400/40 p-3 rounded-lg text-center'>
+                                <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.dof}
                                 </div>
-                                <div className='text-sm md:text-lg font-bold text-white'>
+                                <div className='text-sm md:text-lg font-bold text-blue-300'>
                                   {robot.specs.dof}
                                 </div>
                               </div>
-                              <div className='payload-box bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 p-3 rounded-lg text-center'>
-                                <div className='text-xs text-blue-300 mb-1'>
+                              <div className='payload-box bg-blue-500/20 backdrop-blur-sm border border-blue-300/30 p-3 rounded-lg text-center'>
+                                <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.payload}
                                 </div>
-                                <div className='text-sm md:text-lg font-bold text-blue-400'>
+                                <div className='text-sm md:text-lg font-bold text-blue-300'>
                                   {robot.payload}
                                 </div>
                               </div>
-                              <div className='reach-box bg-white/10 backdrop-blur-sm border border-white/20 p-3 rounded-lg text-center'>
-                                <div className='text-xs text-gray-300 mb-1'>
+                              <div className='reach-box bg-blue-400/10 backdrop-blur-sm border border-blue-200/20 p-3 rounded-lg text-center'>
+                                <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.reach}
                                 </div>
-                                <div className='text-sm md:text-lg font-bold text-white'>
+                                <div className='text-sm md:text-lg font-bold text-blue-200'>
                                   {robot.reach}
                                 </div>
                               </div>
@@ -846,26 +827,6 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
-                </div>
-
-                <div className='flex justify-center mt-8 space-x-2'>
-                  {Array.from({
-                    length: Math.max(
-                      0,
-                      collaborativeRobotsData.length - collabPerView + 1
-                    ),
-                  }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentCollabSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentCollabSlide
-                          ? 'bg-blue-400 scale-125'
-                          : 'bg-white/30 hover:bg-white/50'
-                      }`}
-                      aria-label={`Go to collaborative robot slide ${index + 1}`}
-                    />
-                  ))}
                 </div>
               </div>
             </div>
@@ -997,11 +958,11 @@ export default function HomePage() {
                           {selectedProduct.payload}
                         </div>
                       </div>
-                      <div className='bg-gray-50 p-4 rounded-lg text-center'>
+                      <div className='bg-blue-25 p-4 rounded-lg text-center'>
                         <div className='text-sm text-gray-600 mb-1'>
                           {t.productSeries.specs.reach}
                         </div>
-                        <div className='text-2xl font-bold text-gray-700'>
+                        <div className='text-2xl font-bold text-blue-500'>
                           {selectedProduct.reach}
                         </div>
                       </div>

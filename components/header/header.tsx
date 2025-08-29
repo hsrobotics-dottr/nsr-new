@@ -678,7 +678,7 @@ export function Header() {
             {/* Hamburger Menu Button */}
             <button
               onClick={handleMobileMenuToggle}
-              className={`p-2.5 rounded-full transition-all duration-300 ${
+              className={`p-3 rounded-full transition-all duration-300 ${
                 isScrolled
                   ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                   : 'text-white hover:text-gray-300 hover:bg-white/20'
@@ -752,8 +752,9 @@ export function Header() {
                   <h2 className='text-lg font-bold text-gray-900'>Menü</h2>
                   <button
                     onClick={handleMobileMenuClose}
-                    className='p-2 rounded-full bg-white hover:bg-gray-100 transition-colors shadow-sm'
-                    aria-label='Close menu'
+                    className='p-3 rounded-full bg-white hover:bg-gray-100 transition-colors shadow-sm'
+                    aria-label='Menüyü kapat'
+                    type='button'
                   >
                     <svg
                       className='w-5 h-5 text-gray-600'

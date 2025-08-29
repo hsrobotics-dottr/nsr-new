@@ -355,6 +355,41 @@ video {
     border: 0;
   }
 
+  /* Touch target minimum size */
+  button,
+  a,
+  [role='button'],
+  [role='link'] {
+    min-height: 24px;
+    min-width: 24px;
+  }
+
+  /* Improved color contrast for better accessibility */
+  .bg-white\/50 {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .bg-white\/30 {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .hover\:bg-white\/60:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hover\:bg-white\/80:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hover\:bg-gray-500:hover {
+    background-color: #6b7280;
+  }
+
+  /* Custom blue colors for product cards */
+  .bg-blue-25 {
+    background-color: #eff6ff;
+  }
+
   /* High contrast mode support */
   @media (prefers-contrast: high) {
     .bg-gray-50 {
@@ -398,11 +433,11 @@ video {
   }
 }
 
-/* Focus styles for accessibility */
-:focus-visible {
+/* Focus styles for accessibility - REMOVED */
+/* :focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
-}
+} */
 
 /* Print styles */
 @media print {

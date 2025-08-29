@@ -284,21 +284,21 @@ export default function ServoMotorPage() {
 
                   <CardContent className='space-y-4'>
                     <div className='grid grid-cols-3 gap-3'>
-                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>Güç</div>
-                        <div className='text-sm font-bold text-blue-600'>
+                        <div className='text-sm font-bold text-blue-700'>
                           {motor.power}
                         </div>
                       </div>
-                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>Tork</div>
-                        <div className='text-sm font-bold text-green-600'>
+                        <div className='text-sm font-bold text-blue-600'>
                           {motor.torque}
                         </div>
                       </div>
-                      <div className='bg-purple-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-25 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>Voltaj</div>
-                        <div className='text-sm font-bold text-purple-600'>
+                        <div className='text-sm font-bold text-blue-500'>
                           {motor.specs.voltage}
                         </div>
                       </div>

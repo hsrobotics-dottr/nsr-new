@@ -153,19 +153,19 @@ export default function HareketDenetleyicisiPage() {
                   </CardHeader>
                   <CardContent className='space-y-4'>
                     <div className='grid grid-cols-2 gap-3'>
-                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Ağırlık
                         </div>
-                        <div className='text-sm font-bold text-blue-600'>
+                        <div className='text-sm font-bold text-blue-700'>
                           {controller.specs.weight}
                         </div>
                       </div>
-                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Koruma Seviyesi
                         </div>
-                        <div className='text-sm font-bold text-green-600'>
+                        <div className='text-sm font-bold text-blue-600'>
                           {controller.specs.protectionLevel}
                         </div>
                       </div>

@@ -159,27 +159,27 @@ export default function MDSeriesPage() {
 
                   <CardContent className='space-y-4'>
                     <div className='grid grid-cols-3 gap-3'>
-                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-100 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Eksen Sayısı
                         </div>
-                        <div className='text-sm font-bold text-blue-600'>
+                        <div className='text-sm font-bold text-blue-700'>
                           {robot.specs.dof}
                         </div>
                       </div>
-                      <div className='bg-green-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-50 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Yük Kapasitesi
                         </div>
-                        <div className='text-sm font-bold text-green-600'>
+                        <div className='text-sm font-bold text-blue-600'>
                           {robot.payload}
                         </div>
                       </div>
-                      <div className='bg-purple-50 p-3 rounded-lg text-center'>
+                      <div className='bg-blue-25 p-3 rounded-lg text-center'>
                         <div className='text-xs text-gray-600 mb-1'>
                           Kol Açıklığı
                         </div>
-                        <div className='text-sm font-bold text-purple-600'>
+                        <div className='text-sm font-bold text-blue-500'>
                           {robot.reach}
                         </div>
                       </div>
