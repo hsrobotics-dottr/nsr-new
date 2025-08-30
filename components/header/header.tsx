@@ -589,10 +589,18 @@ export function Header() {
                   isScrolled ? '/img/hsr-logo-blue.svg' : '/img/hsr-logo.svg'
                 }
                 alt='HSR Robotics Logo'
-                width={200}
-                height={60}
-                className='w-48 h-14 transition-all duration-300'
+                width={400}
+                height={120}
+                className='transition-all duration-300'
                 priority
+                style={{
+                  width: window.innerWidth < 768 ? '110px' : '130px',
+                  height: window.innerWidth < 768 ? '28px' : '33px',
+                  minWidth: window.innerWidth < 768 ? '110px' : '130px',
+                  minHeight: window.innerWidth < 768 ? '28px' : '33px',
+                  maxWidth: window.innerWidth < 768 ? '110px' : '130px',
+                  maxHeight: window.innerWidth < 768 ? '28px' : '33px',
+                }}
               />
             </Link>
           </div>

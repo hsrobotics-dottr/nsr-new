@@ -352,7 +352,13 @@ export default function Footer() {
                 alt='Novagraph'
                 width={200}
                 height={50}
-                className='h-12 w-auto group-hover:brightness-110 group-hover:contrast-125 transition-all duration-300'
+                className='group-hover:brightness-110 group-hover:contrast-125 transition-all duration-300'
+                style={{
+                  height: window.innerWidth < 768 ? '16px' : '24px',
+                  width: 'auto',
+                  minHeight: window.innerWidth < 768 ? '16px' : '24px',
+                  maxHeight: window.innerWidth < 768 ? '16px' : '24px',
+                }}
               />
             </Link>
           </div>
