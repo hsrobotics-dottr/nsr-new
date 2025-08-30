@@ -169,7 +169,7 @@ export default function ProductsPage() {
                 className='group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-gray-200'
               >
                 <CardHeader className='p-0'>
-                  <div className='h-48 bg-gray-50 relative overflow-hidden'>
+                  <div className='h-64 bg-gray-50 relative overflow-hidden'>
                     <div className='flex items-center justify-center h-full'>
                       <Image
                         src={series.image}
@@ -198,9 +198,7 @@ export default function ProductsPage() {
                   <Link href={series.href} className='block'>
                     <Button className='w-full bg-blue-600 hover:bg-blue-700 text-white group'>
                       <span>Ürünleri Gör</span>
-                      <ArrowRight
-                        className='ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200'
-                      />
+                      <ArrowRight className='ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200' />
                     </Button>
                   </Link>
                 </CardContent>

@@ -269,7 +269,7 @@ export default function ServoMotorPage() {
                   className='group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-gray-200'
                 >
                   <CardHeader className='pb-4'>
-                    <div className='relative h-48 bg-gray-50 rounded-lg overflow-hidden mb-4'>
+                    <div className='relative h-64 bg-gray-50 rounded-lg overflow-hidden mb-4'>
                       <Image
                         src={motor.image}
                         alt={motor.model}
