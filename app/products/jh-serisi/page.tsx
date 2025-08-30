@@ -170,12 +170,17 @@ export default function JHSerisiPage() {
                   className='group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-gray-200'
                 >
                   <CardHeader className='pb-4'>
-                    <div className='relative h-64 bg-gray-50 rounded-lg overflow-hidden mb-4'>
+                    <div className='relative bg-gray-50 rounded-lg overflow-hidden mb-4 min-h-[200px]'>
                       <Image
                         src={robot.image}
                         alt={robot.model}
-                        fill
-                        className='object-contain p-4 group-hover:scale-105 transition-transform duration-300'
+                        width={400}
+                        height={300}
+                        className='w-full h-auto object-contain p-4 group-hover:scale-105 transition-transform duration-300'
+                        style={{
+                          minHeight: '200px',
+                          maxHeight: '400px',
+                        }}
                       />
                     </div>
                     <CardTitle className='text-xl font-bold text-gray-800 mb-2'>

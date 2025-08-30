@@ -169,7 +169,7 @@ export default function ProductsPage() {
                 className='group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-gray-200'
               >
                 <CardHeader className='p-0'>
-                  <div className='h-64 bg-gray-50 relative overflow-hidden'>
+                  <div className='h-80 bg-gray-50 relative overflow-hidden'>
                     <div className='flex items-center justify-center h-full'>
                       <Image
                         src={series.image}
