@@ -594,12 +594,30 @@ export function Header() {
                 className='transition-all duration-300'
                 priority
                 style={{
-                  width: window.innerWidth < 768 ? '110px' : '130px',
-                  height: window.innerWidth < 768 ? '28px' : '33px',
-                  minWidth: window.innerWidth < 768 ? '110px' : '130px',
-                  minHeight: window.innerWidth < 768 ? '28px' : '33px',
-                  maxWidth: window.innerWidth < 768 ? '110px' : '130px',
-                  maxHeight: window.innerWidth < 768 ? '28px' : '33px',
+                  width:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '110px'
+                      : '130px',
+                  height:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '28px'
+                      : '33px',
+                  minWidth:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '110px'
+                      : '130px',
+                  minHeight:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '28px'
+                      : '33px',
+                  maxWidth:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '110px'
+                      : '130px',
+                  maxHeight:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '28px'
+                      : '33px',
                 }}
               />
             </Link>

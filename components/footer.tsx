@@ -354,10 +354,19 @@ export default function Footer() {
                 height={50}
                 className='group-hover:brightness-110 group-hover:contrast-125 transition-all duration-300'
                 style={{
-                  height: window.innerWidth < 768 ? '16px' : '24px',
+                  height:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '16px'
+                      : '24px',
                   width: 'auto',
-                  minHeight: window.innerWidth < 768 ? '16px' : '24px',
-                  maxHeight: window.innerWidth < 768 ? '16px' : '24px',
+                  minHeight:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '16px'
+                      : '24px',
+                  maxHeight:
+                    typeof window !== 'undefined' && window.innerWidth < 768
+                      ? '16px'
+                      : '24px',
                 }}
               />
             </Link>
