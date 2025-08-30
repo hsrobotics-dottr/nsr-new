@@ -830,7 +830,7 @@ export default function HomePage() {
                                   {robot.specs.dof}
                                 </div>
                               </div>
-                              <div className='payload-box bg-blue-400/10 backdrop-blur-sm border border-blue-200/20 p-3 rounded-lg text-center'>
+                              <div className='payload-box bg-blue-500/40 backdrop-blur-sm border border-blue-500/30 p-3 rounded-lg text-center'>
                                 <div className='text-xs text-blue-200 mb-1'>
                                   {t.productSeries.specs.payload}
                                 </div>
