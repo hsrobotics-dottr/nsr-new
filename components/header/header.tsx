@@ -589,9 +589,9 @@ export function Header() {
                   isScrolled ? '/img/hsr-logo-blue.svg' : '/img/hsr-logo.svg'
                 }
                 alt='HSR Robotics Logo'
-                width={80}
-                height={80}
-                className='w-20 h-20 transition-all duration-300'
+                width={200}
+                height={60}
+                className='w-48 h-14 transition-all duration-300'
                 priority
               />
             </Link>

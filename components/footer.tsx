@@ -350,9 +350,9 @@ export default function Footer() {
               <Image
                 src='/img/novagraph-footer-logo.svg'
                 alt='Novagraph'
-                width={120}
-                height={30}
-                className='h-6 w-auto group-hover:brightness-110 group-hover:contrast-125 transition-all duration-300'
+                width={200}
+                height={50}
+                className='h-12 w-auto group-hover:brightness-110 group-hover:contrast-125 transition-all duration-300'
               />
             </Link>
           </div>
